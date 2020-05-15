@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"mysitereactamplify790b397d": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
