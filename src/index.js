@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Amplify from 'aws-amplify';
@@ -7,11 +7,15 @@ import * as serviceWorker from './serviceWorker';
 
 import awsconfig from './aws-exports';
 
+import './i18n';
+
 Amplify.configure(awsconfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={null}>
+      <App />
+    </Suspense>
   </React.StrictMode>,
   document.getElementById('root'),
 );
