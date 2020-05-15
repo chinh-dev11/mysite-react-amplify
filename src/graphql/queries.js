@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getApps = /* GraphQL */ `
-  query GetApps($id: ID!) {
-    getApps(id: $id) {
+export const getProject = /* GraphQL */ `
+  query GetProject($id: ID!) {
+    getProject(id: $id) {
       id
       name
       type
@@ -14,13 +14,13 @@ export const getApps = /* GraphQL */ `
     }
   }
 `;
-export const listAppss = /* GraphQL */ `
-  query ListAppss(
-    $filter: ModelAppsFilterInput
+export const listProjects = /* GraphQL */ `
+  query ListProjects(
+    $filter: ModelProjectFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listAppss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -34,9 +34,9 @@ export const listAppss = /* GraphQL */ `
     }
   }
 `;
-export const getCerts = /* GraphQL */ `
-  query GetCerts($id: ID!) {
-    getCerts(id: $id) {
+export const getCertificate = /* GraphQL */ `
+  query GetCertificate($id: ID!) {
+    getCertificate(id: $id) {
       id
       name
       completedDate
@@ -50,13 +50,13 @@ export const getCerts = /* GraphQL */ `
     }
   }
 `;
-export const listCertss = /* GraphQL */ `
-  query ListCertss(
-    $filter: ModelCertsFilterInput
+export const listCertificates = /* GraphQL */ `
+  query ListCertificates(
+    $filter: ModelCertificateFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listCertss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCertificates(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name

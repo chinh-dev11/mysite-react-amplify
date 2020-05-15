@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createApps = /* GraphQL */ `
-  mutation CreateApps(
-    $input: CreateAppsInput!
-    $condition: ModelAppsConditionInput
+export const createProject = /* GraphQL */ `
+  mutation CreateProject(
+    $input: CreateProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    createApps(input: $input, condition: $condition) {
+    createProject(input: $input, condition: $condition) {
       id
       name
       type
@@ -17,12 +17,12 @@ export const createApps = /* GraphQL */ `
     }
   }
 `;
-export const updateApps = /* GraphQL */ `
-  mutation UpdateApps(
-    $input: UpdateAppsInput!
-    $condition: ModelAppsConditionInput
+export const updateProject = /* GraphQL */ `
+  mutation UpdateProject(
+    $input: UpdateProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    updateApps(input: $input, condition: $condition) {
+    updateProject(input: $input, condition: $condition) {
       id
       name
       type
@@ -33,12 +33,12 @@ export const updateApps = /* GraphQL */ `
     }
   }
 `;
-export const deleteApps = /* GraphQL */ `
-  mutation DeleteApps(
-    $input: DeleteAppsInput!
-    $condition: ModelAppsConditionInput
+export const deleteProject = /* GraphQL */ `
+  mutation DeleteProject(
+    $input: DeleteProjectInput!
+    $condition: ModelProjectConditionInput
   ) {
-    deleteApps(input: $input, condition: $condition) {
+    deleteProject(input: $input, condition: $condition) {
       id
       name
       type
@@ -49,12 +49,12 @@ export const deleteApps = /* GraphQL */ `
     }
   }
 `;
-export const createCerts = /* GraphQL */ `
-  mutation CreateCerts(
-    $input: CreateCertsInput!
-    $condition: ModelCertsConditionInput
+export const createCertificate = /* GraphQL */ `
+  mutation CreateCertificate(
+    $input: CreateCertificateInput!
+    $condition: ModelCertificateConditionInput
   ) {
-    createCerts(input: $input, condition: $condition) {
+    createCertificate(input: $input, condition: $condition) {
       id
       name
       completedDate
@@ -68,12 +68,12 @@ export const createCerts = /* GraphQL */ `
     }
   }
 `;
-export const updateCerts = /* GraphQL */ `
-  mutation UpdateCerts(
-    $input: UpdateCertsInput!
-    $condition: ModelCertsConditionInput
+export const updateCertificate = /* GraphQL */ `
+  mutation UpdateCertificate(
+    $input: UpdateCertificateInput!
+    $condition: ModelCertificateConditionInput
   ) {
-    updateCerts(input: $input, condition: $condition) {
+    updateCertificate(input: $input, condition: $condition) {
       id
       name
       completedDate
@@ -87,12 +87,12 @@ export const updateCerts = /* GraphQL */ `
     }
   }
 `;
-export const deleteCerts = /* GraphQL */ `
-  mutation DeleteCerts(
-    $input: DeleteCertsInput!
-    $condition: ModelCertsConditionInput
+export const deleteCertificate = /* GraphQL */ `
+  mutation DeleteCertificate(
+    $input: DeleteCertificateInput!
+    $condition: ModelCertificateConditionInput
   ) {
-    deleteCerts(input: $input, condition: $condition) {
+    deleteCertificate(input: $input, condition: $condition) {
       id
       name
       completedDate

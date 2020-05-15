@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateApps = /* GraphQL */ `
-  subscription OnCreateApps {
-    onCreateApps {
+export const onCreateProject = /* GraphQL */ `
+  subscription OnCreateProject {
+    onCreateProject {
       id
       name
       type
@@ -14,9 +14,9 @@ export const onCreateApps = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateApps = /* GraphQL */ `
-  subscription OnUpdateApps {
-    onUpdateApps {
+export const onUpdateProject = /* GraphQL */ `
+  subscription OnUpdateProject {
+    onUpdateProject {
       id
       name
       type
@@ -27,9 +27,9 @@ export const onUpdateApps = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteApps = /* GraphQL */ `
-  subscription OnDeleteApps {
-    onDeleteApps {
+export const onDeleteProject = /* GraphQL */ `
+  subscription OnDeleteProject {
+    onDeleteProject {
       id
       name
       type
@@ -40,9 +40,9 @@ export const onDeleteApps = /* GraphQL */ `
     }
   }
 `;
-export const onCreateCerts = /* GraphQL */ `
-  subscription OnCreateCerts {
-    onCreateCerts {
+export const onCreateCertificate = /* GraphQL */ `
+  subscription OnCreateCertificate {
+    onCreateCertificate {
       id
       name
       completedDate
@@ -56,9 +56,9 @@ export const onCreateCerts = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateCerts = /* GraphQL */ `
-  subscription OnUpdateCerts {
-    onUpdateCerts {
+export const onUpdateCertificate = /* GraphQL */ `
+  subscription OnUpdateCertificate {
+    onUpdateCertificate {
       id
       name
       completedDate
@@ -72,9 +72,9 @@ export const onUpdateCerts = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteCerts = /* GraphQL */ `
-  subscription OnDeleteCerts {
-    onDeleteCerts {
+export const onDeleteCertificate = /* GraphQL */ `
+  subscription OnDeleteCertificate {
+    onDeleteCertificate {
       id
       name
       completedDate

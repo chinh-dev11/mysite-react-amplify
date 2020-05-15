@@ -1,4 +1,4 @@
-type Apps @model {
+type Project @model {
   id: ID!
   name: String!
   type: String!
@@ -7,7 +7,7 @@ type Apps @model {
   alt: String
   url: String
 }
-type Certs @model {
+type Certificate @model {
   id: ID!
   name: String!
   completedDate: String!
