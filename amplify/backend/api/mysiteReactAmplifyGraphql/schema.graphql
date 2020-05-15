@@ -1,0 +1,21 @@
+type Apps @model {
+  id: ID!
+  name: String!
+  type: String!
+  languages: String!
+  image: String
+  alt: String
+  url: String
+}
+type Certs @model {
+  id: ID!
+  name: String!
+  completedDate: String!
+  languages: String!
+  image: String
+  alt: String
+  url: String
+  urlSource: String
+  label: String
+  enabled: Boolean
+}
