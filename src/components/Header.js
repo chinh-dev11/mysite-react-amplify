@@ -4,13 +4,13 @@ import { Auth } from 'aws-amplify';
 import Button from 'react-bootstrap/Button';
 
 const Header = () => {
-  const [authenticated, setauthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const logoutHandler = async () => {
     try {
       const user = await Auth.signOut({ global: true });
       console.log(user);
-      setauthenticated(false);
+      setAuthenticated(false);
     } catch (e) {
       console.log(e);
     }
@@ -24,7 +24,7 @@ const Header = () => {
     try {
       const user = await Auth.signIn(payload);
       console.log(user);
-      setauthenticated(true);
+      setAuthenticated(true);
     } catch (e) {
       console.log(e);
     }
