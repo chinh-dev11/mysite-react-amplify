@@ -21,9 +21,20 @@ const Project = () => {
   };
 
   const projectMutation = async () => {
+    const newProject = {
+      input: {
+        name: 'clubillico',
+        type: 'work',
+        languages: 'AngularJS (v1.6), Java, Oracle',
+        image: 'clubillico-640-en.jpg',
+        alt: 'clubillico',
+        url: 'https://clubillico.videotron.com/',
+      },
+    };
     setItem(null);
+
     try {
-      const result = await API.graphql(graphqlOperation(createProject));
+      const result = await API.graphql(graphqlOperation(createProject, newProject));
       console.log(result);
       setItem(result);
     } catch (e) {
