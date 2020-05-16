@@ -2,40 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
-
-const listProject = `
-  query ListProjects {
-    listProjects {
-      items {
-        id
-        name
-        type
-        languages
-        image
-        alt
-        url
-      }
-      nextToken
-    }
-  }
-`;
-
-const createProject = `
-  mutation CreateProject {
-    createProject(
-      input: {
-        name: "clubillico"
-        type: "work"
-        languages: "AngularJS (v1.6), Java, Oracle"
-        image: "clubillico-640-en.jpg"
-        alt: "clubillico"
-        url: "https://clubillico.videotron.com/"
-      }) {
-      id
-      name
-    }
-  }
-`;
+import { listProjects } from '../graphql/queries';
+import { createProject } from '../graphql/mutations';
 
 const Project = () => {
   const { t } = useTranslation(['translation']);
@@ -45,7 +13,7 @@ const Project = () => {
   const listQuery = async () => {
     setList([]);
     try {
-      const result = await API.graphql(graphqlOperation(listProject));
+      const result = await API.graphql(graphqlOperation(listProjects));
       setList(result.data.listProjects.items);
     } catch (e) {
       console.log(e);
