@@ -81,6 +81,7 @@
     "t4": "Thank you"
   },
   "copyright": {
+    "title": "Copyright",
     "t1": "chinhle.ca 2020.",
     "t2": "All rights reserved"
   },
@@ -88,6 +89,7 @@
     "title": "Education"
   },
   "lang": {
+    "title": "Languages",
     "en": "English",
     "fr": "French",
     "vn": "Vietnamese"
@@ -95,7 +97,9 @@
   "project": {
     "title": "Project"
   },
-  "social": {},
+  "social": {
+    "title": "Social Media"
+  },
   "recaptcha": {
     "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
     "url1": "https://policies.google.com/privacy",
