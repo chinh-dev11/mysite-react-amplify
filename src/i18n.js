@@ -11,7 +11,7 @@ i18n
   .use(initReactI18next)
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: false,
+    debug: true,
     lng: 'en',
     fallbackLng: 'en',
     whitelist: ['en', 'fr', 'vn'],
