@@ -7,7 +7,7 @@ export const deleteInput = {
 };
 
 export const createInput = {
-  /* input: {
+  input: {
     order: 6,
     name: "Stock Trader",
     type: "lab",
@@ -16,7 +16,7 @@ export const createInput = {
     alt: "Stock Trader",
     url: "https://stock-trader-vue-6bd8c.web.app/",
   },
-  input: {
+  /* input: {
     order: 5,
     name: "Burger Builder",
     type: "lab",
@@ -24,8 +24,8 @@ export const createInput = {
     image: "burger-builder-react-640.png",
     alt: "Burger Builder",
     url: "https://burger-builder-react-8801d.web.app/",
-  },
-  input: {
+  }, */
+  /* input: {
     order: 4,
     name: "Recipe Book",
     type: "lab",
@@ -33,8 +33,8 @@ export const createInput = {
     image: "recipe-book-ng-640.png",
     alt: "Recipe Book",
     url: "https://recipe-book-ng-183d5.firebaseapp.com/",
-  },
-  input: {
+  }, */
+  /* input: {
     order: 3,
     name: "Videotron",
     type: "work",
@@ -42,8 +42,8 @@ export const createInput = {
     image: "videotron-mobility-640-en.jpg",
     alt: "Videotron",
     url: "https://www.videotron.com/",
-  },
-  input: {
+  }, */
+  /* input: {
     order: 2,
     name: "clubillico",
     type: "work",
@@ -52,7 +52,7 @@ export const createInput = {
     alt: "clubillico",
     url: "https://clubillico.videotron.com/",
   }, */
-  input: {
+  /* input: {
     order: 1,
     name: "illicoweb",
     type: "work",
@@ -60,5 +60,5 @@ export const createInput = {
     image: "illicoweb-640-en.jpg",
     alt: "illicoweb",
     url: "https://illicoweb.videotron.com/",
-  },
+  }, */
 };

@@ -2,12 +2,9 @@
   "about": {
     "title": "About",
     "content": {
-      "heading1": "Welcome to my personal site",
-      "heading2": "Hello! my name is Chinh Le",
-      "heading3": "Web developer, responsive design and development",
-      "t1": "Innovative Web Developer with over 10 years of experience in building, developing, and managing websites, applications and programs for various organizations.",
-      "t2": "Working with Javascript frameworks/libraries, such as VueJS, React, Angular, and Google Web Services.",
-      "t3": "Ability to perform well in a fast-paced, team-oriented, dynamic environment. Excellent analytical thinker and problem-solving skills with a keen attention to detail."
+      "heading1": "<i>Skilled</i> web developer",
+      "t1": "with a keen eye for <i>detail</i>",
+      "t2": "and <i>driven</i> by learning+working with <i>emerging technologies</i>"
     }
   },
   "authentication": {

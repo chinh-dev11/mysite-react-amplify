@@ -1,19 +1,26 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
+
+import { about } from './About.module.scss';
 
 const About = () => {
-  const { t } = useTranslation(['translation']);
+  useTranslation(['translation']);
+
   return (
-    <div>
-      <h2>{t('about.title')}</h2>
-      <h3>{t('about.content.heading1')}</h3>
-      <h4>{t('about.content.heading2')}</h4>
-      <h5>{t('about.content.heading3')}</h5>
-      <p>{t('about.content.t1')}</p>
-      <p>{t('about.content.t2')}</p>
-      <p>{t('about.content.t3')}</p>
+    <div className={`${about} px-4`}>
+      <h1 className="display-4">
+        <Trans i18nKey="about.content.heading1" />
+        ,
+      </h1>
+      <p className="display-4">
+        <Trans i18nKey="about.content.t1" />
+        ,
+      </p>
+      <p className="display-4">
+        <Trans i18nKey="about.content.t2" />
+        .
+      </p>
     </div>
   );
 };
-
 export default About;

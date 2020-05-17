@@ -1,0 +1,8 @@
+/* make the customizations */
+$theme-colors: (
+  "info": tomato,
+  "danger": teal,
+  "dark": #222
+);
+
+@import '~bootstrap/scss/bootstrap.scss';

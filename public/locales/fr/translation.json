@@ -1,5 +1,116 @@
 {
-  "en": "Anglais",
-  "fr": "Français",
-  "vn": "Vietnamien"
+  "about": {
+    "title": "About",
+    "content": {
+      "heading1": "Développeur web <i>qualifié</i>",
+      "t1": "keen eye for detail",
+      "t2": "thirst of learning and working with emerging technologies"
+    }
+  },
+  "authentication": {
+    "title": "Authentication",
+    "signIn": {
+      "heading1": "Sign in to download my resume",
+      "field1": {
+        "label": "Username",
+        "desc": "Enter your username"
+      },
+      "field2": {
+        "label": "Password",
+        "desc": "Enter your password"
+      },
+      "t1": "Forget your password?",
+      "t2": "Reset password",
+      "t3": "No account?",
+      "t4": "Create account",
+      "t5": "Sign In"
+    },
+    "reset": {
+      "heading1": "Reset your password",
+      "field1": {
+        "label": "Username",
+        "desc": "Enter your username"
+      },
+      "t1": "Back to Sign In",
+      "t2": "Send Code"
+    },
+    "create": {
+      "heading1": "Create a new account resume",
+      "field1": {
+        "label": "Username",
+        "desc": "Username"
+      },
+      "field2": {
+        "label": "Password",
+        "desc": "Password"
+      },
+      "field3": {
+        "label": "Email",
+        "desc": "Email"
+      },
+      "field4": {
+        "label": "Phone Number",
+        "desc": "Phone Number"
+      },
+      "t1": "Have an account?",
+      "t2": "Sign in",
+      "t3": "Create account"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "heading1": "Get in touch",
+    "field1": {
+      "desc": "Name"
+    },
+    "field2": {
+      "desc": "Email"
+    },
+    "field3": {
+      "desc": "Subject"
+    },
+    "field4": {
+      "desc": "Message"
+    },
+    "t1": "Send message",
+    "t2": "Your message has been sent",
+    "t3": "I will get back to you as soon as possible",
+    "t4": "Thank you"
+  },
+  "copyright": {
+    "title": "Copyright",
+    "t1": "chinhle.ca 2020.",
+    "t2": "All rights reserved"
+  },
+  "education": {
+    "title": "Education"
+  },
+  "lang": {
+    "title": "Languages",
+    "en": "English",
+    "fr": "French",
+    "vn": "Vietnamese"
+  },
+  "project": {
+    "title": "Project"
+  },
+  "certificate": {
+    "title": "Certificate"
+  },
+  "social": {
+    "title": "Social Media"
+  },
+  "recaptcha": {
+    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
+    "url1": "https://policies.google.com/privacy",
+    "url2": "https://policies.google.com/terms"
+  },
+  "server": {
+    "error": {
+      "request": {
+        "t1": "There's something wrong with our server",
+        "t2": "Please try again later"
+      }
+    }
+  }
 }
