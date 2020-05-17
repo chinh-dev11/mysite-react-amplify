@@ -1,26 +1,26 @@
 {
-	"auth": {
-		"mysitereactamplify790b397d": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": []
-		}
-	},
-	"api": {
-		"mysiteReactAmplifyGraphql": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"authConfig": {
-					"additionalAuthenticationProviders": [],
-					"defaultAuthentication": {
-						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-						"userPoolConfig": {
-							"userPoolId": "authmysitereactamplify790b397d"
-						}
-					}
-				}
-			}
-		}
-	}
+    "auth": {
+        "mysitereactamplify790b397d": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": []
+        }
+    },
+    "api": {
+        "mysiteReactAmplifyGraphql": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "authConfig": {
+                    "additionalAuthenticationProviders": [],
+                    "defaultAuthentication": {
+                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                        "userPoolConfig": {
+                            "userPoolId": "authmysitereactamplify790b397d"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

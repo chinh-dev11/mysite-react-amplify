@@ -5,12 +5,14 @@ export const getProject = /* GraphQL */ `
   query GetProject($id: ID!) {
     getProject(id: $id) {
       id
+      order
       name
       type
       languages
       image
       alt
       url
+      enabled
     }
   }
 `;
@@ -23,12 +25,14 @@ export const listProjects = /* GraphQL */ `
     listProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        order
         name
         type
         languages
         image
         alt
         url
+        enabled
       }
       nextToken
     }
@@ -44,8 +48,7 @@ export const getCertificate = /* GraphQL */ `
       image
       alt
       url
-      urlSource
-      label
+      urlFrom
       enabled
     }
   }
@@ -65,8 +68,7 @@ export const listCertificates = /* GraphQL */ `
         image
         alt
         url
-        urlSource
-        label
+        urlFrom
         enabled
       }
       nextToken

@@ -5,12 +5,14 @@ export const onCreateProject = /* GraphQL */ `
   subscription OnCreateProject {
     onCreateProject {
       id
+      order
       name
       type
       languages
       image
       alt
       url
+      enabled
     }
   }
 `;
@@ -18,12 +20,14 @@ export const onUpdateProject = /* GraphQL */ `
   subscription OnUpdateProject {
     onUpdateProject {
       id
+      order
       name
       type
       languages
       image
       alt
       url
+      enabled
     }
   }
 `;
@@ -31,12 +35,14 @@ export const onDeleteProject = /* GraphQL */ `
   subscription OnDeleteProject {
     onDeleteProject {
       id
+      order
       name
       type
       languages
       image
       alt
       url
+      enabled
     }
   }
 `;
@@ -50,8 +56,7 @@ export const onCreateCertificate = /* GraphQL */ `
       image
       alt
       url
-      urlSource
-      label
+      urlFrom
       enabled
     }
   }
@@ -66,8 +71,7 @@ export const onUpdateCertificate = /* GraphQL */ `
       image
       alt
       url
-      urlSource
-      label
+      urlFrom
       enabled
     }
   }
@@ -82,8 +86,7 @@ export const onDeleteCertificate = /* GraphQL */ `
       image
       alt
       url
-      urlSource
-      label
+      urlFrom
       enabled
     }
   }
