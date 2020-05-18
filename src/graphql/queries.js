@@ -75,3 +75,35 @@ export const listCertificates = /* GraphQL */ `
     }
   }
 `;
+export const getProjectByOrder = /* GraphQL */ `
+  query GetProjectByOrder(
+    $type: String
+    $order: ModelIntKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelProjectFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getProjectByOrder(
+      type: $type
+      order: $order
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        order
+        name
+        type
+        languages
+        image
+        alt
+        url
+        enabled
+      }
+      nextToken
+    }
+  }
+`;

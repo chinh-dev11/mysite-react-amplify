@@ -1,4 +1,8 @@
-type Project @model {
+type Project @model @key(
+  name: "byOrder",
+  fields: ["type","order"],
+  queryField: "getProjectByOrder"
+) {
   id: ID!
   order: Int!
   name: String!
