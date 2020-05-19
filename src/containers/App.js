@@ -16,14 +16,14 @@ import './App.scss';
 function App() {
   return (
     <Container fluid className="App">
+      {/* <Row><Header /></Row> */}
       <Row>
-        {/* <Header /> */}
         {/* <Col sm="6"><About /></Col> */}
         {/* <Col sm="6"><ProjectWork /></Col> */}
         {/* <Col sm="6"><ProjectLab /></Col> */}
         {/* <Col sm="6"><Education /></Col> */}
-        <Footer />
       </Row>
+      <Row><Footer /></Row>
     </Container>
   );
 }

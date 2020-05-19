@@ -5,7 +5,11 @@ const Copyright = () => {
   const { t } = useTranslation(['translation']);
   return (
     <div>
-      <h2>{t('copyright.title')}</h2>
+      {/* <h2>{t('copyright.title')}</h2> */}
+      <p>
+        &copy;
+        {`${t('copyright.t1')}. ${t('copyright.t2')}.`}
+      </p>
     </div>
   );
 };
