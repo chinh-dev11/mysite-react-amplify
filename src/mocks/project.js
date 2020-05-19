@@ -1,18 +1,20 @@
 /* eslint-disable import/prefer-default-export */
 
 export const queryProjectByOrder = /* GraphQL */ `
-  query projectByOrder($type: String!, $direction: ModelSortDirection = DESC) {
-    getProjectByOrder(sortDirection: $direction, type: $type) {
-      items {
-        id
-        name
-        languages
-        image
-        alt
-        url
+  query projectByOrder(
+    $type: String!,
+    $direction: ModelSortDirection = DESC) {
+      getProjectByOrder(sortDirection: $direction, type: $type) {
+        items {
+          id
+          name
+          languages
+          image
+          alt
+          url
+        }
       }
     }
-  }
 `;
 
 export const inputProjectDelete = {

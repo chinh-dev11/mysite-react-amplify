@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import Carousel from 'react-bootstrap/Carousel';
 
-import { queryProjectByOrder } from '../queries/project';
+import { getProjectByOrder } from '../graphql/queries';
 
 
 const ProjectWork = () => {
@@ -10,10 +10,10 @@ const ProjectWork = () => {
   // const [elems, setElems]=useSate()
   const staticUrl = 'https://static.chinhle.ca/project/';
 
-  const getProjectList = (type, direction) => API.graphql(graphqlOperation(queryProjectByOrder, { type, direction }));
+  const getProjectList = (type, direction) => API.graphql(graphqlOperation(getProjectByOrder, { type, direction }));
 
   useEffect(() => {
-    getProjectList('work')
+    getProjectList('work', 'DESC')
       .then((res) => {
         console.log(res);
         setWorks(res.data.getProjectByOrder.items);

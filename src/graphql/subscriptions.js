@@ -46,11 +46,12 @@ export const onDeleteProject = /* GraphQL */ `
     }
   }
 `;
-export const onCreateCertificate = /* GraphQL */ `
-  subscription OnCreateCertificate {
-    onCreateCertificate {
+export const onCreateEducation = /* GraphQL */ `
+  subscription OnCreateEducation {
+    onCreateEducation {
       id
       name
+      type
       completedDate
       languages
       image
@@ -61,11 +62,12 @@ export const onCreateCertificate = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateCertificate = /* GraphQL */ `
-  subscription OnUpdateCertificate {
-    onUpdateCertificate {
+export const onUpdateEducation = /* GraphQL */ `
+  subscription OnUpdateEducation {
+    onUpdateEducation {
       id
       name
+      type
       completedDate
       languages
       image
@@ -76,11 +78,12 @@ export const onUpdateCertificate = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteCertificate = /* GraphQL */ `
-  subscription OnDeleteCertificate {
-    onDeleteCertificate {
+export const onDeleteEducation = /* GraphQL */ `
+  subscription OnDeleteEducation {
+    onDeleteEducation {
       id
       name
+      type
       completedDate
       languages
       image

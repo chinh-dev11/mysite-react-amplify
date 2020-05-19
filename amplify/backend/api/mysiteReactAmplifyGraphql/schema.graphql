@@ -1,6 +1,6 @@
 type Project @model @key(
   name: "byOrder",
-  fields: ["type","order"],
+  fields: ["type", "order"],
   queryField: "getProjectByOrder"
 ) {
   id: ID!
@@ -14,9 +14,14 @@ type Project @model @key(
   enabled: Boolean
 }
 
-type Certificate @model {
+type Education @model @key(
+  name: "byCompletedDate"
+  fields: ["type", "completedDate"]
+  queryField: "getEducByCompletedDate"
+) {
   id: ID!
   name: String!
+  type: String!
   completedDate: String!
   languages: [String!]!
   image: String

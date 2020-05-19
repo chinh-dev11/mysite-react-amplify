@@ -38,11 +38,12 @@ export const listProjects = /* GraphQL */ `
     }
   }
 `;
-export const getCertificate = /* GraphQL */ `
-  query GetCertificate($id: ID!) {
-    getCertificate(id: $id) {
+export const getEducation = /* GraphQL */ `
+  query GetEducation($id: ID!) {
+    getEducation(id: $id) {
       id
       name
+      type
       completedDate
       languages
       image
@@ -53,16 +54,17 @@ export const getCertificate = /* GraphQL */ `
     }
   }
 `;
-export const listCertificates = /* GraphQL */ `
-  query ListCertificates(
-    $filter: ModelCertificateFilterInput
+export const listEducations = /* GraphQL */ `
+  query ListEducations(
+    $filter: ModelEducationFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listCertificates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listEducations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
+        type
         completedDate
         languages
         image
@@ -101,6 +103,39 @@ export const getProjectByOrder = /* GraphQL */ `
         image
         alt
         url
+        enabled
+      }
+      nextToken
+    }
+  }
+`;
+export const getEducByCompletedDate = /* GraphQL */ `
+  query GetEducByCompletedDate(
+    $type: String
+    $completedDate: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelEducationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getEducByCompletedDate(
+      type: $type
+      completedDate: $completedDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        type
+        completedDate
+        languages
+        image
+        alt
+        url
+        urlFrom
         enabled
       }
       nextToken

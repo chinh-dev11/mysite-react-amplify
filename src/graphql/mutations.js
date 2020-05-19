@@ -55,14 +55,15 @@ export const deleteProject = /* GraphQL */ `
     }
   }
 `;
-export const createCertificate = /* GraphQL */ `
-  mutation CreateCertificate(
-    $input: CreateCertificateInput!
-    $condition: ModelCertificateConditionInput
+export const createEducation = /* GraphQL */ `
+  mutation CreateEducation(
+    $input: CreateEducationInput!
+    $condition: ModelEducationConditionInput
   ) {
-    createCertificate(input: $input, condition: $condition) {
+    createEducation(input: $input, condition: $condition) {
       id
       name
+      type
       completedDate
       languages
       image
@@ -73,14 +74,15 @@ export const createCertificate = /* GraphQL */ `
     }
   }
 `;
-export const updateCertificate = /* GraphQL */ `
-  mutation UpdateCertificate(
-    $input: UpdateCertificateInput!
-    $condition: ModelCertificateConditionInput
+export const updateEducation = /* GraphQL */ `
+  mutation UpdateEducation(
+    $input: UpdateEducationInput!
+    $condition: ModelEducationConditionInput
   ) {
-    updateCertificate(input: $input, condition: $condition) {
+    updateEducation(input: $input, condition: $condition) {
       id
       name
+      type
       completedDate
       languages
       image
@@ -91,14 +93,15 @@ export const updateCertificate = /* GraphQL */ `
     }
   }
 `;
-export const deleteCertificate = /* GraphQL */ `
-  mutation DeleteCertificate(
-    $input: DeleteCertificateInput!
-    $condition: ModelCertificateConditionInput
+export const deleteEducation = /* GraphQL */ `
+  mutation DeleteEducation(
+    $input: DeleteEducationInput!
+    $condition: ModelEducationConditionInput
   ) {
-    deleteCertificate(input: $input, condition: $condition) {
+    deleteEducation(input: $input, condition: $condition) {
       id
       name
+      type
       completedDate
       languages
       image

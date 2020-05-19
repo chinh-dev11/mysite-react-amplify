@@ -1,14 +1,36 @@
 /* eslint quotes: ["error", "double"] */
+export const queryEducByCompletedDate = /* GraphQL */ `
+  query educByCompletedDate(
+    $completedDate: String
+    $sortDirection: ModelSortDirection = DESC) {
+      getEducByCompletedDate(completedDate: $completedDate, sortDirection: $sortDirection
+      ) {
+        items {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+        }
+      }
+    }
+`;
 
-export const inputCertificateDelete = {
+export const inputEducDelete = {
   input: {
     id: "4c596744-236a-405e-8cb9-6a3496f37b8d",
   },
 };
 
-export const inputCertificateCreate = {
+export const inputEducCreate = {
   input: {
     name: "Front End Libraries",
+    type: "certificate",
     completedDate: "2020-04-10",
     languages: ["React 16", "Redux", "Bootstrap", "Sass", "jQuery"],
     image: "fcc-front-end-libraries-certificate.png",
@@ -19,6 +41,7 @@ export const inputCertificateCreate = {
   },
   /* input: {
     name: "APIs and Microservices",
+    type: "certificate",
     completedDate: "2020-03-24",
     languages: ["NodeJS", "MongoDB", "Mongoose", "NPM"],
     image: "fcc-apis-microservices.png",
@@ -29,6 +52,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "AWS Serverless APIs & Apps - A Complete Introduction",
+    type: "certificate",
     completedDate: "2020-03-09",
     languages: ["AWS serverless"],
     image: "jUC-032d5abc-610a-44c1-bbb4-ef8fad3b6680.jpg",
@@ -39,6 +63,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "Javascript Algorithms and Data Structures",
+    type: "certificate",
     completedDate: "2020-02-21",
     languages: ["ES5", "ES6", "Regular Expression"],
     image: "javascript-algorithms-and-data-structures.png",
@@ -49,6 +74,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "Vue 2 - The Complete Guide",
+    type: "certificate",
     completedDate: "2019-09-28",
     languages: ["Vue 2", "Bootstrap"],
     image: "UC-KKDCJ1EE.jpg",
@@ -59,6 +85,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "React 16 - The Complete Guide",
+    type: "certificate",
     completedDate: "2019-06-18",
     languages: ["React 16", "Bootstrap"],
     image: "UC-AV9URVXK.jpg",
@@ -69,6 +96,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "Angular 7 - The Complete Guide",
+    type: "certificate",
     completedDate: "2019-03-25",
     languages: ["Angular 7", "Bootstrap"],
     image: "UC-RFUPPOFP.jpg",
@@ -79,6 +107,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "Bootstrap 4 - Bootcamp",
+    type: "certificate",
     completedDate: "2019-04-01",
     languages: ["CSS"],
     image: "UC-SCGX1MCT.jpg",
@@ -89,6 +118,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "Software Development",
+    type: "certificate",
     completedDate: "2007-12-31",
     languages: [],
     urlFrom: "https://mcgill.ca",
@@ -96,6 +126,7 @@ export const inputCertificateCreate = {
   }, */
   /* input: {
     name: "Web Design",
+    type: "certificate",
     completedDate: "2006-12-31",
     languages: [],
     urlFrom: "https://concordia.ca",

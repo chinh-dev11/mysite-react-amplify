@@ -4,17 +4,17 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-import { queryProjectByOrder } from '../queries/project';
+import { getProjectByOrder } from '../graphql/queries';
 
 
 const ProjectLab = () => {
   const [labs, setLabs] = useState([]);
   const staticUrl = 'https://static.chinhle.ca/project/';
 
-  const getProjectList = (type, direction) => API.graphql(graphqlOperation(queryProjectByOrder, { type, direction }));
+  const getProjectList = (type, direction) => API.graphql(graphqlOperation(getProjectByOrder, { type, direction }));
 
   useEffect(() => {
-    getProjectList('lab')
+    getProjectList('lab', 'DESC')
       .then((res) => {
         console.log(res);
         setLabs(res.data.getProjectByOrder.items);
