@@ -2,14 +2,16 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Amplify from 'aws-amplify';
-import App from './components/App';
+// import Amplify, { Storage } from 'aws-amplify';
+import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
+import './i18n';
 
 import awsconfig from './aws-exports';
 
-import './i18n';
 
 Amplify.configure(awsconfig);
+// Storage.configure({ track: true, level: 'private' });
 
 ReactDOM.render(
   <React.StrictMode>

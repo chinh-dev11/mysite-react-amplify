@@ -1,20 +1,35 @@
-/* eslint quotes: ["error", "double"] */
+/* eslint-disable import/prefer-default-export */
 
-export const deleteInput = {
+export const queryProjectByOrder = /* GraphQL */ `
+  query projectByOrder($type: String!, $direction: ModelSortDirection = DESC) {
+    getProjectByOrder(sortDirection: $direction, type: $type) {
+      items {
+        id
+        name
+        languages
+        image
+        alt
+        url
+      }
+    }
+  }
+`;
+
+export const inputProjectDelete = {
   input: {
-    id: "0c6855ef-cc33-4790-af57-b5462e461835",
+    id: '0c6855ef-cc33-4790-af57-b5462e461835',
   },
 };
 
-export const createInput = {
+export const inputProjectCreate = {
   input: {
     order: 6,
-    name: "Stock Trader",
-    type: "lab",
-    languages: ["Vue 2", "Google Web Services", "Bootstrap 4"],
-    image: "stock-trader-vue-640.png",
-    alt: "Stock Trader",
-    url: "https://stock-trader-vue-6bd8c.web.app/",
+    name: 'Stock Trader',
+    type: 'lab',
+    languages: ['Vue 2', 'Google Web Services', 'Bootstrap 4'],
+    image: 'stock-trader-vue-640.png',
+    alt: 'Stock Trader',
+    url: 'https://stock-trader-vue-6bd8c.web.app/',
   },
   /* input: {
     order: 5,

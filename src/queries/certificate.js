@@ -1,12 +1,12 @@
 /* eslint quotes: ["error", "double"] */
 
-export const deleteInput = {
+export const inputCertificateDelete = {
   input: {
     id: "4c596744-236a-405e-8cb9-6a3496f37b8d",
   },
 };
 
-export const createInput = {
+export const inputCertificateCreate = {
   input: {
     name: "Front End Libraries",
     completedDate: "2020-04-10",

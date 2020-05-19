@@ -1,7 +1,7 @@
 import React from 'react';
-import Logo from './Logo';
-import Lang from './Lang';
-import Authentication from './Authentication';
+import Logo from '../components/Logo';
+import Lang from '../components/Lang';
+import Authentication from '../components/Authentication';
 
 const Header = () => (
   <div>
