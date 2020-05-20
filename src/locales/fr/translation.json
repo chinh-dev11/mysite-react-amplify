@@ -95,32 +95,32 @@
     "vn": {
       "label": "vn",
       "alt": "Vietnamese"
-    },
-    "project": {
-      "title": "Project"
-    },
-    "education": {
-      "title": "Education"
-    },
-    "social": {
-      "title": "Social Media",
-      "alt": {
-        "linkedin": "Linkedin account",
-        "github": "Github account",
-        "instagram": "Instagram account"
-      }
-    },
-    "recaptcha": {
-      "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
-      "url1": "https://policies.google.com/privacy",
-      "url2": "https://policies.google.com/terms"
-    },
-    "server": {
-      "error": {
-        "request": {
-          "t1": "There's something wrong with our server",
-          "t2": "Please try again later"
-        }
+    }
+  },
+  "project": {
+    "title": "Project"
+  },
+  "education": {
+    "title": "Education"
+  },
+  "social": {
+    "title": "Social Media",
+    "alt": {
+      "linkedin": "Linkedin account",
+      "github": "Github account",
+      "instagram": "Instagram account"
+    }
+  },
+  "recaptcha": {
+    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
+    "url1": "https://policies.google.com/privacy",
+    "url2": "https://policies.google.com/terms"
+  },
+  "server": {
+    "error": {
+      "request": {
+        "t1": "There's something wrong with our server",
+        "t2": "Please try again later"
       }
     }
   }

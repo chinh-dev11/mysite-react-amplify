@@ -19,7 +19,6 @@ const resources = {
   },
 };
 
-// TODO bundle up the locales json files with Webpack
 i18n
   // learn more: https://github.com/i18next/i18next-xhr-backend
   // .use(Backend)
