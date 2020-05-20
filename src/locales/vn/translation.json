@@ -78,40 +78,49 @@
     "t4": "Thank you"
   },
   "copyright": {
-    "title": "Copyright",
+    "title": "Bản quyền",
     "t1": "chinhle.ca 2020",
-    "t2": "All rights reserved"
+    "t2": "Đã đăng ký Bản quyền"
   },
   "lang": {
     "title": "Languages",
-    "en": "English",
-    "fr": "French",
-    "vn": "Vietnamese"
-  },
-  "project": {
-    "title": "Project"
-  },
-  "education": {
-    "title": "Education"
-  },
-  "social": {
-    "title": "Social Media",
-    "alt": {
-      "linkedin": "Linkedin account",
-      "github": "Github account",
-      "instagram": "Instagram account"
-    }
-  },
-  "recaptcha": {
-    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
-    "url1": "https://policies.google.com/privacy",
-    "url2": "https://policies.google.com/terms"
-  },
-  "server": {
-    "error": {
-      "request": {
-        "t1": "There's something wrong with our server",
-        "t2": "Please try again later"
+    "en": {
+      "label": "en",
+      "alt": "English"
+    },
+    "fr": {
+      "label": "fr",
+      "alt": "French"
+    },
+    "vn": {
+      "label": "vn",
+      "alt": "Vietnamese"
+    },
+    "project": {
+      "title": "Project"
+    },
+    "education": {
+      "title": "Education"
+    },
+    "social": {
+      "title": "Social Media",
+      "alt": {
+        "linkedin": "Linkedin account",
+        "github": "Github account",
+        "instagram": "Instagram account"
+      }
+    },
+    "recaptcha": {
+      "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
+      "url1": "https://policies.google.com/privacy",
+      "url2": "https://policies.google.com/terms"
+    },
+    "server": {
+      "error": {
+        "request": {
+          "t1": "There's something wrong with our server",
+          "t2": "Please try again later"
+        }
       }
     }
   }

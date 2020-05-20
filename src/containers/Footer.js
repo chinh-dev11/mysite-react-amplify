@@ -6,7 +6,7 @@ import Lang from '../components/Lang';
 const Footer = () => (
   <div>
     <Copyright />
-    <Social />
+    {/* <Social /> */}
     <Lang />
   </div>
 );

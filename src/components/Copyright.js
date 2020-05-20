@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+// const Copyright = ({ t }) => (
 const Copyright = () => {
   const { t } = useTranslation(['translation']);
   return (

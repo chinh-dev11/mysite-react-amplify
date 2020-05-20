@@ -2,9 +2,9 @@
   "about": {
     "title": "About",
     "content": {
-      "heading1": "Développeur web <i>qualifié</i>",
-      "t1": "keen eye for detail",
-      "t2": "thirst of learning and working with emerging technologies"
+      "heading1": "<i>Skilled</i> web developer",
+      "t1": "with a keen eye for <i>detail</i>",
+      "t2": "and <i>driven</i> by learning+working with <i>emerging technologies</i>"
     }
   },
   "authentication": {
@@ -79,37 +79,48 @@
   },
   "copyright": {
     "title": "Copyright",
-    "t1": "chinhle.ca 2020.",
+    "t1": "chinhle.ca 2020",
     "t2": "All rights reserved"
-  },
-  "education": {
-    "title": "Education"
   },
   "lang": {
     "title": "Languages",
-    "en": "English",
-    "fr": "French",
-    "vn": "Vietnamese"
-  },
-  "project": {
-    "title": "Project"
-  },
-  "certificate": {
-    "title": "Certificate"
-  },
-  "social": {
-    "title": "Social Media"
-  },
-  "recaptcha": {
-    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
-    "url1": "https://policies.google.com/privacy",
-    "url2": "https://policies.google.com/terms"
-  },
-  "server": {
-    "error": {
-      "request": {
-        "t1": "There's something wrong with our server",
-        "t2": "Please try again later"
+    "en": {
+      "label": "en",
+      "alt": "English"
+    },
+    "fr": {
+      "label": "fr",
+      "alt": "French"
+    },
+    "vn": {
+      "label": "vn",
+      "alt": "Vietnamese"
+    },
+    "project": {
+      "title": "Project"
+    },
+    "education": {
+      "title": "Education"
+    },
+    "social": {
+      "title": "Social Media",
+      "alt": {
+        "linkedin": "Linkedin account",
+        "github": "Github account",
+        "instagram": "Instagram account"
+      }
+    },
+    "recaptcha": {
+      "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
+      "url1": "https://policies.google.com/privacy",
+      "url2": "https://policies.google.com/terms"
+    },
+    "server": {
+      "error": {
+        "request": {
+          "t1": "There's something wrong with our server",
+          "t2": "Please try again later"
+        }
       }
     }
   }

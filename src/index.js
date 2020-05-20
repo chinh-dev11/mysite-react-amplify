@@ -16,6 +16,7 @@ Amplify.configure(awsconfig);
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={null}>
+      {/* <Suspense fallback="loading"> */}
       <App />
     </Suspense>
   </React.StrictMode>,
