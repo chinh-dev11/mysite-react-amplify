@@ -61,21 +61,25 @@
     "title": "Contact",
     "heading1": "Get in touch",
     "field1": {
-      "desc": "Name"
+      "label": "Name",
+      "placeholder": "Your name"
     },
     "field2": {
-      "desc": "Email"
+      "label": "Email",
+      "placeholder": "name@exmaple.com"
     },
     "field3": {
-      "desc": "Subject"
+      "label": "Subject",
+      "placeholder": "About..."
     },
     "field4": {
-      "desc": "Message"
+      "label": "Message",
+      "placeholder": "Your message..."
     },
-    "t1": "Send message",
-    "t2": "Your message has been sent",
-    "t3": "I will get back to you as soon as possible",
-    "t4": "Thank you"
+    "btnSubmit": "Send message",
+    "t1": "Your message has been sent",
+    "t2": "I will get back to you as soon as possible",
+    "t3": "Thank you"
   },
   "copyright": {
     "title": "Copyright",

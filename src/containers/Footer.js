@@ -1,12 +1,14 @@
 import React from 'react';
-import Copyright from '../components/Copyright';
 import Social from '../components/Social';
+import Contact from '../components/Contact';
+import Copyright from '../components/Copyright';
 import Lang from '../components/Lang';
 
 const Footer = () => (
   <div>
-    <Copyright />
+    <Contact />
     <Social />
+    <Copyright />
     <Lang />
   </div>
 );
