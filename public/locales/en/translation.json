@@ -95,7 +95,12 @@
     "title": "Education"
   },
   "social": {
-    "title": "Social Media"
+    "title": "Social Media",
+    "alt": {
+      "linkedin": "Linkedin account",
+      "github": "Github account",
+      "instagram": "Instagram account"
+    }
   },
   "recaptcha": {
     "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
