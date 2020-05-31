@@ -77,5 +77,6 @@ export const inputProjectCreate = {
     image: "illicoweb-640-en.jpg",
     alt: "illicoweb",
     url: "https://illicoweb.videotron.com/",
+    enabled: true,
   }, */
 };
