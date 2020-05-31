@@ -21,7 +21,7 @@ const Authentication = () => {
   const loginHandler = async () => {
     const payload = {
       username: 'anon',
-      password: '&8WRcCJP[N8PbVeL',
+      password: 'Passw0rd!',
     };
     try {
       const user = await Auth.signIn(payload);
