@@ -71,6 +71,7 @@ export const createEducation = /* GraphQL */ `
       url
       urlFrom
       enabled
+      institution
     }
   }
 `;
@@ -90,6 +91,7 @@ export const updateEducation = /* GraphQL */ `
       url
       urlFrom
       enabled
+      institution
     }
   }
 `;
@@ -109,6 +111,7 @@ export const deleteEducation = /* GraphQL */ `
       url
       urlFrom
       enabled
+      institution
     }
   }
 `;

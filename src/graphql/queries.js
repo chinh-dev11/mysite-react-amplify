@@ -70,6 +70,7 @@ export const getEducation = /* GraphQL */ `
       url
       urlFrom
       enabled
+      institution
     }
   }
 `;
@@ -91,6 +92,7 @@ export const listEducations = /* GraphQL */ `
         url
         urlFrom
         enabled
+        institution
       }
       nextToken
     }
@@ -156,6 +158,7 @@ export const getEducByCompletedDate = /* GraphQL */ `
         url
         urlFrom
         enabled
+        institution
       }
       nextToken
     }

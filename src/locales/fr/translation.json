@@ -113,7 +113,12 @@
     "title": "Project"
   },
   "education": {
-    "title": "Education"
+    "title": "Education",
+    "certificate": "certificat",
+    "completed": "Completé",
+    "languages": "Langues",
+    "link": "Certificat",
+    "linkDetail": "Infos du certificat"
   },
   "social": {
     "title": "Social Media",

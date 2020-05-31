@@ -29,6 +29,7 @@ type Education @model @key(
   url: String
   urlFrom: String
   enabled: Boolean
+  institution: String
 }
 
 type Response {

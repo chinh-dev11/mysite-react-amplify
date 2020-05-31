@@ -1,4 +1,6 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint quotes: ["error", "double"] */
+
 export const queryEducByCompletedDate = /* GraphQL */ `
   query educByCompletedDate(
     $completedDate: String
@@ -37,6 +39,7 @@ export const inputEducCreate = {
     alt: "Front End Libraries certificate",
     url: "https://www.freecodecamp.org/certification/chinh-le/front-end-libraries",
     urlFrom: "https://www.freecodecamp.org/learn#front-end-libraries",
+    institution: "freecodecamp.org",
     enabled: true,
   },
   /* input: {
@@ -48,6 +51,7 @@ export const inputEducCreate = {
     alt: "APIs and Microservices certificate",
     url: "https://www.freecodecamp.org/certification/chinh-le/apis-and-microservices",
     urlFrom: "https://www.freecodecamp.org/learn/#apis-and-microservices",
+    institution: "freecodecamp.org",
     enabled: true,
   }, */
   /* input: {
@@ -59,6 +63,7 @@ export const inputEducCreate = {
     alt: "Javascript Algorithms and Data Structures certificate",
     url: "https://www.udemy.com/certificate/UC-032d5abc-610a-44c1-bbb4-ef8fad3b6680/",
     urlFrom: "https://www.udemy.com/course/aws-serverless-a-complete-introduction/",
+    institution: "freecodecamp.org",
     enabled: true,
   }, */
   /* input: {
@@ -70,6 +75,7 @@ export const inputEducCreate = {
     alt: "Javascript Algorithms and Data Structures certificate",
     url: "https://www.freecodecamp.org/certification/chinh-le/javascript-algorithms-and-data-structures",
     urlFrom: "https://www.freecodecamp.org/learn/#javascript-algorithms-and-data-structures",
+    institution: "freecodecamp.org",
     enabled: true,
   }, */
   /* input: {
@@ -81,6 +87,7 @@ export const inputEducCreate = {
     alt: "React 16 certificate",
     url: "https://www.udemy.com/certificate/UC-KKDCJ1EE/",
     urlFrom: "https://udemy.com/course/vuejs-2-the-complete-guide/",
+    institution: "udemy.com",
     enabled: true,
   }, */
   /* input: {
@@ -92,6 +99,7 @@ export const inputEducCreate = {
     alt: "React 16 certificate",
     url: "https://www.udemy.com/certificate/UC-AV9URVXK/",
     urlFrom: "https://udemy.com/course/react-the-complete-guide-incl-redux/",
+    institution: "udemy.com",
     enabled: true,
   }, */
   /* input: {
@@ -103,6 +111,7 @@ export const inputEducCreate = {
     alt: "Angular 7 certificate",
     url: "https://www.udemy.com/certificate/UC-RFUPPOFP/",
     urlFrom: "https://udemy.com/course/the-complete-guide-to-angular-2/",
+    institution: "udemy.com",
     enabled: true,
   }, */
   /* input: {
@@ -114,22 +123,25 @@ export const inputEducCreate = {
     alt: "Bootstrap 4 - Bootcamp certificate",
     url: "https://www.udemy.com/certificate/UC-SCGX1MCT/",
     urlFrom: "https://udemy.com/course/bootstrap-4-bootcamp/",
+    institution: "udemy.com",
     enabled: true,
   }, */
   /* input: {
     name: "Software Development",
     type: "certificate",
-    completedDate: "2007-12-31",
+    completedDate: "2007",
     languages: [],
-    urlFrom: "https://mcgill.ca",
+    urlFrom: "",
+    institution: "McGill University"
     enabled: true,
   }, */
   /* input: {
     name: "Web Design",
     type: "certificate",
-    completedDate: "2006-12-31",
+    completedDate: "2006",
     languages: [],
-    urlFrom: "https://concordia.ca",
+    urlFrom: "",
+    institution: "Concordia University"
     enabled: true,
   }, */
 };
