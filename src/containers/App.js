@@ -16,7 +16,7 @@ import './App.scss';
 function App() {
   return (
     <Container fluid className="App">
-      {/* <Row><Header /></Row> */}
+      <Row><Header /></Row>
       <Row>
         {/* <Col sm="6"><About /></Col> */}
         {/* <Col sm="6"><ProjectWork /></Col> */}

@@ -75,7 +75,19 @@
     "t1": "Send message",
     "t2": "Your message has been sent",
     "t3": "I will get back to you as soon as possible",
-    "t4": "Thank you"
+    "t4": "Thank you",
+    "email": {
+      "title": "Demande",
+      "headingLabel": "Nom",
+      "textLabel": "Message",
+      "confirmation": {
+        "heading": "Bonjour",
+        "message": "<h3>Merci de NE PAS RÉPONDRE à ce message!</h3><p>Ce message est seulement de confirmer que j'ai bien reçu votre demande, assurant ainsi l'adresse fournie est valide.</p><p>Je vous recontacterai dès que possible.</p><p>Merci.</p>"
+      }
+    },
+    "errors": {
+      "emailSending": "Il y eu des problèmes techniques du serveur pour l'envoi de courriel. Veuillez réessayer plus tard."
+    }
   },
   "copyright": {
     "title": "Droits d'auteur",

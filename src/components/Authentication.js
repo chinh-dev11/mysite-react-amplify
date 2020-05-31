@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-// import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 
@@ -20,8 +20,8 @@ const Authentication = () => {
 
   const loginHandler = async () => {
     const payload = {
-      username: 'testing',
-      password: 'Passw0rd!',
+      username: 'anon',
+      password: '&8WRcCJP[N8PbVeL',
     };
     try {
       const user = await Auth.signIn(payload);
@@ -42,4 +42,5 @@ const Authentication = () => {
   );
 };
 
-export default Authentication;
+// export default Authentication;
+export default withAuthenticator(Authentication);

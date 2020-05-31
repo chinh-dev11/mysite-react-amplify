@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { API, graphqlOperation } from 'aws-amplify';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
+import { sendEmail } from '../graphql/queries';
 
 const Contact = () => {
   const { t } = useTranslation(['translation']);
@@ -9,23 +12,47 @@ const Contact = () => {
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const [sent, setSent] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [sendFailed, setSendFailed] = useState(false);
+
+  const i18nMsg = {
+    title: t('contact.email.title'),
+    headingLabel: t('contact.email.headingLabel'),
+    textLabel: t('contact.email.textLabel'),
+    // confHeading: t('contact.email.confirmation.heading'),
+    // confMessage: t('contact.email.confirmation.message'),
+  };
 
   const submitHandler = (evt) => {
     evt.preventDefault();
-    console.log(evt);
-    console.log(name);
-    console.log(email);
-    console.log(subject);
-    console.log(message);
-    setSent(true);
+    const payload = {
+      email,
+      subject,
+      name,
+      message,
+      i18nMsg,
+    };
+
+    API.graphql(graphqlOperation(sendEmail, payload))
+      .then(() => {
+      // .then((res) => {
+        // console.log('res: ', res);
+        setIsSent(true);
+        setSendFailed(false);
+      })
+      .catch(() => {
+      // .catch((err) => {
+        // console.error('err: ', err);
+        setIsSent(false);
+        setSendFailed(true);
+      });
   };
 
   return (
     <div>
       <h2>{t('contact.heading1')}</h2>
-      {`name: ${name}`}
-      {sent
+      {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
+      {isSent
         ? (
           <>
             <p>{`${t('contact.t1')}.`}</p>

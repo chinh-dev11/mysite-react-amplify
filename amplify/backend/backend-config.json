@@ -24,5 +24,12 @@
 		}
 	},
 	"storage": {},
-	"analytics": {}
+	"analytics": {},
+	"function": {
+		"mysiteSendEmail": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda"
+		}
+	}
 }

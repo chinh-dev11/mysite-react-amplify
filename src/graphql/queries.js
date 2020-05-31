@@ -1,6 +1,25 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const sendEmail = /* GraphQL */ `
+  query SendEmail(
+    $name: String!
+    $email: String!
+    $subject: String
+    $message: String!
+    $i18nMsg: MsgLang
+  ) {
+    sendEmail(
+      name: $name
+      email: $email
+      subject: $subject
+      message: $message
+      i18nMsg: $i18nMsg
+    ) {
+      value
+    }
+  }
+`;
 export const getProject = /* GraphQL */ `
   query GetProject($id: ID!) {
     getProject(id: $id) {

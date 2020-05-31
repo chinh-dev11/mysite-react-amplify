@@ -30,3 +30,23 @@ type Education @model @key(
   urlFrom: String
   enabled: Boolean
 }
+
+type Response {
+  value: String
+}
+
+input MsgLang {
+  title: String
+  headingLabel: String
+  textLabel: String
+}
+
+type Query {
+  sendEmail(
+    name: String!
+    email: String!
+    subject: String
+    message: String!
+    i18nMsg: MsgLang
+  ): Response @function (name: "mysiteSendEmail-${env}")
+}
