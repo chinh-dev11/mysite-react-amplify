@@ -6,7 +6,7 @@ import { Auth } from 'aws-amplify';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   logIn, logOut, authIsLogged, setUsername,
-} from '../features/auth/authSlice';
+} from '../app/authSlice';
 
 import Header from './Header';
 import About from '../components/About';
