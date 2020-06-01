@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import { Auth } from 'aws-amplify';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  logIn, logOut, authIsLogged, setUsername,
+  logIn, logOut, authIsLogged, setAuthUsername,
 } from '../app/authSlice';
 
 import Header from './Header';
@@ -34,12 +34,13 @@ function App() {
       .then((data) => {
         console.log(data);
         dispatch(logIn());
-        dispatch(setUsername(data.username));
+        dispatch(setAuthUsername(data.username));
       })
       .catch((err) => {
         console.error(err);
         dispatch(logOut());
-        dispatch(setUsername(''));
+        dispatch(setAuthUsername(''));
+        // todo: handle error msg
       });
   }, [payloadAnon, dispatch]);
 
