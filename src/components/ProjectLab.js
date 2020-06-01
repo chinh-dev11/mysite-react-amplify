@@ -21,6 +21,7 @@ const ProjectLab = () => {
       })
       .catch((e) => {
         // throw Error(e);
+        console.log('here');
         console.error(e);
       });
   }, []);

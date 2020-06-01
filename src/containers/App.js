@@ -14,6 +14,8 @@ import Footer from './Footer';
 import './App.scss';
 
 function App() {
+  console.log('App');
+  console.log(process.env);
   return (
     <Container fluid className="App">
       <Row><Header /></Row>

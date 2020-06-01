@@ -57,7 +57,7 @@ exports.handler = async (event, context, callback) => {
     // SES sending limit increased (out of sandbox) approved only for Canada central region. see Case ID 7043092001 in support center
     region: process.env.EMAILING_REGION,
     // aws_sdk_load_config: '1',
-    apiVersion: process.env.SES_API_VERSION,
+    apiVersion: process.env.SES_API_VERSION, // 2010-12-01
   });
   const params = emailParams({
     // message can be sent to multiple addresses. see Case ID 7043092001 in support center
