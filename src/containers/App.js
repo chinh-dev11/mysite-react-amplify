@@ -19,8 +19,8 @@ function App() {
       <Row><Header /></Row>
       <Row>
         {/* <Col sm="6"><About /></Col> */}
-        <Col sm="6"><ProjectWork /></Col>
-        {/* <Col sm="6"><ProjectLab /></Col> */}
+        {/* <Col sm="6"><ProjectWork /></Col> */}
+        <Col sm="6"><ProjectLab /></Col>
         {/* <Col sm="6"><Education /></Col> */}
       </Row>
       {/* <Row><Footer /></Row> */}

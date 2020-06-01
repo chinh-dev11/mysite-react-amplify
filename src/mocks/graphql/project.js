@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+/* eslint quotes: ["error", "double"] */
 
 export const queryProjectByOrder = /* GraphQL */ `
   query projectByOrder(
@@ -19,19 +20,20 @@ export const queryProjectByOrder = /* GraphQL */ `
 
 export const inputProjectDelete = {
   input: {
-    id: '0c6855ef-cc33-4790-af57-b5462e461835',
+    id: "0c6855ef-cc33-4790-af57-b5462e461835",
   },
 };
 
 export const inputProjectCreate = {
   input: {
     order: 6,
-    name: 'Stock Trader',
-    type: 'lab',
-    languages: ['Vue 2', 'Google Web Services', 'Bootstrap 4'],
-    image: 'stock-trader-vue-640.png',
-    alt: 'Stock Trader',
-    url: 'https://stock-trader-vue-6bd8c.web.app/',
+    name: "Stock Trader",
+    type: "lab",
+    languages: ["Vue 2", "Google Web Services", "Bootstrap 4"],
+    image: "stock-trader-vue-640.png",
+    alt: "Stock Trader",
+    url: "https://stock-trader-vue-6bd8c.web.app/",
+    enabled: true,
   },
   /* input: {
     order: 5,
@@ -41,6 +43,7 @@ export const inputProjectCreate = {
     image: "burger-builder-react-640.png",
     alt: "Burger Builder",
     url: "https://burger-builder-react-8801d.web.app/",
+    enabled: true,
   }, */
   /* input: {
     order: 4,
@@ -50,6 +53,7 @@ export const inputProjectCreate = {
     image: "recipe-book-ng-640.png",
     alt: "Recipe Book",
     url: "https://recipe-book-ng-183d5.firebaseapp.com/",
+    enabled: true,
   }, */
   /* input: {
     order: 3,
@@ -59,6 +63,7 @@ export const inputProjectCreate = {
     image: "videotron-mobility-640-en.jpg",
     alt: "Videotron",
     url: "https://www.videotron.com/",
+    enabled: true,
   }, */
   /* input: {
     order: 2,
@@ -68,6 +73,7 @@ export const inputProjectCreate = {
     image: "clubillico-640-en.jpg",
     alt: "clubillico",
     url: "https://clubillico.videotron.com/",
+    enabled: true,
   }, */
   /* input: {
     order: 1,

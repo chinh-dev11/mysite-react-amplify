@@ -114,7 +114,10 @@
     }
   },
   "project": {
-    "title": "Project"
+    "title": "Project",
+    "work": "Work",
+    "lab": "Lab",
+    "demo": "Demo"
   },
   "education": {
     "title": "Education",
