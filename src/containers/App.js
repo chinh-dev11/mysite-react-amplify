@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Auth } from 'aws-amplify';
 
 import Header from './Header';
 import About from '../components/About';
@@ -14,17 +15,39 @@ import Footer from './Footer';
 import './App.scss';
 
 function App() {
-  console.log('App');
-  console.log(process.env);
+  // console.log('App');
+  // console.log(process.env);
+  const [authenticated, setAuthenticated] = useState(false);
+  const payload = {
+    username: process.env.REACT_APP_ANON_USERNAME,
+    password: process.env.REACT_APP_ANON_PASSWORD,
+  };
+
+  useEffect(() => {
+    // console.log('useEffect');
+    Auth.signIn(payload)
+      .then((user) => {
+        // console.log(user);
+        setAuthenticated(true);
+      })
+      .catch((e) => {
+        // console.error(e);
+        // can do password verifying with challenges
+        setAuthenticated(false);
+      });
+  }, [payload]);
+
   return (
     <Container fluid className="App">
       <Row><Header /></Row>
-      <Row>
-        {/* <Col sm="6"><About /></Col> */}
-        {/* <Col sm="6"><ProjectWork /></Col> */}
-        <Col sm="6"><ProjectLab /></Col>
-        {/* <Col sm="6"><Education /></Col> */}
-      </Row>
+      {authenticated && (
+        <Row>
+          {/* <Col sm="6"><About /></Col> */}
+          {/* <Col sm="6"><ProjectWork /></Col> */}
+          {/* <Col sm="6"><ProjectLab /></Col> */}
+          <Col sm="6"><Education /></Col>
+        </Row>
+      )}
       {/* <Row><Footer /></Row> */}
     </Container>
   );
