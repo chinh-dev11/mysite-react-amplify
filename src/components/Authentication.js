@@ -42,5 +42,5 @@ const Authentication = () => {
   );
 };
 
-// export default Authentication;
-export default withAuthenticator(Authentication);
+export default Authentication;
+// export default withAuthenticator(Authentication);

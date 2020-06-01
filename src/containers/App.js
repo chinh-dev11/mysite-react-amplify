@@ -38,14 +38,14 @@ function App() {
   }, [payload]);
 
   return (
-    <Container fluid className="App">
-      <Row><Header /></Row>
+    <Container fluid className="App m-0 p-0">
+      {/* <Row><Header /></Row> */}
       {authenticated && (
         <Row>
-          {/* <Col sm="6"><About /></Col> */}
-          {/* <Col sm="6"><ProjectWork /></Col> */}
-          {/* <Col sm="6"><ProjectLab /></Col> */}
-          <Col sm="6"><Education /></Col>
+          <Col sm="6" className="mb-4"><About /></Col>
+          <Col sm="6" className="mb-4"><ProjectWork /></Col>
+          <Col sm="6" className="mb-4"><ProjectLab /></Col>
+          <Col sm="6" className="mb-4"><Education /></Col>
         </Row>
       )}
       {/* <Row><Footer /></Row> */}
