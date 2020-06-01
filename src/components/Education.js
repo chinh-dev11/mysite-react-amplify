@@ -15,11 +15,11 @@ const Education = () => {
   useEffect(() => {
     getCertsList('certificate', 'DESC')
       .then((res) => {
-        console.log(res.data.getEducByCompletedDate.items);
+        // console.log(res.data.getEducByCompletedDate.items);
         setCerts(res.data.getEducByCompletedDate.items);
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
       });
   }, []);
   return (

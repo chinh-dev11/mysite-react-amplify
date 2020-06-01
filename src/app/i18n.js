@@ -3,9 +3,9 @@ import { initReactI18next } from 'react-i18next';
 // import LanguageDetector from 'i18next-browser-languagedetector';
 // import Backend from 'i18next-xhr-backend';
 
-import translationEN from './locales/en/translation.json';
-import translationFR from './locales/fr/translation.json';
-import translationVN from './locales/vn/translation.json';
+import translationEN from '../locales/en/translation.json';
+import translationFR from '../locales/fr/translation.json';
+import translationVN from '../locales/vn/translation.json';
 
 const resources = {
   en: {
@@ -27,7 +27,7 @@ i18n
   .use(initReactI18next)
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: true,
+    debug: false,
     resources,
     lng: 'en',
     // keySeparator: true,

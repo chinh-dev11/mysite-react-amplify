@@ -6,7 +6,7 @@ import Amplify from 'aws-amplify';
 import { Provider } from 'react-redux';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import './i18n';
+import './app/i18n';
 
 import awsconfig from './aws-exports';
 // Storage.configure({ track: true, level: 'private' });

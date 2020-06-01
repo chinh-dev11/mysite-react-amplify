@@ -17,7 +17,7 @@ const ProjectWork = () => {
   useEffect(() => {
     getProjectList('work', 'DESC')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setWorks(res.data.getProjectByOrder.items);
       })
       .catch((e) => {

@@ -32,7 +32,7 @@ function App() {
   useEffect(() => {
     Auth.signIn(payloadAnon)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         dispatch(logIn());
         dispatch(setAuthUsername(data.username));
       })

@@ -16,7 +16,7 @@ const ProjectLab = () => {
   useEffect(() => {
     getProjectList('lab', 'DESC')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setLabs(res.data.getProjectByOrder.items);
       })
       .catch((e) => {
