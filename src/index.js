@@ -3,21 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Amplify from 'aws-amplify';
 // import Amplify, { Storage } from 'aws-amplify';
+import { Provider } from 'react-redux';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import './i18n';
+import './app/i18n';
 
 import awsconfig from './aws-exports';
+// Storage.configure({ track: true, level: 'private' });
 
+import store from './app/store';
 
 Amplify.configure(awsconfig);
-// Storage.configure({ track: true, level: 'private' });
 
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={null}>
       {/* <Suspense fallback="loading"> */}
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </Suspense>
   </React.StrictMode>,
   document.getElementById('root'),

@@ -15,15 +15,15 @@ const Education = () => {
   useEffect(() => {
     getCertsList('certificate', 'DESC')
       .then((res) => {
-        console.log(res.data.getEducByCompletedDate.items);
+        // console.log(res.data.getEducByCompletedDate.items);
         setCerts(res.data.getEducByCompletedDate.items);
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
       });
   }, []);
   return (
-    <div>
+    <div className="p-4">
       <h2>{t('education.title')}</h2>
       {certs.length > 0
         && (
@@ -40,13 +40,15 @@ const Education = () => {
                     <Card.Subtitle>{`${t('education.completed')}: ${elem.completedDate}`}</Card.Subtitle>
                     {elem.languages.length > 0
                      && (
-                     <Card.Text>
-                       {`${t('education.languages')}: `}
-                       <ul>{elem.languages.map((lang) => <li>{lang}</li>)}</ul>
-                     </Card.Text>
+                     <div>
+                       <Card.Text>{`${t('education.languages')}: `}</Card.Text>
+                       <ul>{elem.languages.map((lang) => <li key={lang}><small className="text-muted">{lang}</small></li>)}</ul>
+                     </div>
                      )}
-                    {elem.url && <Card.Link href={elem.url} target="_blank" rel="noopener noreferrer">{t('education.link')}</Card.Link>}
-                    {elem.urlFrom && <Card.Link href={elem.urlFrom} target="_blank" rel="noopener noreferrer">{t('education.linkDetail')}</Card.Link>}
+                    <Card.Footer>
+                      {elem.url && <Card.Link href={elem.url} target="_blank" rel="noopener noreferrer">{t('education.link')}</Card.Link>}
+                      {elem.urlFrom && <Card.Link href={elem.urlFrom} target="_blank" rel="noopener noreferrer">{t('education.linkDetail')}</Card.Link>}
+                    </Card.Footer>
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>

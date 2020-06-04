@@ -17,7 +17,7 @@ const ProjectWork = () => {
   useEffect(() => {
     getProjectList('work', 'DESC')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setWorks(res.data.getProjectByOrder.items);
       })
       .catch((e) => {
@@ -27,7 +27,7 @@ const ProjectWork = () => {
   }, []);
 
   return (
-    <div>
+    <div className="p-4">
       <h1>{t('project.work')}</h1>
       {works.length > 0
         && (

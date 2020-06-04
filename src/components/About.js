@@ -7,7 +7,7 @@ const About = () => {
   useTranslation(['translation']);
 
   return (
-    <div className={`${about} px-4`}>
+    <div className={`${about} p-4`}>
       <h1 className="display-4">
         <Trans i18nKey="about.content.heading1" />
         ,

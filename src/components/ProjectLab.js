@@ -16,7 +16,7 @@ const ProjectLab = () => {
   useEffect(() => {
     getProjectList('lab', 'DESC')
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setLabs(res.data.getProjectByOrder.items);
       })
       .catch((e) => {
@@ -27,7 +27,7 @@ const ProjectLab = () => {
   }, []);
 
   return (
-    <div>
+    <div className="p-4">
       <h1>{t('project.lab')}</h1>
       {labs.length > 0
       && (
@@ -37,13 +37,13 @@ const ProjectLab = () => {
               <Card.Img variant="top" src={staticUrl + elem.image} alt={elem.name} />
               <Card.Body>
                 <Card.Title>{elem.name}</Card.Title>
-                <Card.Text>
-                  <ul className="d-flex p-0 m-0">
-                    {elem.languages.map((lang) => (
-                      <li style={{ listStyleType: 'none' }} className="border mr-2 p-1">{lang}</li>
-                    ))}
-                  </ul>
-                </Card.Text>
+                {/* <Card.Text> */}
+                <ul className="d-flex p-0 m-0">
+                  {elem.languages.map((lang) => (
+                    <li key={lang} style={{ listStyleType: 'none' }} className="border mr-2 p-1">{lang}</li>
+                  ))}
+                </ul>
+                {/* </Card.Text> */}
                 <Card.Link href={elem.url} target="_blank" rel="noopener noreferrer">{t('project.demo')}</Card.Link>
               </Card.Body>
             </Card>

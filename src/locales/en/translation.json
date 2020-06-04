@@ -10,14 +10,17 @@
   "authentication": {
     "title": "Authentication",
     "signIn": {
-      "heading1": "Sign in to download my resume",
       "field1": {
         "label": "Username",
-        "desc": "Enter your username"
+        "desc": "Enter provided username"
       },
       "field2": {
         "label": "Password",
-        "desc": "Enter your password"
+        "desc": "Enter provided password"
+      },
+      "btn": {
+        "signIn": "Sign In",
+        "download": "Download resume"
       },
       "t1": "Forget your password?",
       "t2": "Reset password",
