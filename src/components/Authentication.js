@@ -1,31 +1,36 @@
-import React, { useState } from 'react';
-import { Auth } from 'aws-amplify';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Auth, Storage } from 'aws-amplify';
 // import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector, useDispatch } from 'react-redux';
 import { authUsername, setAuthUsername, logIn } from '../app/authSlice';
 
 const Authentication = () => {
   const { t, i18n } = useTranslation(['translation']);
+  const lang = i18n.language;
+  // console.log('lang: ', lang);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const isUserResume = useSelector(authUsername) === process.env.REACT_APP_USERNAME_RESUME;
+  const resumePath = process.env.REACT_APP_RESUME_PATH;
+  const [resumeUrlPdf, setResumeUrlPdf] = useState('');
+  const [resumeUrlDoc, setResumeUrlDoc] = useState('');
 
   const usernameHandler = (evt) => {
-    // console.log(evt.target.value);
     setUsername(evt.target.value);
   };
+
   const passwordHandler = (evt) => {
-    // console.log(evt.target.value);
     setPassword(evt.target.value);
   };
+
   const submitHandler = (evt) => {
-    console.log('submitHandler');
+    // console.log('submitHandler');
     evt.preventDefault();
-    // evt.persist();
     Auth.signIn({ username, password })
       .then((data) => {
         // console.log(data);
@@ -38,22 +43,71 @@ const Authentication = () => {
       });
   };
 
+  const setResumeUrl = useCallback(
+    (ext) => {
+      // Error: The specified key does not exist (identityId)
+      // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
+      // Storage.get('protected.png', { level: 'protected' })
+      Storage.get(`${resumePath}${lang}.${ext}`) // public
+        .then((url) => {
+          const req = new Request(url);
+          fetch(req)
+            .then((res) => {
+              // console.log('res****: ', res);
+              if (res.status === 200) {
+                if (ext === 'pdf') setResumeUrlPdf(res.url);
+                else setResumeUrlDoc(res.url);
+              } else {
+                // todo: a proper error msg
+                console.log(res.status, res.statusText);
+                console.error('Something went wrong! Please retry again later.');
+                if (ext === 'pdf') setResumeUrlPdf('');
+                else setResumeUrlDoc('');
+              }
+            })
+            .catch((err) => {
+              console.error('err: ', err);
+              if (ext === 'pdf') setResumeUrlPdf('');
+              else setResumeUrlDoc('');
+            });
+        })
+        .catch((err) => {
+          console.error('err: ', err);
+          if (ext === 'pdf') setResumeUrlPdf('');
+          else setResumeUrlDoc('');
+        });
+    },
+    [resumePath, lang],
+  );
+
+  useEffect(() => {
+    if (isUserResume) {
+      setResumeUrl('pdf');
+      setResumeUrl('docx');
+    }
+  }, [isUserResume, setResumeUrl]);
+
   return (
     <div>
-      <p>{`Username: ${useSelector(authUsername)}`}</p>
       {!isUserResume
-        && (
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId="formUsername">
-            <Form.Label>{t('authentication.signIn.field1.label')}</Form.Label>
-            <Form.Control onChange={usernameHandler} type="text" placeholder={t('authentication.signIn.field1.desc')} />
-          </Form.Group>
-          <Form.Group controlId="formPassword">
-            <Form.Label>{t('authentication.signIn.field2.label')}</Form.Label>
-            <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.desc')} />
-          </Form.Group>
-          <Button type="submit" variant="primary">{t('authentication.signIn.btnSubmit')}</Button>
-        </Form>
+        ? (
+          <Form onSubmit={submitHandler}>
+            <Form.Group controlId="formUsername">
+              <Form.Label>{t('authentication.signIn.field1.label')}</Form.Label>
+              <Form.Control onChange={usernameHandler} type="text" placeholder={t('authentication.signIn.field1.desc')} />
+            </Form.Group>
+            <Form.Group controlId="formPassword">
+              <Form.Label>{t('authentication.signIn.field2.label')}</Form.Label>
+              <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.desc')} />
+            </Form.Group>
+            <Button type="submit" variant="primary">{t('authentication.signIn.btn.signIn')}</Button>
+          </Form>
+        )
+        : (
+          <ListGroup horizontal>
+            {resumeUrlPdf && <ListGroup.Item action href={resumeUrlPdf} target="_blank">PDF</ListGroup.Item>}
+            {resumeUrlDoc && <ListGroup.Item action href={resumeUrlDoc} target="_blank">DOC</ListGroup.Item>}
+          </ListGroup>
         )}
     </div>
   );

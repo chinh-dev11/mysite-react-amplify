@@ -23,7 +23,12 @@
 			}
 		}
 	},
-	"storage": {},
+	"storage": {
+		"mysiteReactAmplifyStorage": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	},
 	"analytics": {},
 	"function": {
 		"mysiteSendEmail": {

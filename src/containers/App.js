@@ -30,19 +30,22 @@ function App() {
   };
 
   useEffect(() => {
-    Auth.signIn(payloadAnon)
-      .then((data) => {
-        // console.log(data);
-        dispatch(logIn());
-        dispatch(setAuthUsername(data.username));
-      })
-      .catch((err) => {
-        console.error(err);
-        dispatch(logOut());
-        dispatch(setAuthUsername(''));
+    // console.log('useEffect');
+    if (!isAuthenticated) {
+      Auth.signIn(payloadAnon)
+        .then((data) => {
+          // console.log(data);
+          dispatch(logIn());
+          dispatch(setAuthUsername(data.username));
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch(logOut());
+          dispatch(setAuthUsername(''));
         // todo: handle error msg
-      });
-  }, [payloadAnon, dispatch]);
+        });
+    }
+  }, [isAuthenticated, payloadAnon, dispatch]);
 
   return (
     <Container fluid className="App m-0 p-0">

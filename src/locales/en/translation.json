@@ -18,7 +18,10 @@
         "label": "Password",
         "desc": "Enter provided password"
       },
-      "btnSubmit": "Download resume",
+      "btn": {
+        "signIn": "Sign In",
+        "download": "Download resume"
+      },
       "t1": "Forget your password?",
       "t2": "Reset password",
       "t3": "No account?",
