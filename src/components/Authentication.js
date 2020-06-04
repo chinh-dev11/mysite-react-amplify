@@ -48,7 +48,7 @@ const Authentication = () => {
       // Error: The specified key does not exist (identityId)
       // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
       // Storage.get('protected.png', { level: 'protected' })
-      Storage.get(`${resumePath}${lang}.${ext}`) // public
+      Storage.get(`${resumePath}${lang}.${ext}`) // public - ok
         .then((url) => {
           const req = new Request(url);
           fetch(req)

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Auth } from 'aws-amplify';
-import { useDispatch, useSelector } from 'react-redux';
-import {
+// import { Auth } from 'aws-amplify';
+// import { useDispatch, useSelector } from 'react-redux';
+/* import {
   logIn, logOut, authIsLogged, setAuthUsername,
-} from '../app/authSlice';
+} from '../app/authSlice'; */
 
 import Header from './Header';
 import About from '../components/About';
@@ -22,14 +22,14 @@ import './App.scss';
 function App() {
   // console.log('App');
   // console.log(process.env);
-  const isAuthenticated = useSelector(authIsLogged);
-  const dispatch = useDispatch();
-  const payloadAnon = {
+  // const isAuthenticated = useSelector(authIsLogged);
+  // const dispatch = useDispatch();
+  /* const payloadAnon = {
     username: process.env.REACT_APP_ANON_USERNAME,
     password: process.env.REACT_APP_ANON_PASSWORD,
-  };
+  }; */
 
-  useEffect(() => {
+  /* useEffect(() => {
     // console.log('useEffect');
     if (!isAuthenticated) {
       Auth.signIn(payloadAnon)
@@ -45,19 +45,19 @@ function App() {
         // todo: handle error msg
         });
     }
-  }, [isAuthenticated, payloadAnon, dispatch]);
+  }, [isAuthenticated, payloadAnon, dispatch]); */
 
   return (
     <Container fluid className="App m-0 p-0">
       <Row><Header /></Row>
-      {isAuthenticated && (
-        <Row>
-          <Col sm="6" className="mb-4"><About /></Col>
-          <Col sm="6" className="mb-4"><ProjectWork /></Col>
-          <Col sm="6" className="mb-4"><ProjectLab /></Col>
-          <Col sm="6" className="mb-4"><Education /></Col>
-        </Row>
-      )}
+      {/* {isAuthenticated && ( */}
+      <Row>
+        <Col sm="6" className="mb-4"><About /></Col>
+        <Col sm="6" className="mb-4"><ProjectWork /></Col>
+        <Col sm="6" className="mb-4"><ProjectLab /></Col>
+        <Col sm="6" className="mb-4"><Education /></Col>
+      </Row>
+      {/* )} */}
       {/* <Row><Footer /></Row> */}
     </Container>
   );
