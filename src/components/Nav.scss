@@ -3,14 +3,19 @@
     width: 30px;
     height: 30px;
     position: relative;
+    border: none;
+    background-color: transparent;
+    padding: 0;
     &.navIcon--open {
       padding: 2px 0;
       > span {
         display: block;
+        // width: 0;
         width: 30px;
         height: 2px;
         margin: 5px 0;
         background-color: #000;
+        // transition: width 1s ease-in;
       }
     }
     &.navIcon--close {
@@ -18,9 +23,11 @@
         position: absolute;
         top: 14px;
         display: block;
-        width: 34px;
+        // width: 0;
+        width: 30px;
         height: 2px;
         background-color: #000;
+        // transition: width 1s ease-in;
         &.one {
           transform: rotate(45deg);
         }
@@ -28,6 +35,9 @@
           transform: rotate(-45deg);
         }
       }
+    }
+    &:focus {
+      outline: none;
     }
   }
 }
