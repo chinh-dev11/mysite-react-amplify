@@ -27,7 +27,7 @@ const ProjectLab = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="p-3">
       <h1>{t('project.lab')}</h1>
       {labs.length > 0
       && (

@@ -6,3 +6,7 @@ $theme-colors: (
 );
 
 @import '~bootstrap/scss/bootstrap.scss';
+
+body{
+  font-size: 11px;
+}

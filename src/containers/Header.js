@@ -4,7 +4,7 @@ import Lang from '../components/Lang';
 import Authentication from '../components/Authentication';
 
 const Header = () => (
-  <div>
+  <div className="p-3">
     <Logo />
     <Lang />
     <Authentication />

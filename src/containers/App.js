@@ -49,12 +49,14 @@ function App() {
 
   return (
     <Container fluid className="App m-0 p-0">
-      <Row><Header /></Row>
       <Row>
-        <Col sm="6" className="mb-4"><About /></Col>
-        <Col sm="6" className="mb-4"><ProjectWork /></Col>
-        <Col sm="6" className="mb-4"><ProjectLab /></Col>
-        <Col sm="6" className="mb-4"><Education /></Col>
+        <Col><Header /></Col>
+      </Row>
+      <Row>
+        <Col sm="6" className="mb-3"><About /></Col>
+        <Col sm="6" className="mb-3"><ProjectWork /></Col>
+        <Col sm="6" className="mb-3"><ProjectLab /></Col>
+        <Col sm="6" className="mb-3"><Education /></Col>
       </Row>
       {/* <Row><Footer /></Row> */}
     </Container>

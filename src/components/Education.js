@@ -23,7 +23,7 @@ const Education = () => {
       });
   }, []);
   return (
-    <div className="p-4">
+    <div className="p-3">
       <h2>{t('education.title')}</h2>
       {certs.length > 0
         && (
