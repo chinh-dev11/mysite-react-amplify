@@ -1,13 +1,11 @@
 import React from 'react';
 import Logo from '../components/Logo';
-import Lang from '../components/Lang';
-import Authentication from '../components/Authentication';
+import Nav from '../components/Nav';
 
 const Header = () => (
-  <div className="p-3">
+  <div className="p-3 d-flex justify-content-between">
     <Logo />
-    <Lang />
-    <Authentication />
+    <Nav />
   </div>
 );
 

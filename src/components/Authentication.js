@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector, useDispatch } from 'react-redux';
 import { authUsername, setAuthUsername, logIn } from '../app/authSlice';
+import './Authentication.scss';
 
 const Authentication = () => {
   const { t, i18n } = useTranslation(['translation']);
@@ -88,7 +89,7 @@ const Authentication = () => {
   }, [isUserResume, setResumeUrl]);
 
   return (
-    <div>
+    <div className="Authentication">
       {!isUserResume
         ? (
           <Form onSubmit={submitHandler}>
