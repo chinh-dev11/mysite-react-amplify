@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
-import navReducer from './navSlice';
+import menuReducer from './menuSlice';
 
 export default configureStore({
   reducer: {
     auth: authReducer,
-    nav: navReducer,
+    menu: menuReducer,
   },
 });

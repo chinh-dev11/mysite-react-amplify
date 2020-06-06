@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { navOpen, navClose, navIsOpen } from '../app/navSlice';
-import './Nav.scss';
+import { menuOpen, menuClose, menuIsOpen } from '../app/menuSlice';
+import './MenuButton.scss';
 
-const Nav = () => {
-  const isOpen = useSelector(navIsOpen);
+const MenuButton = () => {
+  const isOpen = useSelector(menuIsOpen);
   const dispatch = useDispatch();
 
-  const navHandler = () => {
-    dispatch(isOpen ? navClose() : navOpen());
+  const menuHandler = () => {
+    dispatch(isOpen ? menuClose() : menuOpen());
   };
 
   useEffect(() => {
@@ -23,16 +23,16 @@ const Nav = () => {
   }, [isOpen]);
 
   return (
-    <div className="Nav d-flex align-items-center">
+    <div className="MenuButton d-flex align-items-center">
       {isOpen
         ? (
-          <button onClick={navHandler} type="button" className="navIcon navIcon--close">
+          <button onClick={menuHandler} type="button" className="menuIcon menuIcon--close">
             <span className="one" />
             <span className="two" />
           </button>
         )
         : (
-          <button type="button" onClick={navHandler} className="navIcon navIcon--open">
+          <button type="button" onClick={menuHandler} className="menuIcon menuIcon--open">
             <span />
             <span />
             <span />
@@ -42,4 +42,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default MenuButton;

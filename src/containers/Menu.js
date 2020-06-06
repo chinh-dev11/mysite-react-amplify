@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import Col from 'react-bootstrap/Col';
 import Authentication from '../components/Authentication';
 import Lang from '../components/Lang';
-import { navIsOpen } from '../app/navSlice';
+import { menuIsOpen } from '../app/menuSlice';
 import './Menu.scss';
 
 const Menu = () => {
   const [headerHeight, setHeaderHeight] = useState('72px');
   const [menuHeight, setMenuHeight] = useState('300px');
-  const menuTopInline = { top: useSelector(navIsOpen) ? headerHeight : `-${menuHeight}` };
+  const menuTopInline = { top: useSelector(menuIsOpen) ? headerHeight : `-${menuHeight}` };
 
   useEffect(() => {
     const elemHeaderHeight = document.querySelector('.Header').clientHeight;
