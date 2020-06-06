@@ -1,0 +1,12 @@
+.Lang {
+  button {
+    font-size: 0.6rem;
+    padding: 0.5rem 1rem;
+    background-color: inherit;
+    &.active {
+      background-color: inherit;
+      border-color: rgba(0, 0, 0, 0.125);
+      color: var(--primary);
+    }
+  }
+}

@@ -26,7 +26,7 @@ const Menu = () => {
         <Row className="p-3 justify-content-end">
           <Authentication />
         </Row>
-        <Row className="p-3 justify-content-between">
+        <Row className="p-3 mb-2 justify-content-between">
           <Social />
           <Lang />
         </Row>
