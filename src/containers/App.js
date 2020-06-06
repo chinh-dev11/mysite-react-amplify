@@ -57,10 +57,10 @@ function App() {
         <Col><Header /></Col>
       </Row>
       <Row>
-        <Col sm="6" className="mb-3"><About /></Col>
-        <Col sm="6" className="mb-3"><ProjectWork /></Col>
+        {/* <Col sm="6" className="mb-3"><About /></Col> */}
+        {/* <Col sm="6" className="mb-3"><ProjectWork /></Col> */}
         <Col sm="6" className="mb-3"><ProjectLab /></Col>
-        <Col sm="6" className="mb-3"><Education /></Col>
+        {/* <Col sm="6" className="mb-3"><Education /></Col> */}
       </Row>
       {/* <Row><Footer /></Row> */}
     </Container>
