@@ -23,7 +23,8 @@ const Menu = () => {
   return (
     <div className="Menu bg-white position-fixed" style={menuTopInline}>
       <Col sm="6">
-        <Row className="p-3 justify-content-end">
+        {/* <Row className="p-3 justify-content-end"> */}
+        <Row className="p-3">
           <Authentication />
         </Row>
         <Row className="p-3 mb-2 justify-content-between">

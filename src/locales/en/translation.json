@@ -9,6 +9,10 @@
   },
   "authentication": {
     "title": "Authentication",
+    "download": {
+      "formatPdf": "Resume pdf format",
+      "formatDoc": "Resume doc format"
+    },
     "signIn": {
       "field1": {
         "label": "Username",
