@@ -8,7 +8,9 @@ import {
   logIn, logOut, authIsLogged, setAuthUsername,
 } from '../app/authSlice';
 
+import Menu from './Menu';
 import Header from './Header';
+import Backdrop from '../components/Backdrop';
 import About from '../components/About';
 import ProjectWork from '../components/ProjectWork';
 import ProjectLab from '../components/ProjectLab';
@@ -49,6 +51,8 @@ function App() {
 
   return (
     <Container fluid className="App m-0 p-0">
+      <Menu />
+      <Backdrop />
       <Row>
         <Col><Header /></Col>
       </Row>

@@ -10,3 +10,13 @@ $theme-colors: (
 body{
   font-size: 11px;
 }
+
+.Header {
+  z-index: 1000;
+}
+.Menu {
+  z-index: 900;
+}
+.Backdrop {
+  z-index: 800;
+}

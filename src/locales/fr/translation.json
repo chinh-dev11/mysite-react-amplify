@@ -143,5 +143,8 @@
         "t2": "Please try again later"
       }
     }
+  },
+  "menu": {
+    "backdropLabel": "Fermer la navigation"
   }
 }
