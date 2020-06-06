@@ -20,6 +20,11 @@ const Authentication = () => {
   const resumePath = process.env.REACT_APP_RESUME_PATH;
   const [resumeUrlPdf, setResumeUrlPdf] = useState('');
   const [resumeUrlDoc, setResumeUrlDoc] = useState('');
+  const [btnSubmitCssClasses, setBtnSubmitCssClasses] = useState({
+
+  });
+  const [validated, setValidated] = useState(false);
+  const usernameInput = React.createRef();
 
   const usernameHandler = (evt) => {
     setUsername(evt.target.value);
@@ -31,7 +36,16 @@ const Authentication = () => {
 
   const submitHandler = (evt) => {
     // console.log('submitHandler');
+    const form = evt.currentTarget;
+    console.log(form.checkValidity());
     evt.preventDefault();
+    evt.stopPropagation();
+    if (form.checkValidity() === false) {
+      // evt.preventDefault();
+      // evt.stopPropagation();
+    }
+    setValidated(true);
+    /* evt.preventDefault();
     Auth.signIn({ username, password })
       .then((data) => {
         // console.log(data);
@@ -41,7 +55,7 @@ const Authentication = () => {
       .catch((err) => {
         console.error(err);
         // todo: handle error msg
-      });
+      }); */
   };
 
   const setResumeUrl = useCallback(
@@ -82,26 +96,35 @@ const Authentication = () => {
   );
 
   useEffect(() => {
+    // set focus
+    usernameInput.current.focus();
+
     if (isUserResume) {
       setResumeUrl('pdf');
       setResumeUrl('docx');
     }
-  }, [isUserResume, setResumeUrl]);
+  }, [usernameInput, isUserResume, setResumeUrl]);
 
   return (
-    <div className="Authentication">
+    <div className="Authentication w-100">
       {!isUserResume
         ? (
-          <Form onSubmit={submitHandler}>
+          <Form noValidate validated={validated} onSubmit={submitHandler}>
             <Form.Group controlId="formUsername">
-              <Form.Label>{t('authentication.signIn.field1.label')}</Form.Label>
-              <Form.Control onChange={usernameHandler} type="text" placeholder={t('authentication.signIn.field1.desc')} />
+              {/* <Form.Label>{t('authentication.signIn.field1.label')}</Form.Label> */}
+              <Form.Control onChange={usernameHandler} type="text" placeholder={t('authentication.signIn.field1.label')} aria-describedby="usernameHelpBlock" required className="text-center" tabIndex="0" ref={usernameInput} />
+              {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
+              <Form.Control.Feedback type="invalid" id="usernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
+              {/* <Form.Text muted id="usernameHelpBlock">{t('authentication.signIn.field1.desc')}</Form.Text> */}
             </Form.Group>
             <Form.Group controlId="formPassword">
-              <Form.Label>{t('authentication.signIn.field2.label')}</Form.Label>
-              <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.desc')} />
+              {/* <Form.Label>{t('authentication.signIn.field2.label')}</Form.Label> */}
+              <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.label')} aria-describedby="passwordHelpBlock" required className="text-center" />
+              <Form.Control.Feedback type="invalid" id="passwordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
+              {/* <Form.Text muted id="passwordHelpBlock">{t('authentication.signIn.field2.desc')}</Form.Text> */}
             </Form.Group>
-            <Button type="submit" variant="primary">{t('authentication.signIn.btn.signIn')}</Button>
+            <Button type="submit" variant="outline-secondary" size="md" className="w-100 text-center">{t('authentication.signIn.btn.signIn')}</Button>
+            {/* <Button type="submit" variant="outline-secondary">{t('authentication.signIn.btn.signIn')}</Button> */}
           </Form>
         )
         : (
