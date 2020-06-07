@@ -35,16 +35,15 @@ const Authentication = () => {
   };
 
   const submitHandler = (evt) => {
-    // console.log('submitHandler');
     const form = evt.currentTarget;
-    // console.log(form.checkValidity());
+
     evt.preventDefault();
     evt.stopPropagation();
+
     if (form.checkValidity()) {
-      setValidated(true);
       Auth.signIn({ username, password })
         .then((data) => {
-          // console.log(data);
+        // console.log(data);
           dispatch(logIn());
           dispatch(setAuthUsername(data.username));
         })
@@ -53,6 +52,8 @@ const Authentication = () => {
           // todo: handle error msg
         });
     }
+
+    setValidated(true);
   };
 
   const setResumeUrl = useCallback(
@@ -110,16 +111,15 @@ const Authentication = () => {
       {!isUserResume
         ? (
           <Form noValidate validated={validated} onSubmit={submitHandler}>
-            <Form.Group controlId="formUsername">
-              {/* <Form.Label>{t('authentication.signIn.field1.label')}</Form.Label> */}
-              <Form.Control onChange={usernameHandler} type="text" placeholder={t('authentication.signIn.field1.label')} aria-describedby="usernameHelpBlock" required className="text-center" tabIndex="0" ref={usernameInput} autoFocus />
-              <Form.Control.Feedback type="invalid" id="usernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
+            <Form.Group controlId="validationAuthUsername">
+              <Form.Control onChange={usernameHandler} type="text" placeholder={t('authentication.signIn.field1.label')} aria-describedby="authUsernameHelpBlock" required className="text-center" tabIndex="0" ref={usernameInput} autoFocus />
+              <Form.Control.Feedback type="invalid" id="authUsernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="formPassword">
-              <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.label')} aria-describedby="passwordHelpBlock" required className="text-center" />
-              <Form.Control.Feedback type="invalid" id="passwordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
+            <Form.Group controlId="validationAuthPassword">
+              <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.label')} aria-describedby="authPasswordHelpBlock" required className="text-center" />
+              <Form.Control.Feedback type="invalid" id="authPasswordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
             </Form.Group>
-            <Button type="submit" variant="outline-secondary" size="md" className="w-100 text-center">{t('authentication.signIn.btn.signIn')}</Button>
+            <Button type="submit" variant="outline-primary" size="md" className="w-100 text-center">{t('authentication.signIn.btn.signIn')}</Button>
           </Form>
         )
         : (
@@ -138,7 +138,6 @@ const Authentication = () => {
                 </a>
               </ListGroup.Item>
             )}
-            {/* {resumeUrlDoc && <ListGroup.Item action href={resumeUrlDoc} target="_blank">DOC</ListGroup.Item>} */}
           </ListGroup>
         )}
     </div>
