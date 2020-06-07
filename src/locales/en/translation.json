@@ -73,7 +73,7 @@
     },
     "field2": {
       "label": "Email",
-      "placeholder": "name@exmaple.com"
+      "placeholder": "name@example.com"
     },
     "field3": {
       "label": "Subject",
@@ -98,6 +98,9 @@
     },
     "errors": {
       "emailSending": "There's been server technical problems. Please try again later."
+    },
+    "feedback": {
+      "required": "Field required!"
     }
   },
   "copyright": {
