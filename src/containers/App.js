@@ -15,6 +15,9 @@ import About from '../components/About';
 import ProjectWork from '../components/ProjectWork';
 import ProjectLab from '../components/ProjectLab';
 import Education from '../components/Education';
+import Contact from '../components/Contact';
+import Social from '../components/Social';
+
 import Footer from './Footer';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -50,20 +53,32 @@ function App() {
   }, [isAuthenticated, payloadAnon, dispatch]);
 
   return (
-    <Container fluid className="App m-0 p-0">
-      <Menu />
-      <Backdrop />
-      <Row>
-        <Col><Header /></Col>
-      </Row>
+    <div className="App">
+      <Header />
+      {/* <Menu /> */}
+      {/* <Backdrop /> */}
+      {/* <Row> */}
+      {/* <Col><Header /></Col> */}
+      {/* </Row> */}
       {/* <Row> */}
       {/* <Col sm="6" className="mb-3"><About /></Col> */}
       {/* <Col sm="6" className="mb-3"><ProjectWork /></Col> */}
       {/* <Col sm="6" className="mb-3"><ProjectLab /></Col> */}
       {/* <Col sm="6" className="mb-3"><Education /></Col> */}
       {/* </Row> */}
-      <Row><Footer /></Row>
-    </Container>
+      {/* <Row> */}
+      {/* <Col sm="6" className="mb-3"><Contact /></Col> */}
+      {/* <Col sm="6" className="mb-3"><Social /></Col> */}
+      {/* </Row> */}
+      <div className="Content">
+        {/* <About /> */}
+        {/* <ProjectWork /> */}
+        {/* <ProjectLab /> */}
+      </div>
+      <Footer />
+      <Backdrop />
+      <Menu />
+    </div>
   );
 }
 

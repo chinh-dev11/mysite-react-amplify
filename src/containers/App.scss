@@ -8,8 +8,19 @@ $theme-colors: (
 
 @import '~bootstrap/scss/bootstrap.scss';
 
-body {
-  font-size: 11px;
+html, body, #root {
+  height: 100%;
+}
+.App {
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+}
+.Content {
+ flex: 1 0 auto;
+}
+.Footer {
+ flex-shrink: 0;
 }
 
 .Header {

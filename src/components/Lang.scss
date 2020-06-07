@@ -1,13 +1,14 @@
 .Lang {
-  button {
-    font-size: 0.6rem;
-    padding: 0.5rem 1rem;
-    background-color: inherit;
+  > li {
     border: none;
-    &.active {
-      background-color: inherit;
-      border-color: rgba(0, 0, 0, 0.125);
-      color: var(--primary);
-    }
+    padding: 0;
+  }
+  button {
+    background-color: transparent !important;
+    border: none !important;
+    font-size: 0.7rem;
+    &:active, &:focus, &:hover, &.active {
+      color: var(--primary) !important;
+    } 
   }
 }

@@ -16,7 +16,7 @@ const Social = () => {
   const linkGitlab = process.env.REACT_APP_SOCIAL_LINK_GITLAB;
   const linkInstagram = process.env.REACT_APP_SOCIAL_LINK_INSTAGRAM;
   return (
-    <ListGroup as="ul" horizontal className="Social justify-content-center py-4">
+    <ListGroup as="ul" horizontal className="Social justify-content-center p-3">
       <ListGroup.Item as="li">
         <a href={linkLinkedin} target="_blank" rel="noreferrer noopener" title={t('social.alt.linkedin')}>
           <img src={iconLinkedin} alt={t('social.alt.linkedin')} />
