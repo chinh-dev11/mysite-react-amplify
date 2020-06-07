@@ -29,7 +29,7 @@ const Contact = () => {
     evt.preventDefault();
     evt.stopPropagation();
 
-    console.log('form.checkValidity(): ', form.checkValidity());
+    // console.log('form.checkValidity(): ', form.checkValidity());
     if (form.checkValidity()) {
       const payload = {
         email,
@@ -38,7 +38,7 @@ const Contact = () => {
         message,
         i18nMsg,
       };
-
+      // todo: send email: using backend environment variables / secrets manager
       API.graphql(graphqlOperation(sendEmail, payload))
         // .then(() => {
         .then((res) => {
@@ -58,8 +58,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="Contact p-3">
-      <h2>{t('contact.heading1')}</h2>
+    <div className="Contact p-4">
+      <h2 className="text-center">{t('contact.heading1')}</h2>
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent
         ? (

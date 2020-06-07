@@ -3,17 +3,20 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
-
 import { getProjectByOrder } from '../graphql/queries';
 
 const ProjectLab = () => {
   const { t } = useTranslation(['translation']);
   const [labs, setLabs] = useState([]);
-  const staticUrl = 'https://static.chinhle.ca/public/project/';
+  const staticUrl = process.env.REACT_APP_STATIC_URL;
+  const [styleInline, setStyleInline] = useState({});
 
   const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
 
   useEffect(() => {
+    const headerHeight = document.querySelector('.Header').clientHeight;
+    setStyleInline({ top: `${headerHeight}px` });
+
     getProjectList('lab', 'DESC')
       .then((res) => {
         // console.log(res);
@@ -27,8 +30,8 @@ const ProjectLab = () => {
   }, []);
 
   return (
-    <div className="p-3">
-      <h2>{t('project.lab')}</h2>
+    <div className="ProjectLab p-4">
+      <h2 className="text-center sticky-top bg-white" style={styleInline}>{t('project.lab')}</h2>
       {labs.length > 0
       && (
         <CardGroup>

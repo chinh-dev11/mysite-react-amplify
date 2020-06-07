@@ -14,7 +14,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="About p-3" style={styleInline}>
+    <div className="About p-4" style={styleInline}>
       <h1 className="display-4">
         <Trans i18nKey="about.content.heading1" />
         ,
