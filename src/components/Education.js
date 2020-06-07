@@ -11,10 +11,14 @@ import { getEducByCompletedDate } from '../graphql/queries';
 const Education = () => {
   const { t } = useTranslation(['translation']);
   const [certs, setCerts] = useState([]);
+  const [styleInline, setStyleInline] = useState({});
 
   const getCertsList = (type, sortDirection) => API.graphql(graphqlOperation(getEducByCompletedDate, { type, sortDirection }));
 
   useEffect(() => {
+    const headerHeight = document.querySelector('.Header').clientHeight;
+    setStyleInline({ top: `${headerHeight}px` });
+
     getCertsList('certificate', 'DESC')
       .then((res) => {
         // console.log(res.data.getEducByCompletedDate.items);
@@ -26,7 +30,7 @@ const Education = () => {
   }, []);
   return (
     <div className="Education p-4">
-      <h2>{t('education.title')}</h2>
+      <h2 className="text-center sticky-top bg-white" style={styleInline}>{t('education.title')}</h2>
       {certs.length > 0
         && (
           <Accordion defaultActiveKey="0">

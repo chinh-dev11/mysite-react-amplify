@@ -55,21 +55,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Menu /> */}
-      {/* <Backdrop /> */}
-      {/* <Row> */}
-      {/* <Col><Header /></Col> */}
-      {/* </Row> */}
-      {/* <Row> */}
-      {/* <Col sm="6" className="mb-3"><About /></Col> */}
-      {/* <Col sm="6" className="mb-3"><ProjectWork /></Col> */}
-      {/* <Col sm="6" className="mb-3"><ProjectLab /></Col> */}
-      {/* <Col sm="6" className="mb-3"><Education /></Col> */}
-      {/* </Row> */}
-      {/* <Row> */}
-      {/* <Col sm="6" className="mb-3"><Contact /></Col> */}
-      {/* <Col sm="6" className="mb-3"><Social /></Col> */}
-      {/* </Row> */}
       <div className="Content">
         <About />
         <ProjectWork />

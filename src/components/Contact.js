@@ -59,7 +59,7 @@ const Contact = () => {
 
   return (
     <div className="Contact p-4">
-      <h2>{t('contact.heading1')}</h2>
+      <h2 className="text-center">{t('contact.heading1')}</h2>
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent
         ? (

@@ -27,9 +27,9 @@ const ProjectWork = () => {
   }, []);
 
   return (
-    <div className="ProjectWork p-4">
-      <h2>{t('project.work')}</h2>
-      <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
+    <div className="ProjectWork p-4 bg-dark">
+      <h2 className="text-center text-light">{t('project.work')}</h2>
+      {/* <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active" />
           <li data-target="#carouselExampleCaptions" data-slide-to="1" />
@@ -66,7 +66,7 @@ const ProjectWork = () => {
           <span className="carousel-control-next-icon" aria-hidden="true" />
           <span className="sr-only">Next</span>
         </a>
-      </div>
+      </div> */}
       {/* <Carousel>
         <Carousel.Item>
           <img
@@ -104,7 +104,7 @@ const ProjectWork = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel> */}
-      {/* {works.length > 0
+      {works.length > 0
         && (
           <Carousel>
             {works.map((elem) => (
@@ -117,7 +117,7 @@ const ProjectWork = () => {
               </Carousel.Item>
             ))}
           </Carousel>
-        )} */}
+        )}
     </div>
   );
 };

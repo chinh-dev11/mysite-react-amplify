@@ -13,8 +13,9 @@ const Menu = () => {
 
   useEffect(() => {
     const elemHeaderHeight = document.querySelector('.Header').clientHeight;
-    setHeaderHeight(`${elemHeaderHeight}px`);
     const elemMenuHeight = document.querySelector('.Menu').clientHeight;
+
+    setHeaderHeight(`${elemHeaderHeight}px`);
     setMenuHeight(`${elemMenuHeight}px`);
   }, []);
 

@@ -10,7 +10,6 @@ import { authUsername, setAuthUsername, logIn } from '../app/authSlice';
 import { menuIsOpen } from '../app/menuSlice';
 import iconPdf from '../assets/icons/iconfinder_icon-70-document-file-pdf_315672.svg';
 import iconDoc from '../assets/icons/iconfinder_icon-94-document-file-doc_315717.svg';
-import './Authentication.scss';
 
 const Authentication = () => {
   const { t, i18n } = useTranslation(['translation']);
