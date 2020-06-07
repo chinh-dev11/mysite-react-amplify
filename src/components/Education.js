@@ -3,6 +3,8 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import { getEducByCompletedDate } from '../graphql/queries';
 
@@ -23,7 +25,7 @@ const Education = () => {
       });
   }, []);
   return (
-    <div className="p-4">
+    <div className="p-3">
       <h2>{t('education.title')}</h2>
       {certs.length > 0
         && (
@@ -37,18 +39,22 @@ const Education = () => {
                 <Accordion.Collapse eventKey={i}>
                   <Card.Body>
                     <Card.Title>{elem.institution}</Card.Title>
-                    <Card.Subtitle>{`${t('education.completed')}: ${elem.completedDate}`}</Card.Subtitle>
-                    {elem.languages.length > 0
-                     && (
-                     <div>
-                       <Card.Text>{`${t('education.languages')}: `}</Card.Text>
-                       <ul>{elem.languages.map((lang) => <li key={lang}><small className="text-muted">{lang}</small></li>)}</ul>
-                     </div>
-                     )}
-                    <Card.Footer>
-                      {elem.url && <Card.Link href={elem.url} target="_blank" rel="noopener noreferrer">{t('education.link')}</Card.Link>}
-                      {elem.urlFrom && <Card.Link href={elem.urlFrom} target="_blank" rel="noopener noreferrer">{t('education.linkDetail')}</Card.Link>}
-                    </Card.Footer>
+                    <Row className="no-gutters flex-row">
+                      <Col xs="7">
+                        <Card.Text>{`${t('education.completed')}: ${elem.completedDate}`}</Card.Text>
+                        {elem.urlFrom && <Card.Link href={elem.urlFrom} target="_blank" rel="noopener noreferrer" className="d-block">{t('education.linkDetail')}</Card.Link>}
+                        {elem.url && <Card.Link href={elem.url} target="_blank" rel="noopener noreferrer" className="d-block ml-0">{t('education.link')}</Card.Link>}
+                      </Col>
+                      <Col xs="5">
+                        {elem.languages.length > 0
+                         && (
+                         <div>
+                           <Card.Text>{`${t('education.languages')}: `}</Card.Text>
+                           <ul>{elem.languages.map((lang) => <li key={lang}>{lang}</li>)}</ul>
+                         </div>
+                         )}
+                      </Col>
+                    </Row>
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>

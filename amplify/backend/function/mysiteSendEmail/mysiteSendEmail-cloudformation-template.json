@@ -68,7 +68,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-mysitereactamplify-dev-50208-deployment",
-					"S3Key": "amplify-builds/mysiteSendEmail-56437961614233486a58-build.zip"
+					"S3Key": "amplify-builds/mysiteSendEmail-50416e65794654457a52-build.zip"
 				}
 			}
 		},

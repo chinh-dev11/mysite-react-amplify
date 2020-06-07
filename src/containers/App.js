@@ -8,7 +8,9 @@ import {
   logIn, logOut, authIsLogged, setAuthUsername,
 } from '../app/authSlice';
 
+import Menu from './Menu';
 import Header from './Header';
+import Backdrop from '../components/Backdrop';
 import About from '../components/About';
 import ProjectWork from '../components/ProjectWork';
 import ProjectLab from '../components/ProjectLab';
@@ -49,14 +51,18 @@ function App() {
 
   return (
     <Container fluid className="App m-0 p-0">
-      <Row><Header /></Row>
+      <Menu />
+      <Backdrop />
       <Row>
-        <Col sm="6" className="mb-4"><About /></Col>
-        <Col sm="6" className="mb-4"><ProjectWork /></Col>
-        <Col sm="6" className="mb-4"><ProjectLab /></Col>
-        <Col sm="6" className="mb-4"><Education /></Col>
+        <Col><Header /></Col>
       </Row>
-      {/* <Row><Footer /></Row> */}
+      {/* <Row> */}
+      {/* <Col sm="6" className="mb-3"><About /></Col> */}
+      {/* <Col sm="6" className="mb-3"><ProjectWork /></Col> */}
+      {/* <Col sm="6" className="mb-3"><ProjectLab /></Col> */}
+      {/* <Col sm="6" className="mb-3"><Education /></Col> */}
+      {/* </Row> */}
+      <Row><Footer /></Row>
     </Container>
   );
 }

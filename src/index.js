@@ -4,6 +4,7 @@ import './index.css';
 import Amplify from 'aws-amplify';
 // import Amplify, { Storage } from 'aws-amplify';
 import { Provider } from 'react-redux';
+import WebFont from 'webfontloader';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import './app/i18n';
@@ -12,6 +13,14 @@ import awsconfig from './aws-exports';
 // Storage.configure({ track: true, level: 'private' });
 
 import store from './app/store';
+
+
+WebFont.load({
+  google: {
+    families: ['Comfortaa'],
+    // families: ['Comfortaa Web:300,400,700', 'sans-serif'],
+  },
+});
 
 Amplify.configure(awsconfig);
 

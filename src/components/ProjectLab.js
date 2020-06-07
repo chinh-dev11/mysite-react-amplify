@@ -27,25 +27,20 @@ const ProjectLab = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <h1>{t('project.lab')}</h1>
+    <div className="p-3">
+      <h2>{t('project.lab')}</h2>
       {labs.length > 0
       && (
         <CardGroup>
           {labs.map((elem) => (
             <Card key={elem.id}>
-              <Card.Img variant="top" src={staticUrl + elem.image} alt={elem.name} />
-              <Card.Body>
-                <Card.Title>{elem.name}</Card.Title>
-                {/* <Card.Text> */}
-                <ul className="d-flex p-0 m-0">
-                  {elem.languages.map((lang) => (
-                    <li key={lang} style={{ listStyleType: 'none' }} className="border mr-2 p-1">{lang}</li>
-                  ))}
-                </ul>
-                {/* </Card.Text> */}
-                <Card.Link href={elem.url} target="_blank" rel="noopener noreferrer">{t('project.demo')}</Card.Link>
-              </Card.Body>
+              <Card.Img src={staticUrl + elem.image} alt={elem.name} />
+              <Card.Link className="text-dark text-center" href={elem.url} target="_blank" rel="noopener noreferrer">
+                <Card.ImgOverlay className="p-0" style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}>
+                  <Card.Title className="p-3 m-0 rounded-top" style={{ backgroundColor: 'rgba(255,255,255,0.9)' }}>{elem.name}</Card.Title>
+                  <Card.Text className="p-2 position-absolute w-100 rounded-bottom" style={{ bottom: '0', backgroundColor: 'rgba(255,255,255,0.8)' }}>{elem.languages}</Card.Text>
+                </Card.ImgOverlay>
+              </Card.Link>
             </Card>
           ))}
         </CardGroup>

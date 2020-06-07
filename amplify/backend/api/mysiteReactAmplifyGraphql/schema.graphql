@@ -7,7 +7,7 @@ type Project @model @key(
   order: Int!
   name: String!
   type: String!
-  languages: [String!]!
+  languages: String!
   image: String
   alt: String
   url: String

@@ -9,6 +9,10 @@
   },
   "authentication": {
     "title": "Authentication",
+    "download": {
+      "formatPdf": "Resume pdf format",
+      "formatDoc": "Resume doc format"
+    },
     "signIn": {
       "field1": {
         "label": "Username",
@@ -69,7 +73,7 @@
     },
     "field2": {
       "label": "Email",
-      "placeholder": "name@exmaple.com"
+      "placeholder": "name@example.com"
     },
     "field3": {
       "label": "Subject",
@@ -94,6 +98,9 @@
     },
     "errors": {
       "emailSending": "There's been server technical problems. Please try again later."
+    },
+    "feedback": {
+      "required": "Field required!"
     }
   },
   "copyright": {
@@ -128,13 +135,14 @@
     "completed": "Completed",
     "languages": "Languages",
     "link": "Certificate",
-    "linkDetail": "Certificate infos"
+    "linkDetail": "Details"
   },
   "social": {
     "title": "Social Media",
     "alt": {
       "linkedin": "Linkedin account",
       "github": "Github account",
+      "gitlab": "Gitlab account",
       "instagram": "Instagram account"
     }
   },
@@ -150,5 +158,8 @@
         "t2": "Please try again later"
       }
     }
+  },
+  "menu": {
+    "backdropLabel": "Close the navigation"
   }
 }

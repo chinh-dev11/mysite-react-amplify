@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { API, graphqlOperation } from 'aws-amplify';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
 import { sendEmail } from '../graphql/queries';
 
 const Contact = () => {
@@ -14,6 +13,7 @@ const Contact = () => {
   const [message, setMessage] = useState('');
   const [isSent, setIsSent] = useState(false);
   const [sendFailed, setSendFailed] = useState(false);
+  const [validated, setValidated] = useState(false);
 
   const i18nMsg = {
     title: t('contact.email.title'),
@@ -24,32 +24,41 @@ const Contact = () => {
   };
 
   const submitHandler = (evt) => {
-    evt.preventDefault();
-    const payload = {
-      email,
-      subject,
-      name,
-      message,
-      i18nMsg,
-    };
+    const form = evt.currentTarget;
 
-    API.graphql(graphqlOperation(sendEmail, payload))
-      .then(() => {
-      // .then((res) => {
-        // console.log('res: ', res);
-        setIsSent(true);
-        setSendFailed(false);
-      })
-      .catch(() => {
-      // .catch((err) => {
-        // console.error('err: ', err);
-        setIsSent(false);
-        setSendFailed(true);
-      });
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    console.log('form.checkValidity(): ', form.checkValidity());
+    if (form.checkValidity()) {
+      const payload = {
+        email,
+        subject,
+        name,
+        message,
+        i18nMsg,
+      };
+
+      API.graphql(graphqlOperation(sendEmail, payload))
+        // .then(() => {
+        .then((res) => {
+          console.log('res: ', res);
+          setIsSent(true);
+          setSendFailed(false);
+        })
+        // .catch(() => {
+        .catch((err) => {
+          console.error(err.errors[0].message);
+          setIsSent(false);
+          setSendFailed(true);
+        });
+    }
+
+    setValidated(true);
   };
 
   return (
-    <div>
+    <div className="Contact p-3">
       <h2>{t('contact.heading1')}</h2>
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent
@@ -61,24 +70,27 @@ const Contact = () => {
           </>
         )
         : (
-          <Form onSubmit={submitHandler}>
+          <Form onSubmit={submitHandler} noValidate validated={validated}>
             <Form.Group controlId="contactName">
-              <Form.Label>{t('contact.field1.label')}</Form.Label>
-              <Form.Control type="text" placeholder={t('contact.field1.placeholder')} onChange={(evt) => setName(evt.target.value)} />
+              {/* <Form.Label>{t('contact.field1.label')}</Form.Label> */}
+              <Form.Control type="text" placeholder={t('contact.field1.placeholder')} onChange={(evt) => setName(evt.target.value)} required aria-describedby="contactUsernameHelpBlock" />
+              <Form.Control.Feedback type="invalid" id="contactUsernameHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="contactEmail">
-              <Form.Label>{t('contact.field2.label')}</Form.Label>
-              <Form.Control type="email" placeholder={t('contact.field2.placeholder')} onChange={(evt) => setEmail(evt.target.value)} />
+              {/* <Form.Label>{t('contact.field2.label')}</Form.Label> */}
+              <Form.Control type="email" placeholder={t('contact.field2.placeholder')} onChange={(evt) => setEmail(evt.target.value)} required aria-describedby="contactEmailHelpBlock" />
+              <Form.Control.Feedback type="invalid" id="contactEmailHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="contactSubject">
-              <Form.Label>{t('contact.field3.label')}</Form.Label>
+              {/* <Form.Label>{t('contact.field3.label')}</Form.Label> */}
               <Form.Control type="text" placeholder={t('contact.field3.placeholder')} onChange={(evt) => setSubject(evt.target.value)} />
             </Form.Group>
             <Form.Group controlId="contactMessage">
-              <Form.Label>{t('contact.field4.label')}</Form.Label>
-              <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} />
+              {/* <Form.Label>{t('contact.field4.label')}</Form.Label> */}
+              <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" />
+              <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
-            <Button variant="primary" type="submit">{t('contact.btnSubmit')}</Button>
+            <Button variant="outline-primary" size="md" className="w-100 text-center" type="submit">{t('contact.btnSubmit')}</Button>
           </Form>
         )}
     </div>

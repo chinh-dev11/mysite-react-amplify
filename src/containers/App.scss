@@ -1,8 +1,23 @@
 /* make the customizations */
 $theme-colors: (
+  "primary": #D85426,
   "info": tomato,
   "danger": teal,
   "dark": #222
 );
 
 @import '~bootstrap/scss/bootstrap.scss';
+
+body {
+  font-size: 11px;
+}
+
+.Header {
+  z-index: 1000;
+}
+.Menu {
+  z-index: 900;
+}
+.Backdrop {
+  z-index: 800;
+}
