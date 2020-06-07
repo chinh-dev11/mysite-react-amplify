@@ -71,9 +71,12 @@ function App() {
       {/* <Col sm="6" className="mb-3"><Social /></Col> */}
       {/* </Row> */}
       <div className="Content">
-        {/* <About /> */}
-        {/* <ProjectWork /> */}
-        {/* <ProjectLab /> */}
+        <About />
+        <ProjectWork />
+        <ProjectLab />
+        <Education />
+        <Contact />
+        <Social />
       </div>
       <Footer />
       <Backdrop />

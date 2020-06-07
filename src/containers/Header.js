@@ -4,7 +4,7 @@ import MenuButton from '../components/MenuButton';
 // import Menu from './Menu';
 
 const Header = () => (
-  <div className="Header p-3 d-flex justify-content-between bg-white fixed-top">
+  <div className="Header p-4 d-flex justify-content-between bg-white fixed-top">
     <Logo />
     <MenuButton />
   </div>

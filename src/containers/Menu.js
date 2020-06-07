@@ -19,7 +19,7 @@ const Menu = () => {
   }, []);
 
   return (
-    <div className="Menu bg-white position-fixed" style={menuTopInline}>
+    <div className="Menu p-4 bg-white position-fixed" style={menuTopInline}>
       <Col sm="6">
         <Authentication />
         <Social />

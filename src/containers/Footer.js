@@ -5,7 +5,7 @@ import Copyright from '../components/Copyright';
 import Lang from '../components/Lang';
 
 const Footer = () => (
-  <Row className="Footer px-3">
+  <Row className="Footer px-4">
     <Col xs="8">
       <Copyright />
     </Col>

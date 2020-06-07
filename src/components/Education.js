@@ -25,7 +25,7 @@ const Education = () => {
       });
   }, []);
   return (
-    <div className="p-3">
+    <div className="Education p-4">
       <h2>{t('education.title')}</h2>
       {certs.length > 0
         && (
