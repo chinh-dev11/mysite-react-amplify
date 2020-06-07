@@ -16,7 +16,7 @@ const Social = () => {
   const linkGitlab = process.env.REACT_APP_SOCIAL_LINK_GITLAB;
   const linkInstagram = process.env.REACT_APP_SOCIAL_LINK_INSTAGRAM;
   return (
-    <ListGroup as="ul" horizontal className="Social">
+    <ListGroup as="ul" horizontal className="Social justify-content-center py-4">
       <ListGroup.Item as="li">
         <a href={linkLinkedin} target="_blank" rel="noreferrer noopener" title={t('social.alt.linkedin')}>
           <img src={iconLinkedin} alt={t('social.alt.linkedin')} />
@@ -37,15 +37,6 @@ const Social = () => {
           <img src={iconInstagram} alt={t('social.alt.instagram')} />
         </a>
       </ListGroup.Item>
-      {/* <ListGroup.Item as="li" action href={linkGithub} target="_blank"><img src={iconGithub} alt={t('social.alt.github')} /></ListGroup.Item>
-      <ListGroup.Item as="li" action href={linkGitlab} target="_blank"><img src={iconGitlab} alt={t('social.alt.gitlab')} /></ListGroup.Item>
-      <ListGroup.Item as="li" action href={linkInstagram} target="_blank"><img src={iconInstagram} alt={t('social.alt.instagram')} /></ListGroup.Item> */}
-      {/* <div>
-        <a href="https://www.linkedin.com/in/chinh11/" target="_blank" rel="noopener noreferrer"><img src={iconLinkedin} alt={t('social.alt.linkedin')} /></a>
-        <a href="https://github.com/chinh-le/" target="_blank" rel="noopener noreferrer"><img src={iconGithub} alt={t('social.alt.github')} /></a>
-        <a href="https://github.com/chinh-le/" target="_blank" rel="noopener noreferrer"><img src={iconGithub} alt={t('social.alt.github')} /></a>
-        <a href="https://www.instagram.com/niusaul/" target="_blank" rel="noopener noreferrer"><img src={iconInstagram} alt={t('social.alt.instagram')} /></a>
-      </div> */}
     </ListGroup>
   );
 };
