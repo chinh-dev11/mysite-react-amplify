@@ -28,7 +28,7 @@ const ProjectWork = () => {
 
   return (
     <div className="p-3">
-      <h1>{t('project.work')}</h1>
+      <h2>{t('project.work')}</h2>
       <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active" />

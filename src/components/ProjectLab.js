@@ -3,8 +3,6 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import { getProjectByOrder } from '../graphql/queries';
 
@@ -30,7 +28,7 @@ const ProjectLab = () => {
 
   return (
     <div className="p-3">
-      <h1>{t('project.lab')}</h1>
+      <h2>{t('project.lab')}</h2>
       {labs.length > 0
       && (
         <CardGroup>
@@ -40,14 +38,7 @@ const ProjectLab = () => {
               <Card.Link className="text-dark text-center" href={elem.url} target="_blank" rel="noopener noreferrer">
                 <Card.ImgOverlay className="p-0" style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}>
                   <Card.Title className="p-3 m-0 rounded-top" style={{ backgroundColor: 'rgba(255,255,255,0.9)' }}>{elem.name}</Card.Title>
-                  <Card.Text className="p-2 position-absolute w-100 rounded-bottom" style={{ bottom: '0', backgroundColor: 'rgba(255,255,255,0.8)' }}>
-                    {elem.languages}
-                    {/* <ul className="d-inline p-0 m-0">
-                      {elem.languages.map((lang) => (
-                        <li key={lang} style={{ listStyleType: 'none' }} className="">{lang}</li>
-                      ))}
-                    </ul> */}
-                  </Card.Text>
+                  <Card.Text className="p-2 position-absolute w-100 rounded-bottom" style={{ bottom: '0', backgroundColor: 'rgba(255,255,255,0.8)' }}>{elem.languages}</Card.Text>
                 </Card.ImgOverlay>
               </Card.Link>
             </Card>
