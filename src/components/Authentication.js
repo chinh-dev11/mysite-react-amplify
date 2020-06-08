@@ -106,7 +106,7 @@ const Authentication = () => {
   }, [usernameInput, isUserResume, setResumeUrl]);
 
   return (
-    <div className="Authentication w-100">
+    <div className="Authentication">
       {!isUserResume
         ? (
           <Form noValidate validated={validated} onSubmit={submitHandler}>

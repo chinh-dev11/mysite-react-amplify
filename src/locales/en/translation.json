@@ -1,11 +1,7 @@
 {
   "about": {
     "title": "About",
-    "content": {
-      "heading1": "<i>Skilled</i> web developer",
-      "t1": "with a keen eye for <i>detail</i>",
-      "t2": "<i>driven</i> by learning and working with <i>emerging technologies</i>"
-    }
+    "txt": "<i>Skilled</i> web developer, with a keen eye for <i>detail</i>, <i>driven</i> by learning and working with <i>emerging technologies</i>."
   },
   "authentication": {
     "title": "Authentication",

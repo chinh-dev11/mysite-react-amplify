@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -33,9 +33,15 @@ function App() {
   };
   const isAuthenticated = useSelector(authIsLogged);
   const dispatch = useDispatch();
+  const [styleInline, setStyleInline] = useState({});
 
   useEffect(() => {
     // console.log('useEffect');
+    if (Object.keys(styleInline).length === 0) {
+      const headerHeight = document.querySelector('.Header').clientHeight;
+      setStyleInline({ marginTop: `${headerHeight}px` });
+    }
+
     if (!isAuthenticated) {
       Auth.signIn(payloadAnon)
         .then((data) => {
@@ -50,23 +56,39 @@ function App() {
         // todo: handle error msg
         });
     }
-  }, [isAuthenticated, payloadAnon, dispatch]);
+  }, [isAuthenticated, payloadAnon, dispatch, styleInline]);
 
+  /*
+  xs < 576
+  sm >= 576
+  md >= 768
+  lg >= 992
+  xl >= 1200
+  */
   return (
-    <div className="App">
+    <Container className="App">
       <Header />
-      <div className="Content">
-        <About />
-        <ProjectWork />
-        <ProjectLab />
-        <Education />
-        <Contact />
-        <Social />
-      </div>
+      <Row className="Content" style={styleInline}>
+        <Col lg="6">
+          <About />
+        </Col>
+        <Col lg="6">
+          <ProjectWork />
+        </Col>
+        <Col lg="12">
+          <ProjectLab />
+        </Col>
+        {/* <Row> */}
+        {/* <Education /> */}
+
+        {/* <Contact /> */}
+        {/* <Social /> */}
+        {/* </Row> */}
+      </Row>
       <Footer />
       <Backdrop />
       <Menu />
-    </div>
+    </Container>
   );
 }
 

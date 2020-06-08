@@ -1,12 +1,13 @@
 import React from 'react';
+import Col from 'react-bootstrap/Col';
 import Logo from '../components/Logo';
 import MenuButton from '../components/MenuButton';
 
 const Header = () => (
-  <div className="Header px-4 py-3 d-flex justify-content-between bg-white fixed-top">
+  <Col className="Header py-3 d-flex justify-content-between bg-white fixed-top">
     <Logo />
     <MenuButton />
-  </div>
+  </Col>
 );
 
 export default Header;

@@ -21,7 +21,7 @@ const Menu = () => {
 
   return (
     <div className="Menu p-4 bg-white position-fixed" style={menuTopInline}>
-      <Col sm="6">
+      <Col sm="6" className="">
         <Authentication />
         <Social />
       </Col>

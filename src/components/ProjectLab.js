@@ -3,6 +3,7 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
 import { getProjectByOrder } from '../graphql/queries';
 
 const ProjectLab = () => {
@@ -30,21 +31,23 @@ const ProjectLab = () => {
   }, []);
 
   return (
-    <div className="ProjectLab p-4">
+    <div className="ProjectLab">
       <h2 className="text-center sticky-top bg-white" style={styleInline}>{t('project.lab')}</h2>
       {labs.length > 0
       && (
         <CardGroup>
           {labs.map((elem) => (
-            <Card key={elem.id}>
-              <Card.Img src={staticUrl + elem.image} alt={elem.name} />
-              <Card.Link className="text-dark text-center" href={elem.url} target="_blank" rel="noopener noreferrer">
-                <Card.ImgOverlay className="p-0" style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}>
-                  <Card.Title className="p-3 m-0 rounded-top" style={{ backgroundColor: 'rgba(255,255,255,0.9)' }}>{elem.name}</Card.Title>
-                  <Card.Text className="p-2 position-absolute w-100 rounded-bottom" style={{ bottom: '0', backgroundColor: 'rgba(255,255,255,0.8)' }}>{elem.languages}</Card.Text>
-                </Card.ImgOverlay>
-              </Card.Link>
-            </Card>
+            <Col key={elem.id} lg="6" xl="4" className="mb-3">
+              <Card>
+                <Card.Img src={staticUrl + elem.image} alt={elem.name} />
+                <Card.Link className="text-dark text-center" href={elem.url} target="_blank" rel="noopener noreferrer">
+                  <Card.ImgOverlay className="p-0" style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}>
+                    <Card.Title className="p-3 m-0 rounded-top border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.9)' }}>{elem.name}</Card.Title>
+                    <Card.Text className="p-2 position-absolute w-100 rounded-bottom border-top text-muted" style={{ bottom: '0', backgroundColor: 'rgba(255,255,255,0.8)' }}>{elem.languages}</Card.Text>
+                  </Card.ImgOverlay>
+                </Card.Link>
+              </Card>
+            </Col>
           ))}
         </CardGroup>
       )}
