@@ -31,7 +31,7 @@ const ProjectLab = () => {
   }, []);
 
   return (
-    <div className="ProjectLab">
+    <div className="ProjectLab mb-4 py-4">
       <h2 className="text-center sticky-top bg-white" style={styleInline}>{t('project.lab')}</h2>
       {labs.length > 0
       && (

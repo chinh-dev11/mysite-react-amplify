@@ -58,7 +58,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="Contact">
+    <div className="Contact mb-4 py-4">
       <h2 className="text-center">{t('contact.heading1')}</h2>
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent

@@ -17,6 +17,7 @@ import ProjectLab from '../components/ProjectLab';
 import Education from '../components/Education';
 import Contact from '../components/Contact';
 import Social from '../components/Social';
+import Resume from '../components/Resume';
 
 import Footer from './Footer';
 
@@ -71,19 +72,20 @@ function App() {
       <Container>
         <Row className="Content" style={styleInline}>
           <Col lg="6">
-            {/* <About /> */}
+            <About />
           </Col>
           <Col lg="6">
-            {/* <ProjectWork /> */}
+            <ProjectWork />
           </Col>
           <Col lg="12">
-            {/* <ProjectLab /> */}
+            <ProjectLab />
           </Col>
           <Col lg="6">
             <Education />
           </Col>
           <Col lg="6">
             <Contact />
+            <Resume />
             <Social />
           </Col>
         </Row>
