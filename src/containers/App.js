@@ -66,29 +66,32 @@ function App() {
   xl >= 1200
   */
   return (
-    <Container className="App">
+    <div className="App">
       <Header />
-      <Row className="Content" style={styleInline}>
-        <Col lg="6">
-          <About />
-        </Col>
-        <Col lg="6">
-          <ProjectWork />
-        </Col>
-        <Col lg="12">
-          <ProjectLab />
-        </Col>
-        {/* <Row> */}
-        {/* <Education /> */}
-
-        {/* <Contact /> */}
-        {/* <Social /> */}
-        {/* </Row> */}
-      </Row>
+      <Container>
+        <Row className="Content" style={styleInline}>
+          <Col lg="6">
+            {/* <About /> */}
+          </Col>
+          <Col lg="6">
+            {/* <ProjectWork /> */}
+          </Col>
+          <Col lg="12">
+            {/* <ProjectLab /> */}
+          </Col>
+          <Col lg="6">
+            <Education />
+          </Col>
+          <Col lg="6">
+            <Contact />
+            <Social />
+          </Col>
+        </Row>
+      </Container>
       <Footer />
       <Backdrop />
       <Menu />
-    </Container>
+    </div>
   );
 }
 

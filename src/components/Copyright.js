@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 const Copyright = () => {
   const { t } = useTranslation(['translation']);
   return (
-    <div className="Copyright justify-content-start">
+    <div className="Copyright">
       <p>
         &copy;
         {`${t('copyright.t1')}. ${t('copyright.t2')}.`}

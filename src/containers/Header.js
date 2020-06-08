@@ -4,10 +4,10 @@ import Logo from '../components/Logo';
 import MenuButton from '../components/MenuButton';
 
 const Header = () => (
-  <Col className="Header py-3 d-flex justify-content-between bg-white fixed-top">
+  <header className="Header col py-3 d-flex justify-content-between bg-white fixed-top">
     <Logo />
     <MenuButton />
-  </Col>
+  </header>
 );
 
 export default Header;
