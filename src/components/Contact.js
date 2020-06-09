@@ -58,7 +58,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="Contact mb-4 py-4">
+    <div className="Contact my-4 pt-3 pb-4 px-4 border rounded">
       <h2 className="text-center">{t('contact.heading1')}</h2>
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent
@@ -90,7 +90,7 @@ const Contact = () => {
               <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" />
               <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
-            <Button variant="outline-primary" size="md" className="w-100 text-center" type="submit">{t('contact.btnSubmit')}</Button>
+            <Button variant="outline-primary" size="md" block className="text-center" type="submit">{t('contact.btnSubmit')}</Button>
           </Form>
         )}
     </div>

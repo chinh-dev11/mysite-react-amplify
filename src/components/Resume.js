@@ -80,8 +80,8 @@ const Resume = () => {
 
 
   return (
-    <div className="Resume border border-rounded p-2 mb-4">
-      <h3 className="text-center">{t('resume.title')}</h3>
+    <div className="Resume border rounded my-4 py-4">
+      <h2 className="text-center">{t('resume.title')}</h2>
       <ListGroup as="ul" horizontal className="justify-content-center">
         {isUserResume && resumeUrlPdf && (
           <ListGroup.Item as="li">

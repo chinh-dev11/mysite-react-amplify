@@ -39,10 +39,10 @@ const ProjectLab = () => {
           {labs.map((elem) => (
             <Col key={elem.id} lg="6" xl="4" className="mb-3">
               <Card>
-                <Card.Img src={staticUrl + elem.image} alt={elem.name} />
-                <Card.Link className="text-dark text-center" href={elem.url} target="_blank" rel="noopener noreferrer">
+                <Card.Link className="text-dark text-center d-block" href={elem.url} target="_blank" rel="noopener noreferrer">
+                  <Card.Img src={staticUrl + elem.image} alt={elem.name} />
                   <Card.ImgOverlay className="p-0" style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}>
-                    <Card.Title className="p-3 m-0 rounded-top border-bottom" style={{ backgroundColor: 'rgba(255,255,255,0.9)' }}>{elem.name}</Card.Title>
+                    <Card.Title className="p-3 m-0 rounded-top border-bottom bg-light text-dark">{elem.name}</Card.Title>
                     <Card.Text className="p-2 position-absolute w-100 rounded-bottom border-top text-muted" style={{ bottom: '0', backgroundColor: 'rgba(255,255,255,0.8)' }}>{elem.languages}</Card.Text>
                   </Card.ImgOverlay>
                 </Card.Link>

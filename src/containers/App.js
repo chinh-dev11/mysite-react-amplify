@@ -23,6 +23,7 @@ import Footer from './Footer';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
+import '../style/mediaQuery.scss';
 
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
           <Col lg="6">
             <About />
           </Col>
-          <Col lg="6">
+          <Col lg="6" className="flex-column align-self-center">
             <ProjectWork />
           </Col>
           <Col lg="12">

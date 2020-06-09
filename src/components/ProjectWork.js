@@ -27,7 +27,7 @@ const ProjectWork = () => {
   }, []);
 
   return (
-    <div className="ProjectWork p-4 mb-4 bg-dark">
+    <div className="ProjectWork p-4 my-4 bg-dark">
       <h2 className="text-center text-light">{t('project.work')}</h2>
       {/* <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
