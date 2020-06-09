@@ -1,4 +1,14 @@
+/*
+xs < 576
+sm >= 576
+md >= 768
+lg >= 992
+xl >= 1200
+*/
 @media only screen and (min-width: 576px) {
+  .Menu {
+    justify-content: center;
+  }
   .Contact {
     button {
       width: 50%;
@@ -19,6 +29,9 @@
 }
 
 @media only screen and (min-width: 992px) {
+  .Menu {
+    justify-content: flex-end;
+  }
   .ProjectWork, .ProjectLab, .Education {
     h2 {
       text-align: left !important;

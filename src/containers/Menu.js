@@ -19,8 +19,8 @@ const Menu = () => {
   }, []);
 
   return (
-    <div className="Menu p-4 bg-white position-fixed" style={menuTopInline}>
-      <Col sm="6" className="mb-4">
+    <div className="Menu p-4 bg-white position-fixed d-flex flex-row" style={menuTopInline}>
+      <Col sm="10" md="8" lg="6" xl="5" className="mb-4">
         <Authentication />
       </Col>
     </div>
