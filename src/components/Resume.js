@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { authUsername } from '../app/authSlice';
-import { menuOpen } from '../app/menuSlice';
+import { authUsername } from '../app/store/authSlice';
+import { menuOpen } from '../app/store/menuSlice';
 
 import iconDoc from '../assets/icons/iconfinder_Download_doc_5623450.svg';
 import iconPdf from '../assets/icons/iconfinder_Download_pdf_5623460.svg';

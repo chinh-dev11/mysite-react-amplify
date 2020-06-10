@@ -6,7 +6,7 @@ import { Auth } from 'aws-amplify';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   logIn, logOut, authIsLogged, setAuthUsername,
-} from '../app/authSlice';
+} from '../app/store/authSlice';
 
 import Menu from './Menu';
 import Header from './Header';
@@ -22,8 +22,8 @@ import Resume from '../components/Resume';
 import Footer from './Footer';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
 import '../style/mediaQuery.scss';
+import './App.scss';
 
 
 function App() {

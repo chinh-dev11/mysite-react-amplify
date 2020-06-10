@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { menuIsOpen, menuClose } from '../app/menuSlice';
+import { menuIsOpen, menuClose } from '../app/store/menuSlice';
 import './Backdrop.scss';
 
 const Backdrop = () => {

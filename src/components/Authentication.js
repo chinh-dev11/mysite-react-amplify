@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { authUsername, setAuthUsername, logIn } from '../app/authSlice';
+import { authUsername, setAuthUsername, logIn } from '../app/store/authSlice';
 import Resume from './Resume';
 
 const Authentication = () => {

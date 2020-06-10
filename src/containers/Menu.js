@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Col from 'react-bootstrap/Col';
 import Authentication from '../components/Authentication';
-import { menuIsOpen } from '../app/menuSlice';
+import { menuIsOpen } from '../app/store/menuSlice';
 import './Menu.scss';
 
 const Menu = () => {
