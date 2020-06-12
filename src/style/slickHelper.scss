@@ -9,6 +9,13 @@
     .slick-dots {
       bottom: -35px;
     }
+    .slick-slide {
+      a {
+        &:focus {
+          outline: none;
+        }
+      }
+    }
   }
 }
 
