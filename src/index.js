@@ -12,7 +12,7 @@ import './app/i18n';
 import awsconfig from './aws-exports';
 // Storage.configure({ track: true, level: 'private' });
 
-import store from './app/store';
+import store from './app/store/store';
 
 
 WebFont.load({

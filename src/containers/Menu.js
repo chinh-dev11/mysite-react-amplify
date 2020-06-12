@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Col from 'react-bootstrap/Col';
 import Authentication from '../components/Authentication';
-import Social from '../components/Social';
-import { menuIsOpen } from '../app/menuSlice';
+import { menuIsOpen } from '../app/store/menuSlice';
 import './Menu.scss';
 
 const Menu = () => {
@@ -20,10 +19,9 @@ const Menu = () => {
   }, []);
 
   return (
-    <div className="Menu p-4 bg-white position-fixed" style={menuTopInline}>
-      <Col sm="6">
+    <div className="Menu p-4 bg-white position-fixed d-flex flex-row" style={menuTopInline}>
+      <Col sm="10" md="8" lg="6" xl="5" className="mb-4">
         <Authentication />
-        <Social />
       </Col>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { menuOpen, menuClose, menuIsOpen } from '../app/menuSlice';
+import { menuOpen, menuClose, menuIsOpen } from '../app/store/menuSlice';
 import './MenuButton.scss';
 
 const MenuButton = () => {

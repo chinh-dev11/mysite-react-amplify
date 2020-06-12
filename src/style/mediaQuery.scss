@@ -1,0 +1,60 @@
+@import 'bootstrap';
+/*
+xs < 576
+sm >= 576
+md >= 768
+lg >= 992
+xl >= 1200
+*/
+@media only screen and (min-width: 576px) {
+  .Menu {
+    justify-content: center;
+  }
+  .Contact {
+    button {
+      width: 50%;
+      margin: auto;
+    }
+  }
+}
+
+  @media only screen and (max-width: 991px) {
+  .ProjectLab {
+    .card-group {
+     > div {
+       padding-left: 0;
+       padding-right: 0;
+     }
+    } 
+   }
+}
+
+@media only screen and (min-width: 992px) {
+  .Menu {
+    justify-content: flex-end;
+  }
+  .ProjectWork, .ProjectLab, .Education {
+    h2 {
+      text-align: left !important;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .ProjectLab {
+    .card-group {
+     > div:nth-child(3n+1) {
+       padding-left: 0;
+       padding-right: 15px;
+     }
+     > div:nth-child(3n) {
+       padding-left: 15px;
+       padding-right: 0;
+     }
+     > div:nth-child(3n+2) {
+       padding-left: 7px;
+       padding-right: 7px;
+     }
+    } 
+   }
+}

@@ -13,7 +13,7 @@ const Lang = () => {
   };
 
   return (
-    <ListGroup as="ul" horizontal className="Lang justify-content-end">
+    <ListGroup as="ul" horizontal className="Lang">
       <ListGroup.Item as="li">
         <Button variant="light" type="button" onClick={() => changeLanguage(t('lang.en.label'))} className="text-uppercase" active={lang === t('lang.en.label')}>{t('lang.en.label')}</Button>
       </ListGroup.Item>
