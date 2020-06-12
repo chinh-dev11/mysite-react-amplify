@@ -32,6 +32,7 @@ function App() {
     username: process.env.REACT_APP_ANON_USERNAME,
     password: process.env.REACT_APP_ANON_PASSWORD,
   };
+  console.log('payloadAnon: ', payloadAnon);
   const isAuthenticated = useSelector(authIsLogged);
   const dispatch = useDispatch();
   const [styleInline, setStyleInline] = useState({});
