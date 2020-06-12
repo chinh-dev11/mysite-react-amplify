@@ -19,7 +19,7 @@ const Resume = () => {
   // console.log('lang: ', lang);
   const [resumeUrlPdf, setResumeUrlPdf] = useState('');
   const [resumeUrlDoc, setResumeUrlDoc] = useState('');
-  const isUserResume = useSelector(authUsername) === process.env.REACT_APP_USERNAME_RESUME;
+  const isUserResume = useSelector(authUsername) === process.env.REACT_APP_RESUME_USERNAME;
   const dispatch = useDispatch();
 
   const clickHandler = () => {
