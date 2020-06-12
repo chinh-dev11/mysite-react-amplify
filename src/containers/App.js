@@ -18,6 +18,7 @@ import Education from '../components/Education';
 import Contact from '../components/Contact';
 import Social from '../components/Social';
 import Resume from '../components/Resume';
+import ResizeDebounce from '../components/ResizeDebounce';
 
 import Footer from './Footer';
 

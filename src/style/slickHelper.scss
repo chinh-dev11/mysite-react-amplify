@@ -1,0 +1,46 @@
+.ProjectLab {
+  .carouselSlick {
+    .slick-arrow {
+      width: 3%;
+      &:hover {
+        background-color: rgba(0,0,0,0.2) !important;
+      }
+    }
+    .slick-dots {
+      bottom: -35px;
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .ProjectLab {
+    .carouselSlick {
+      .slick-track {
+        > .slick-slide {
+          &:nth-child(odd) {
+            margin-right: 0.5rem;
+          }
+          &:nth-child(even) {
+            margin-left: 0.5rem;
+          }
+          a {
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .ProjectLab {
+    .carouselSlick {
+      .slick-track {
+        > .slick-slide {
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
