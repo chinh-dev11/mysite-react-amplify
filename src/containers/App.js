@@ -27,7 +27,7 @@ import './App.scss';
 
 function App() {
   // console.log('App');
-  // console.log(process.env);
+  console.log(process.env);
   const payloadAnon = {
     username: process.env.REACT_APP_ANON_USERNAME,
     password: process.env.REACT_APP_ANON_PASSWORD,
