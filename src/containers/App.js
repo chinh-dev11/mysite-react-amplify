@@ -18,8 +18,6 @@ import Education from '../components/Education';
 import Contact from '../components/Contact';
 import Social from '../components/Social';
 import Resume from '../components/Resume';
-import ResizeDebounce from '../components/ResizeDebounce';
-
 import Footer from './Footer';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -67,16 +65,16 @@ function App() {
       <Container>
         <Row className="Content" style={styleInline}>
           <Col lg="6">
-            <About />
+            {/* <About /> */}
           </Col>
           <Col lg="6" className="flex-column align-self-center">
-            <ProjectWork />
+            {/* <ProjectWork /> */}
           </Col>
           <Col lg="12">
-            <ProjectLab />
+            {/* <ProjectLab /> */}
           </Col>
           <Col lg="6">
-            <Education />
+            {/* <Education /> */}
           </Col>
           <Col lg="6">
             <Contact />

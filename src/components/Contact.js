@@ -24,6 +24,7 @@ const Contact = () => {
   };
 
   const submitHandler = (evt) => {
+    console.log(process.env);
     const form = evt.currentTarget;
 
     evt.preventDefault();
