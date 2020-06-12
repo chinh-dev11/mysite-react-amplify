@@ -24,6 +24,7 @@ const Contact = () => {
   };
 
   const submitHandler = (evt) => {
+    console.log(process.env);
     const form = evt.currentTarget;
 
     evt.preventDefault();
@@ -58,7 +59,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="Contact my-4 pt-3 pb-4 px-4 border rounded">
+    // <div className="Contact my-4 pt-3 pb-4 px-4 border rounded">
+    <div className="Contact my-4">
       <h2 className="text-center">{t('contact.heading1')}</h2>
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent
@@ -70,7 +72,7 @@ const Contact = () => {
           </>
         )
         : (
-          <Form onSubmit={submitHandler} noValidate validated={validated}>
+          <Form onSubmit={submitHandler} noValidate validated={validated} className="pb-4">
             <Form.Group controlId="contactName">
               {/* <Form.Label>{t('contact.field1.label')}</Form.Label> */}
               <Form.Control type="text" placeholder={t('contact.field1.placeholder')} onChange={(evt) => setName(evt.target.value)} required aria-describedby="contactUsernameHelpBlock" />
@@ -90,7 +92,7 @@ const Contact = () => {
               <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" />
               <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
-            <Button variant="outline-primary" size="md" block className="text-center" type="submit">{t('contact.btnSubmit')}</Button>
+            <Button variant="outline-primary" size="md" block className="text-center" style={{ borderRadius: '4rem' }} type="submit">{t('contact.btnSubmit')}</Button>
           </Form>
         )}
     </div>

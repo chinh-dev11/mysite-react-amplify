@@ -15,8 +15,7 @@ const ProjectLab = () => {
   const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
 
   useEffect(() => {
-    console.log('useEffect');
-    // console.log(window.innerWidth);
+    // console.log('useEffect');
     const init = async () => {
       // console.log('init');
       const result = await getProjectList('lab', 'DESC');

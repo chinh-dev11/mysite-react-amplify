@@ -1,5 +1,9 @@
+.Authentication {
+  > .Resume {
+    border: none !important;
+  }
+}
 .Resume {
-  border-color: #ced4da;
   li {
     border: none;
   }

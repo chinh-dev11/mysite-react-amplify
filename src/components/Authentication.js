@@ -49,7 +49,6 @@ const Authentication = () => {
 
   return (
     <div className="Authentication border rounded p-4">
-      {/* <div className="Authentication"> */}
       {!isUserResume
         ? (
           <Form noValidate validated={validated} onSubmit={submitHandler}>
@@ -65,7 +64,7 @@ const Authentication = () => {
               {/* <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.label')} aria-describedby="authPasswordHelpBlock" required className="text-center" /> */}
               <Form.Control.Feedback type="invalid" id="authPasswordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
             </Form.Group>
-            <Button type="submit" variant="outline-primary" size="md" className="w-100 text-center">{t('authentication.signIn.btn.signIn')}</Button>
+            <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto" style={{ borderRadius: '4rem' }}>{t('authentication.signIn.btn.signIn')}</Button>
           </Form>
         )
         : <Resume />}

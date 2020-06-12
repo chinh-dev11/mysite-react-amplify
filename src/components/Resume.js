@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Storage } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { authUsername } from '../app/store/authSlice';
@@ -80,31 +79,25 @@ const Resume = () => {
 
 
   return (
-    <div className="Resume border rounded my-4 py-4">
-      <h2 className="text-center">{t('resume.title')}</h2>
-      <ListGroup as="ul" horizontal className="justify-content-center">
+    <div className="Resume border rounded mb-4 py-4">
+      <h5 className="text-center">{t('resume.title')}</h5>
+      <p className="text-center">
         {isUserResume && resumeUrlPdf && (
-          <ListGroup.Item as="li">
-            <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener">
-              <img src={iconPdf} alt={t('resume.formatPdf')} />
-            </a>
-          </ListGroup.Item>
+        <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener">
+          <img src={iconPdf} alt={t('resume.formatPdf')} style={{ width: '40px' }} />
+        </a>
         )}
         {isUserResume && resumeUrlDoc && (
-          <ListGroup.Item as="li">
-            <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener">
-              <img src={iconDoc} alt={t('resume.formatDoc')} />
-            </a>
-          </ListGroup.Item>
+        <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener">
+          <img src={iconDoc} alt={t('resume.formatDoc')} style={{ width: '40px' }} />
+        </a>
         )}
         {!isUserResume && (
-          <ListGroup.Item as="li">
-            <Button type="button" onClick={clickHandler}>
-              <img src={iconDownload} alt={t('resume.cloudDownload')} />
-            </Button>
-          </ListGroup.Item>
+        <Button type="button" onClick={clickHandler}>
+          <img src={iconDownload} alt={t('resume.cloudDownload')} style={{ width: '40px' }} />
+        </Button>
         )}
-      </ListGroup>
+      </p>
     </div>
   );
 };
