@@ -59,8 +59,7 @@ const Contact = () => {
   };
 
   return (
-    // <div className="Contact my-4 pt-3 pb-4 px-4 border rounded">
-    <div className="Contact my-4">
+    <div className="Contact py-4 mb-4">
       <h2 className="text-center">{t('contact.heading1')}</h2>
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent
@@ -72,7 +71,7 @@ const Contact = () => {
           </>
         )
         : (
-          <Form onSubmit={submitHandler} noValidate validated={validated} className="pb-4">
+          <Form onSubmit={submitHandler} noValidate validated={validated} className="border rounded p-4">
             <Form.Group controlId="contactName">
               {/* <Form.Label>{t('contact.field1.label')}</Form.Label> */}
               <Form.Control type="text" placeholder={t('contact.field1.placeholder')} onChange={(evt) => setName(evt.target.value)} required aria-describedby="contactUsernameHelpBlock" />

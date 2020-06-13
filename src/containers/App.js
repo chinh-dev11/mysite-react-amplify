@@ -66,16 +66,16 @@ function App() {
       <Container>
         <Row className="Content" style={styleInline}>
           <Col lg="6">
-            {/* <About /> */}
+            <About />
           </Col>
           <Col lg="6" className="flex-column align-self-center">
-            {/* <ProjectWork /> */}
+            <ProjectWork />
           </Col>
           <Col lg="12">
-            {/* <ProjectLab /> */}
+            <ProjectLab />
           </Col>
           <Col lg="6">
-            {/* <Education /> */}
+            <Education />
           </Col>
           <Col lg="6">
             <Contact />
