@@ -27,12 +27,11 @@ import './App.scss';
 
 function App() {
   // console.log('App');
-  console.log(process.env);
+  // console.log(process.env);
   const payloadAnon = {
     username: process.env.REACT_APP_ANON_USERNAME,
     password: process.env.REACT_APP_ANON_PASSWORD,
   };
-  console.log('payloadAnon: ', payloadAnon);
   const isAuthenticated = useSelector(authIsLogged);
   const dispatch = useDispatch();
   const [styleInline, setStyleInline] = useState({});
@@ -44,7 +43,7 @@ function App() {
       setStyleInline({ marginTop: `${headerHeight}px` });
     }
 
-    if (!isAuthenticated) {
+    /* if (!isAuthenticated) {
       Auth.signIn(payloadAnon)
         .then((data) => {
           // console.log(data);
@@ -57,7 +56,7 @@ function App() {
           dispatch(setAuthUsername(''));
         // todo: handle error msg
         });
-    }
+    } */
   }, [isAuthenticated, payloadAnon, dispatch, styleInline]);
 
   return (

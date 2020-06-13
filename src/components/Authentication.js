@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-// import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -72,5 +72,5 @@ const Authentication = () => {
   );
 };
 
-export default Authentication;
-// export default withAuthenticator(Authentication);
+// export default Authentication;
+export default withAuthenticator(Authentication);
