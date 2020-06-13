@@ -50,7 +50,7 @@ const emailParams = ({
 });
 
 exports.handler = async (event, context, callback) => {
-  console.log(process.env);
+  // console.log(process.env);
   const {
     email, subject, name, message, i18nMsg,
   } = { ...event.arguments };
@@ -74,7 +74,7 @@ exports.handler = async (event, context, callback) => {
     i18nMsg,
     sender: process.env.SENDER_EMAIL, // verified address only
   });
-  console.log('params: ', params);
+  // console.log('params: ', params);
 
   return new Promise((resolve, reject) => {
     AWS.config.credentials.refresh(() => {
