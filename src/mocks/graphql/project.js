@@ -27,16 +27,6 @@ export const deleteProject = {
 export const createProject = {
   input: {
     order: 13,
-    name: "Mysite with Vue",
-    type: "lab",
-    languages: "Vue 2, Google Firebase",
-    image: "mysite-vue-640x340.png",
-    alt: "Mysite with Vue",
-    url: "https://vue.chinhle.ca",
-    enabled: true,
-  },
-  /* input: {
-    order: 12,
     name: "Scratch Note",
     type: "lab",
     languages: "React 16, Bootstrap 4, Serverless Framework, AWS, Stripe",
@@ -44,9 +34,9 @@ export const createProject = {
     alt: "Scratch Note",
     url: "https://sls-stack-notes.chinhle.ca",
     enabled: true,
-  }, */
+  },
   /* input: {
-    order: 11,
+    order: 12,
     name: "Pomodoro Clock",
     type: "lab",
     languages: "React 16, Redux, Bootstrap 4, Material UI, Sass",
@@ -56,7 +46,7 @@ export const createProject = {
     enabled: true,
   }, */
   /* input: {
-    order: 10,
+    order: 11,
     name: "Calculator",
     type: "lab",
     languages: "React 16, Bootstrap 4, Sass",
@@ -66,7 +56,7 @@ export const createProject = {
     enabled: true,
   }, */
   /* input: {
-    order: 9,
+    order: 10,
     name: "Drum Machine",
     type: "lab",
     languages: "React 16, Bootstrap 4, Sass",
@@ -76,7 +66,7 @@ export const createProject = {
     enabled: true,
   }, */
   /* input: {
-    order: 8,
+    order: 9,
     name: "Markdown Previewer",
     type: "lab",
     languages: "React 16, Bootstrap 4",
@@ -86,7 +76,7 @@ export const createProject = {
     enabled: true,
   }, */
   /* input: {
-    order: 7,
+    order: 8,
     name: "Random Quote",
     type: "lab",
     languages: "React 16, Bootstrap 4, FontAwesome, Sass",
@@ -96,10 +86,20 @@ export const createProject = {
     enabled: true,
   }, */
   /* input: {
+    order: 7,
+    name: "Mysite with Vue",
+    type: "lab",
+    languages: "Vue 2, Google Firebase",
+    image: "mysite-vue-640x340.png",
+    alt: "Mysite with Vue",
+    url: "https://vue.chinhle.ca",
+    enabled: true,
+  }, */
+  /* input: {
     order: 6,
     name: "Stock Trader",
     type: "lab",
-    languages: "Vue 2, Google Web Services, Bootstrap 4",
+    languages: "Vue 2, Google Firebase, Bootstrap 4",
     image: "stock-trader-vue-640x340.png",
     alt: "Stock Trader",
     url: "https://stock-trader-vue-6bd8c.web.app/",
@@ -109,7 +109,7 @@ export const createProject = {
     order: 5,
     name: "Burger Builder",
     type: "lab",
-    languages: "React 16, Google Web Services, Bootstrap 4",
+    languages: "React 16, Google Firebase, Bootstrap 4",
     image: "burger-builder-react-640x340.png",
     alt: "Burger Builder",
     url: "https://burger-builder-react-8801d.web.app/",
@@ -119,7 +119,7 @@ export const createProject = {
     order: 4,
     name: "Recipe Book",
     type: "lab",
-    languages: "Angular 7, Google Web Services, Bootstrap 4",
+    languages: "Angular 7, Google Firebase, Bootstrap 4",
     image: "recipe-book-ng-640x340.png",
     alt: "Recipe Book",
     url: "https://recipe-book-ng-183d5.firebaseapp.com/",
