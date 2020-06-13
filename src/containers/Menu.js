@@ -5,12 +5,14 @@ import Authentication from '../components/Authentication';
 import { menuIsOpen } from '../app/store/menuSlice';
 import './Menu.scss';
 
+
 const Menu = () => {
   const [headerHeight, setHeaderHeight] = useState('72px');
   const [menuHeight, setMenuHeight] = useState('300px');
   const menuTopInline = { top: useSelector(menuIsOpen) ? headerHeight : `-${menuHeight}` };
 
   useEffect(() => {
+    console.log('useEffect');
     const elemHeaderHeight = document.querySelector('.Header').clientHeight;
     const elemMenuHeight = document.querySelector('.Menu').clientHeight;
 

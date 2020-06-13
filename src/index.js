@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Amplify from 'aws-amplify';
-// import Amplify, { Storage } from 'aws-amplify';
+import Amplify, { Storage } from 'aws-amplify';
 import { Provider } from 'react-redux';
 import WebFont from 'webfontloader';
 import App from './containers/App';
@@ -13,7 +12,6 @@ import awsconfig from './aws-exports';
 // Storage.configure({ track: true, level: 'private' });
 
 import store from './app/store/store';
-
 
 WebFont.load({
   google: {

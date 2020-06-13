@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -28,66 +29,72 @@ import './App.scss';
 function App() {
   // console.log('App');
   // console.log(process.env);
+  const withCognitoHostedUI = process.env.REACT_APP_COGNITO_HOSTED_UI === 'true';
   const payloadAnon = {
     username: process.env.REACT_APP_ANON_USERNAME,
     password: process.env.REACT_APP_ANON_PASSWORD,
   };
   const isAuthenticated = useSelector(authIsLogged);
   const dispatch = useDispatch();
-  const [styleInline, setStyleInline] = useState({});
 
   useEffect(() => {
     // console.log('useEffect');
-    if (Object.keys(styleInline).length === 0) {
-      const headerHeight = document.querySelector('.Header').clientHeight;
-      setStyleInline({ marginTop: `${headerHeight}px` });
-    }
-
-    /* if (!isAuthenticated) {
+    // console.log('withCognitoHostedUI: ', withCognitoHostedUI);
+    if (!withCognitoHostedUI && !isAuthenticated) {
       Auth.signIn(payloadAnon)
         .then((data) => {
           // console.log(data);
+          // todo: useEffect being rendered multiple times - see https://overreacted.io/a-complete-guide-to-useeffect/
           dispatch(logIn());
           dispatch(setAuthUsername(data.username));
+
+          document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
         })
         .catch((err) => {
           console.error(err);
           dispatch(logOut());
           dispatch(setAuthUsername(''));
-        // todo: handle error msg
+          // todo: handle error msg
         });
-    } */
-  }, [isAuthenticated, payloadAnon, dispatch, styleInline]);
+    }
+  }, [dispatch, isAuthenticated, payloadAnon, withCognitoHostedUI]);
 
   return (
     <div className="App">
-      <Header />
-      <Container>
-        <Row className="Content" style={styleInline}>
-          <Col lg="6">
-            <About />
-          </Col>
-          <Col lg="6" className="flex-column align-self-center">
-            <ProjectWork />
-          </Col>
-          <Col lg="12">
-            <ProjectLab />
-          </Col>
-          <Col lg="6">
-            <Education />
-          </Col>
-          <Col lg="6">
-            <Contact />
-            <Resume />
-            <Social />
-          </Col>
-        </Row>
-      </Container>
-      <Footer />
-      <Backdrop />
-      <Menu />
+      {withCognitoHostedUI
+        ? <AmplifyAuthenticator />
+        : isAuthenticated && (
+          <>
+            <Header />
+            <Container>
+              <Row className="Content">
+                <Col lg="6">
+                  <About />
+                </Col>
+                <Col lg="6" className="flex-column align-self-center">
+                  {/* <ProjectWork /> */}
+                </Col>
+                <Col lg="12">
+                  {/* <ProjectLab /> */}
+                </Col>
+                <Col lg="6">
+                  {/* <Education /> */}
+                </Col>
+                <Col lg="6">
+                  <Contact />
+                  <Resume />
+                  <Social />
+                </Col>
+              </Row>
+            </Container>
+            <Footer />
+            <Backdrop />
+            <Menu />
+          </>
+        )}
     </div>
   );
 }
 
 export default App;
+// export default withAuthenticator(App);
