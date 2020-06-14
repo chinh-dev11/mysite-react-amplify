@@ -5,6 +5,7 @@ import Authentication from '../components/Authentication';
 import { menuIsOpen } from '../app/store/menuSlice';
 import './Menu.scss';
 
+
 const Menu = () => {
   const [headerHeight, setHeaderHeight] = useState('72px');
   const [menuHeight, setMenuHeight] = useState('300px');

@@ -50,7 +50,7 @@ const emailParams = ({
 });
 
 exports.handler = async (event, context, callback) => {
-  // console.log(process.env);
+  console.log(process.env);
   const {
     email, subject, name, message, i18nMsg,
   } = { ...event.arguments };
