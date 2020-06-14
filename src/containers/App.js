@@ -28,7 +28,7 @@ import './App.scss';
 
 function App() {
   // console.log('App');
-  // console.log(process.env);
+  console.log(process.env);
   const withCognitoHostedUI = process.env.REACT_APP_COGNITO_HOSTED_UI === 'true';
   const payloadAnon = {
     username: process.env.REACT_APP_ANON_USERNAME,
@@ -69,7 +69,7 @@ function App() {
             <Container>
               <Row className="Content">
                 <Col lg="6">
-                  <About />
+                  {/* <About /> */}
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
                   {/* <ProjectWork /> */}

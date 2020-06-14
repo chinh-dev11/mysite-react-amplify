@@ -12,7 +12,6 @@ const Menu = () => {
   const menuTopInline = { top: useSelector(menuIsOpen) ? headerHeight : `-${menuHeight}` };
 
   useEffect(() => {
-    console.log('useEffect');
     const elemHeaderHeight = document.querySelector('.Header').clientHeight;
     const elemMenuHeight = document.querySelector('.Menu').clientHeight;
 
