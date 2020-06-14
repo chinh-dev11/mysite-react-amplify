@@ -64,18 +64,18 @@ const Resume = () => {
   );
 
   useEffect(() => {
+    // console.log('useEffect');
     // set focus
     // if (menuIsOpen) {
     // console.log(usernameInput);
     // usernameInput.current.focus();
     // }
 
-    // if (isUserResume) {
-    setResumeUrl('pdf');
-    setResumeUrl('docx');
-    // }
-  }, [setResumeUrl]);
-  // }, [usernameInput, isUserResume, setResumeUrl]);
+    if (isUserResume) {
+      setResumeUrl('pdf');
+      setResumeUrl('docx');
+    }
+  }, [isUserResume, setResumeUrl]);
 
 
   return (
@@ -83,12 +83,12 @@ const Resume = () => {
       <h5 className="text-center">{t('resume.title')}</h5>
       <p className="text-center">
         {isUserResume && resumeUrlPdf && (
-        <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener">
+        <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
           <img src={iconPdf} alt={t('resume.formatPdf')} style={{ width: '40px' }} />
         </a>
         )}
         {isUserResume && resumeUrlDoc && (
-        <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener">
+        <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
           <img src={iconDoc} alt={t('resume.formatDoc')} style={{ width: '40px' }} />
         </a>
         )}

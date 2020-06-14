@@ -24,7 +24,7 @@ const Contact = () => {
   };
 
   const submitHandler = (evt) => {
-    console.log(process.env);
+    // console.log(process.env);
     const form = evt.currentTarget;
 
     evt.preventDefault();
@@ -43,7 +43,7 @@ const Contact = () => {
       API.graphql(graphqlOperation(sendEmail, payload))
         // .then(() => {
         .then((res) => {
-          console.log('res: ', res);
+          // console.log('res: ', res);
           setIsSent(true);
           setSendFailed(false);
         })
@@ -64,11 +64,11 @@ const Contact = () => {
       {sendFailed && <p>{t('contact.errors.emailSending')}</p>}
       {isSent
         ? (
-          <>
+          <div className="border rounded p-4">
             <p>{`${t('contact.t1')}.`}</p>
             <p>{`${t('contact.t2')}.`}</p>
             <p>{`${t('contact.t3')}.`}</p>
-          </>
+          </div>
         )
         : (
           <Form onSubmit={submitHandler} noValidate validated={validated} className="border rounded p-4">
