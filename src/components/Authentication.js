@@ -12,7 +12,7 @@ const Authentication = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const isUserResume = useSelector(authUsername) === process.env.REACT_APP_USERNAME_RESUME;
+  const isUserResume = useSelector(authUsername) === process.env.REACT_APP_RESUME_USERNAME;
   const [validated, setValidated] = useState(false);
   const usernameInput = React.createRef();
 
