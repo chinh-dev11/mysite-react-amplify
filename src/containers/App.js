@@ -22,13 +22,12 @@ import Resume from '../components/Resume';
 import Footer from './Footer';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style/mediaQuery.scss';
 import './App.scss';
 
 
 function App() {
   // console.log('App');
-  console.log(process.env);
+  // console.log(process.env);
   const withCognitoHostedUI = process.env.REACT_APP_COGNITO_HOSTED_UI === 'true';
   const payloadAnon = {
     username: process.env.REACT_APP_ANON_USERNAME,

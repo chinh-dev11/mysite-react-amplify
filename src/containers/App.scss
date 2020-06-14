@@ -6,7 +6,10 @@ $theme-colors: (
   "dark": #222
 );
 
-@import '~bootstrap/scss/bootstrap.scss';
+// @import '~bootstrap/scss/bootstrap.scss';
+@import 'bootstrap';
+@import '../style/mediaQuery.scss';
+
 
 // sticky footer
 html, body, #root {
