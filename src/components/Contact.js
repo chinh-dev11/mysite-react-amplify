@@ -91,7 +91,7 @@ const Contact = () => {
               <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" />
               <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
-            <Button variant="outline-primary" size="md" block className="text-center" style={{ borderRadius: '4rem' }} type="submit">{t('contact.btnSubmit')}</Button>
+            <Button variant="outline-primary" size="md" block className="w-50 text-center rounded-pill mx-auto" type="submit">{t('contact.btnSubmit')}</Button>
           </Form>
         )}
     </div>

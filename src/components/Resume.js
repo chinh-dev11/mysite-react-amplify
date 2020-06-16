@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {
+  useState, useEffect, useCallback, useRef, useReducer,
+} from 'react';
 import { Storage } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
@@ -11,93 +13,83 @@ import iconPdf from '../assets/icons/iconfinder_Download_pdf_5623460.svg';
 import iconDownload from '../assets/icons/iconfinder_download-cloud_2561262.svg';
 import './Resume.scss';
 
-
 const Resume = () => {
   const resumePath = process.env.REACT_APP_RESUME_PATH;
   const { t, i18n } = useTranslation(['translation']);
   const lang = i18n.language;
   // console.log('lang: ', lang);
-  const [resumeUrlPdf, setResumeUrlPdf] = useState('');
-  const [resumeUrlDoc, setResumeUrlDoc] = useState('');
-  const isUserResume = useSelector(authUsername) === process.env.REACT_APP_RESUME_USERNAME;
-  const dispatch = useDispatch();
+  const [resumeUrlPdf, setResumeUrlPdf] = useState(null);
+  const [resumeUrlDoc, setResumeUrlDoc] = useState(null);
+  const isUserResume = useRef(useSelector(authUsername)).current === process.env.REACT_APP_RESUME_USERNAME;
+  const dispatchRedux = useDispatch();
+  const [isDownloadError, setIsDownloadError] = useState(false);
 
   const clickHandler = () => {
-    dispatch(menuOpen());
+    dispatchRedux(menuOpen());
   };
 
-  const setResumeUrl = useCallback(
-    (ext) => {
-      // Error: The specified key does not exist (identityId)
-      // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
-      // Storage.get('protected.png', { level: 'protected' })
-      Storage.get(`${resumePath}${lang}.${ext}`) // public - ok
-        .then((url) => {
-          const req = new Request(url);
-          fetch(req)
-            .then((res) => {
-              // console.log('res****: ', res);
-              if (res.status === 200) {
-                if (ext === 'pdf') setResumeUrlPdf(res.url);
-                else setResumeUrlDoc(res.url);
-              } else {
-                // todo: a proper error msg
-                console.log(res.status, res.statusText);
-                console.error('Something went wrong! Please retry again later.');
-                if (ext === 'pdf') setResumeUrlPdf('');
-                else setResumeUrlDoc('');
-              }
-            })
-            .catch((err) => {
-              console.error('err: ', err);
-              if (ext === 'pdf') setResumeUrlPdf('');
-              else setResumeUrlDoc('');
-            });
-        })
-        .catch((err) => {
-          console.error('err: ', err);
-          if (ext === 'pdf') setResumeUrlPdf('');
-          else setResumeUrlDoc('');
-        });
-    },
-    [resumePath, lang],
-  );
+  const tryAgainHandler = () => {
+    setResumeUrlPdf(null);
+    setResumeUrlDoc(null);
+    setIsDownloadError(false);
+  };
 
+  // todo: private and protected storage
+  // Error: The specified key does not exist (identityId)
+  // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
+  // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    // console.log('useEffect');
-    // set focus
-    // if (menuIsOpen) {
-    // console.log(usernameInput);
-    // usernameInput.current.focus();
-    // }
+    console.log('useEffect');
 
-    if (isUserResume) {
-      setResumeUrl('pdf');
-      setResumeUrl('docx');
+    const getFetchUrl = (ext) => Storage.get(`${resumePath}${lang}.${ext}`);
+    const fetchData = async (ext, cb) => {
+      const url = await getFetchUrl(ext);
+      const data = await fetch(url);
+      // console.log(data);
+      if (data.status === 200) return cb(data.url);
+
+      // error
+      // console.error(data.status, data.statusText);
+      setIsDownloadError(() => true);
+      return cb('error');
+    };
+
+    if (isUserResume && !isDownloadError) {
+      if (!resumeUrlPdf) {
+        fetchData('pdf', setResumeUrlPdf);
+      }
+      if (!resumeUrlDoc) {
+        fetchData('docx', setResumeUrlDoc);
+      }
     }
-  }, [isUserResume, setResumeUrl]);
-
+  }, [lang, resumePath, isUserResume, resumeUrlPdf, resumeUrlDoc, isDownloadError]);
 
   return (
     <div className="Resume border rounded mb-4 py-4">
       <h5 className="text-center">{t('resume.title')}</h5>
-      <p className="text-center">
-        {isUserResume && resumeUrlPdf && (
-        <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
-          <img src={iconPdf} alt={t('resume.formatPdf')} style={{ width: '40px' }} />
-        </a>
+      <div className="text-center">
+        {(resumeUrlPdf && !isDownloadError) && (
+          <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
+            <img src={iconPdf} alt={t('resume.formatPdf')} style={{ width: '40px' }} />
+          </a>
         )}
-        {isUserResume && resumeUrlDoc && (
-        <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
-          <img src={iconDoc} alt={t('resume.formatDoc')} style={{ width: '40px' }} />
-        </a>
+        {(resumeUrlDoc && !isDownloadError) && (
+          <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
+            <img src={iconDoc} alt={t('resume.formatDoc')} style={{ width: '40px' }} />
+          </a>
         )}
         {!isUserResume && (
-        <Button type="button" onClick={clickHandler}>
-          <img src={iconDownload} alt={t('resume.cloudDownload')} style={{ width: '40px' }} />
-        </Button>
+          <Button type="button" onClick={clickHandler} className="border-0 bg-transparent">
+            <img src={iconDownload} alt={t('resume.cloudDownload')} style={{ width: '40px' }} />
+          </Button>
         )}
-      </p>
+        {isDownloadError && (
+          <>
+            <p>{t('resume.error')}</p>
+            <Button type="button" variant="outline-primary" size="md" className="w-50 rounded-pill" onClick={tryAgainHandler}>{t('resume.tryAgain')}</Button>
+          </>
+        )}
+      </div>
     </div>
   );
 };
