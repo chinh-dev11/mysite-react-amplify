@@ -164,6 +164,7 @@
   },
   "errors": {
     "NotAuthorizedException": "Incorrect username or password.",
-    "UserNotFoundException": "User does not exist."
+    "UserNotFoundException": "User does not exist.",
+    "CognitoAuthFailed": "I am updating the site... Please revisit me at a later time."
   }
 }

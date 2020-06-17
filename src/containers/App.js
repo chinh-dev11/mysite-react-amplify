@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
+import { useTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -27,40 +28,65 @@ import './App.scss';
 function App() {
   // console.log('App');
   // console.log(process.env);
+  const { t } = useTranslation(['translation']);
   const withCognitoHostedUI = process.env.REACT_APP_COGNITO_HOSTED_UI === 'true';
   const isAuthenticated = useSelector(authIsLogged);
   const dispatchRedux = useDispatch();
+  const [isBackendDown, setIsBackendDown] = useState(false);
 
   const autoSignin = () => Auth.signIn({
     username: process.env.REACT_APP_ANON_USERNAME,
     password: process.env.REACT_APP_ANON_PASSWORD,
   });
 
+  const setAuth = useCallback(
+    (username) => {
+      if (username) {
+        dispatchRedux(logIn());
+        dispatchRedux(setAuthUsername(username));
+      } else {
+        dispatchRedux(logOut());
+        dispatchRedux(setAuthUsername(''));
+      }
+    }, [dispatchRedux],
+  );
+
   useEffect(() => {
     // console.log('useEffect');
-    if (!withCognitoHostedUI && !isAuthenticated) {
+    if (!withCognitoHostedUI) {
+      let user = null;
       const init = async () => {
         try {
-          const user = await autoSignin();
-          // console.log('user: ', user);
-          if (user) {
-            dispatchRedux(logIn());
-            dispatchRedux(setAuthUsername(user.username));
-            document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
-          } else {
-            // todo: error - handle network/Cognito network problem
-            dispatchRedux(logOut());
-            dispatchRedux(setAuthUsername(''));
-          }
+          // if anon idToken exists and valid
+          user = await Auth.currentAuthenticatedUser();
+          // console.log(`try1: ${user}`);
         } catch (err) {
-          // todo: handle wrong username/password
-          console.error(err.message);
+          // anon auto-signin - no Cognito idToken exists in Local Storage
+          // console.error(err); // not authenticated
+          try {
+            user = await autoSignin();
+            // console.log(`try2: ${user}`);
+          } catch (error) {
+            // console.error(error); // "NotAuthorizedException" - Incorrect username or password.
+            /* this should not happen since the anon credentials are programmatically provided in code. Unless there's a problem with Cognito authentication, network problem,...
+            in this case, site showing an updating message - see isBackendDown 'errors.CognitoAuthFailed' node at the end of file */
+          }
+        } finally {
+          // console.log(user);
+          if (user) {
+            setAuth(user.username);
+          } else {
+            setAuth();
+            setIsBackendDown(true);
+          }
         }
+
+        document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
       };
 
       init();
     }
-  }, [withCognitoHostedUI, isAuthenticated, dispatchRedux]);
+  }, [withCognitoHostedUI, setAuth]);
 
   return (
     <div className="App">
@@ -95,6 +121,16 @@ function App() {
             <Menu />
           </>
         )}
+      {isBackendDown && (
+        <>
+          <Header menuDisabled="true" />
+          <Container>
+            <Row className="Content">
+              <Col lg="6">{t('errors.CognitoAuthFailed')}</Col>
+            </Row>
+          </Container>
+        </>
+      )}
     </div>
   );
 }
