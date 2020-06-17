@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState, useEffect, useCallback,
+} from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -9,32 +11,41 @@ import 'bootstrap/dist/js/bootstrap.min'; // required by Bootstrap carousel
 
 const ProjectWork = () => {
   const { t } = useTranslation(['translation']);
-  const [works, setWorks] = useState([]);
   const staticUrl = process.env.REACT_APP_STATIC_URL;
-  const [elemCarousel, setElemCarousel] = useState(null);
   const isMenuOpen = useSelector(menuIsOpen);
+  const [works, setWorks] = useState('');
 
-  const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
+  const getList = useCallback(
+    async () => {
+      const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
+      const result = await getProjectList('work', 'DESC');
+      // console.log(result);
+      if (result.data) {
+        setWorks(() => result.data.getProjectByOrder.items.map((elem, index) => (
+          <div key={elem.id} className={`carousel-item bg-dark ${index === 0 && 'active'}`}>
+            <img className="d-block w-100" src={`${staticUrl}${elem.image}`} alt={elem.name} style={{ opacity: '0.3' }} />
+            <div className="carousel-caption d-md-block">
+              <h5>{elem.name}</h5>
+              <p><small>{elem.languages}</small></p>
+            </div>
+          </div>
+        )));
+      }
+    }, [staticUrl],
+  );
 
   useEffect(() => {
+    // console.log('useEffect');
     if (works.length === 0) {
-      getProjectList('work', 'DESC')
-        .then((res) => {
-        // console.log(res);
-          setWorks(res.data.getProjectByOrder.items);
-          setElemCarousel($('.carousel'));
-        })
-        .catch((e) => {
-        // throw Error(e);
-          console.error(e);
-        });
+      getList();
+    } else if (isMenuOpen) {
+      $('.carousel').carousel('pause');
+    } else {
+      $('.carousel').carousel({
+        interval: 4000,
+      });
     }
-
-    if (elemCarousel) {
-      if (isMenuOpen) elemCarousel.carousel('pause');
-      else elemCarousel.carousel();
-    }
-  }, [works, isMenuOpen, elemCarousel]);
+  }, [works, getList, isMenuOpen]);
 
   return (
     <div className="ProjectWork p-4 my-4 bg-dark rounded">
@@ -47,17 +58,7 @@ const ProjectWork = () => {
               <li data-target="#carouselProjectWork" data-slide-to="1" />
               <li data-target="#carouselProjectWork" data-slide-to="2" />
             </ol>
-            <div className="carousel-inner">
-              {works.map((elem, index) => (
-                <div key={elem.id} className={`carousel-item bg-dark ${index === 0 && 'active'}`}>
-                  <img className="d-block w-100" src={`${staticUrl}${elem.image}`} alt={elem.name} style={{ opacity: '0.3' }} />
-                  <div className="carousel-caption d-md-block">
-                    <h5>{elem.name}</h5>
-                    <p><small>{elem.languages}</small></p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <div className="carousel-inner">{works}</div>
             <a className="carousel-control-prev" href="#carouselProjectWork" role="button" data-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true" />
               <span className="sr-only">Previous</span>

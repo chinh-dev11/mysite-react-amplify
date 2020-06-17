@@ -20,6 +20,7 @@ const Backdrop = () => {
   }, [isOpen, dispatch]);
 
   useEffect(() => {
+    // console.log('useEffect');
     setHeightInline(isOpen ? '100%' : '0%');
 
     document.addEventListener('keydown', keyDownHandler, false);

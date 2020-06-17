@@ -24,7 +24,7 @@ const Resume = () => {
   const dispatchRedux = useDispatch();
   const [isDownloadError, setIsDownloadError] = useState(false);
 
-  const clickHandler = () => {
+  const cloudDownloadHandler = () => {
     dispatchRedux(menuOpen());
   };
 
@@ -39,8 +39,7 @@ const Resume = () => {
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    console.log('useEffect');
-
+    // console.log('useEffect');
     const getFetchUrl = (ext) => Storage.get(`${resumePath}${lang}.${ext}`);
     const fetchData = async (ext, cb) => {
       const url = await getFetchUrl(ext);
@@ -51,7 +50,7 @@ const Resume = () => {
       // error
       // console.error(data.status, data.statusText);
       setIsDownloadError(() => true);
-      return cb('error');
+      return cb(null);
     };
 
     if (isUserResume && !isDownloadError) {
@@ -79,7 +78,7 @@ const Resume = () => {
           </a>
         )}
         {!isUserResume && (
-          <Button type="button" onClick={clickHandler} className="border-0 bg-transparent">
+          <Button type="button" onClick={cloudDownloadHandler} className="border-0 bg-transparent">
             <img src={iconDownload} alt={t('resume.cloudDownload')} style={{ width: '40px' }} />
           </Button>
         )}

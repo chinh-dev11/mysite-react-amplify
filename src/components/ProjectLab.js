@@ -12,12 +12,11 @@ const ProjectLab = () => {
   const [labs, setLabs] = useState('');
   const staticUrl = process.env.REACT_APP_STATIC_URL;
 
-  const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
-
   useEffect(() => {
     // console.log('useEffect');
-    const init = async () => {
-      // console.log('init');
+    const getList = async () => {
+      // console.log('getList');
+      const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
       const result = await getProjectList('lab', 'DESC');
       // console.log(result);
       if (result.data) {
@@ -37,7 +36,7 @@ const ProjectLab = () => {
       }
     };
 
-    init();
+    getList();
 
     return () => {
       window.removeEventListener('resize', debounce);

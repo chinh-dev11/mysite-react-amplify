@@ -24,6 +24,7 @@ const Education = () => {
         console.error(e);
       });
   }, []);
+
   return (
     <div className="Education mb-4 py-4">
       <h2 className="text-center sticky-top bg-white">{t('education.title')}</h2>

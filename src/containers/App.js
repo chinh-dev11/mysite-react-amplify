@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -24,39 +24,43 @@ import Footer from './Footer';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
-
 function App() {
   // console.log('App');
   // console.log(process.env);
   const withCognitoHostedUI = process.env.REACT_APP_COGNITO_HOSTED_UI === 'true';
-  const payloadAnon = {
+  const isAuthenticated = useSelector(authIsLogged);
+  const dispatchRedux = useDispatch();
+
+  const autoSignin = () => Auth.signIn({
     username: process.env.REACT_APP_ANON_USERNAME,
     password: process.env.REACT_APP_ANON_PASSWORD,
-  };
-  const isAuthenticated = useSelector(authIsLogged);
-  const dispatch = useDispatch();
+  });
 
   useEffect(() => {
     // console.log('useEffect');
-    // console.log('withCognitoHostedUI: ', withCognitoHostedUI);
     if (!withCognitoHostedUI && !isAuthenticated) {
-      Auth.signIn(payloadAnon)
-        .then((data) => {
-          // console.log(data);
-          // todo: useEffect being rendered multiple times - see https://overreacted.io/a-complete-guide-to-useeffect/
-          dispatch(logIn());
-          dispatch(setAuthUsername(data.username));
+      const init = async () => {
+        try {
+          const user = await autoSignin();
+          // console.log('user: ', user);
+          if (user) {
+            dispatchRedux(logIn());
+            dispatchRedux(setAuthUsername(user.username));
+            document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
+          } else {
+            // todo: error - handle network/Cognito network problem
+            dispatchRedux(logOut());
+            dispatchRedux(setAuthUsername(''));
+          }
+        } catch (err) {
+          // todo: handle wrong username/password
+          console.error(err.message);
+        }
+      };
 
-          document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
-        })
-        .catch((err) => {
-          console.error(err);
-          dispatch(logOut());
-          dispatch(setAuthUsername(''));
-          // todo: handle error msg
-        });
+      init();
     }
-  }, [dispatch, isAuthenticated, payloadAnon, withCognitoHostedUI]);
+  }, [withCognitoHostedUI, isAuthenticated, dispatchRedux]);
 
   return (
     <div className="App">
@@ -68,13 +72,13 @@ function App() {
             <Container>
               <Row className="Content">
                 <Col lg="6">
-                  {/* <About /> */}
+                  <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
-                  {/* <ProjectWork /> */}
+                  <ProjectWork />
                 </Col>
                 <Col lg="12">
-                  {/* <ProjectLab /> */}
+                  <ProjectLab />
                 </Col>
                 <Col lg="6">
                   {/* <Education /> */}
