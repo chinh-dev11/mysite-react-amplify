@@ -161,5 +161,9 @@
     "cloudDownload": "Cloud download",
     "error": "Something when wrong! Please try again later.",
     "tryAgain": "Try again"
+  },
+  "errors": {
+    "NotAuthorizedException": "Incorrect username or password.",
+    "UserNotFoundException": "User does not exist."
   }
 }

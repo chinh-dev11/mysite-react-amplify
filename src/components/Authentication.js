@@ -8,13 +8,15 @@ import { authUsername, setAuthUsername, logIn } from '../app/store/authSlice';
 import Resume from './Resume';
 
 const Authentication = () => {
-  const { t } = useTranslation(['translation']);
+  const { t, i18n } = useTranslation(['translation']);
+  const lang = i18n.language;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const isUserResume = useSelector(authUsername) === process.env.REACT_APP_RESUME_USERNAME;
   const [validated, setValidated] = useState(false);
   const usernameInput = React.createRef();
+  const [authError, setAuthError] = useState('');
 
   const usernameHandler = (evt) => {
     setUsername(evt.target.value);
@@ -38,8 +40,13 @@ const Authentication = () => {
           dispatch(setAuthUsername(data.username));
         })
         .catch((err) => {
-          console.error(err);
+          // console.error(err);
           // todo: handle error msg
+          if (lang === 'en') {
+            setAuthError(err.message);
+          } else {
+            setAuthError(t(`errors.${err.code}`));
+          }
         });
     }
 
@@ -54,16 +61,15 @@ const Authentication = () => {
             <Form.Group controlId="validationAuthUsername">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field1.label')}</Form.Label>
               <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center" tabIndex="0" ref={usernameInput} autoFocus />
-              {/* <Form.Control onChange={usernameHandler} type="text" placeholder={t('authentication.signIn.field1.label')} aria-describedby="authUsernameHelpBlock" required className="text-center" tabIndex="0" ref={usernameInput} autoFocus /> */}
               <Form.Control.Feedback type="invalid" id="authUsernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="validationAuthPassword">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field2.label')}</Form.Label>
               <Form.Control onChange={passwordHandler} type="password" aria-describedby="authPasswordHelpBlock" required className="text-center" />
-              {/* <Form.Control onChange={passwordHandler} type="password" placeholder={t('authentication.signIn.field2.label')} aria-describedby="authPasswordHelpBlock" required className="text-center" /> */}
               <Form.Control.Feedback type="invalid" id="authPasswordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
             </Form.Group>
             <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto rounded-pill">{t('authentication.signIn.btn.signIn')}</Button>
+            <Form.Control.Feedback className="text-danger text-center mt-3">{authError}</Form.Control.Feedback>
           </Form>
         )
         : <Resume />}

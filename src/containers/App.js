@@ -75,10 +75,10 @@ function App() {
                   <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
-                  <ProjectWork />
+                  {/* <ProjectWork /> */}
                 </Col>
                 <Col lg="12">
-                  <ProjectLab />
+                  {/* <ProjectLab /> */}
                 </Col>
                 <Col lg="6">
                   {/* <Education /> */}
