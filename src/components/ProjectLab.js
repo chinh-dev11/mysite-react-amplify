@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import { getProjectByOrder } from '../graphql/queries';
@@ -8,9 +8,10 @@ import {
 import '../style/slickHelper.scss';
 
 const ProjectLab = () => {
+  const staticUrl = process.env.REACT_APP_STATIC_URL;
   const { t } = useTranslation(['translation']);
   const [labs, setLabs] = useState('');
-  const staticUrl = process.env.REACT_APP_STATIC_URL;
+  const elemHeading = useRef(null);
 
   useEffect(() => {
     // console.log('useEffect');
@@ -32,6 +33,9 @@ const ProjectLab = () => {
 
         initSlick(result.data.getProjectByOrder.items.length);
 
+        // sticky top
+        elemHeading.current.style.top = `${document.querySelector('.Header').clientHeight}px`;
+
         window.addEventListener('resize', debounce(slickHandler, 1000));
       }
     };
@@ -45,7 +49,7 @@ const ProjectLab = () => {
 
   return (
     <div className="ProjectLab mb-4 py-4">
-      <h2 className="text-center sticky-top bg-white">{t('project.lab')}</h2>
+      <h2 className="heading text-center position-sticky bg-white" ref={elemHeading}>{t('project.lab')}</h2>
       <div className="carouselSlick">{labs}</div>
     </div>
   );
