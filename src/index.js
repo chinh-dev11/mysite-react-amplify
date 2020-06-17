@@ -1,12 +1,12 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Amplify, { Storage } from 'aws-amplify';
 import { Provider } from 'react-redux';
 import WebFont from 'webfontloader';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import './app/i18n';
+import './index.scss';
 
 import awsconfig from './aws-exports';
 // Storage.configure({ track: true, level: 'private' });
@@ -15,8 +15,7 @@ import store from './app/store/store';
 
 WebFont.load({
   google: {
-    families: ['Comfortaa'],
-    // families: ['Comfortaa Web:300,400,700', 'sans-serif'],
+    families: ['Comfortaa', 'Quicksand'],
   },
 });
 
