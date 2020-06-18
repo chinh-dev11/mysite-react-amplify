@@ -3,6 +3,7 @@ import { Auth } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import { useSelector, useDispatch } from 'react-redux';
 import { authUsername, setAuthUsername, logIn } from '../app/store/authSlice';
 import Resume from './Resume';
@@ -17,6 +18,7 @@ const Authentication = () => {
   const [validated, setValidated] = useState(false);
   const usernameInput = React.createRef();
   const [authError, setAuthError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const usernameHandler = (evt) => {
     setUsername(evt.target.value);
@@ -33,11 +35,13 @@ const Authentication = () => {
     evt.stopPropagation();
 
     if (form.checkValidity()) {
+      setIsLoading(true);
       Auth.signIn({ username, password })
         .then((data) => {
         // console.log(data);
           dispatch(logIn());
           dispatch(setAuthUsername(data.username));
+          setIsLoading(false);
         })
         .catch((err) => {
           // console.error(err);
@@ -47,6 +51,8 @@ const Authentication = () => {
           } else {
             setAuthError(t(`errors.${err.code}`));
           }
+
+          setIsLoading(false);
         });
     }
 
@@ -68,7 +74,11 @@ const Authentication = () => {
               <Form.Control onChange={passwordHandler} type="password" aria-describedby="authPasswordHelpBlock" required className="text-center" />
               <Form.Control.Feedback type="invalid" id="authPasswordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
             </Form.Group>
-            <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto rounded-pill">{t('authentication.signIn.btn.signIn')}</Button>
+            <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto rounded-pill">
+              {isLoading
+                ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
+                : t('authentication.signIn.btn.signIn')}
+            </Button>
             <Form.Control.Feedback className="text-danger text-center mt-3">{authError}</Form.Control.Feedback>
           </Form>
         )

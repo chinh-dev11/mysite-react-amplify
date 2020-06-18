@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { API, graphqlOperation } from 'aws-amplify';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import { sendEmail } from '../graphql/queries';
 
 const Contact = () => {
@@ -14,6 +15,7 @@ const Contact = () => {
   const [isSent, setIsSent] = useState(false);
   const [sendFailed, setSendFailed] = useState(false);
   const [validated, setValidated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const i18nMsg = {
     title: t('contact.email.title'),
@@ -38,19 +40,21 @@ const Contact = () => {
         message,
         i18nMsg,
       };
-
+      setIsLoading(true);
       API.graphql(graphqlOperation(sendEmail, payload))
         // .then(() => {
         .then((res) => {
           // console.log('res: ', res);
           setIsSent(true);
           setSendFailed(false);
+          setIsLoading(false);
         })
         // .catch(() => {
         .catch((err) => {
           console.error(err.errors[0].message);
           setIsSent(false);
           setSendFailed(true);
+          setIsLoading(false);
         });
     }
 
@@ -90,7 +94,11 @@ const Contact = () => {
               <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" />
               <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
-            <Button variant="outline-primary" size="md" block className="w-50 text-center rounded-pill mx-auto" type="submit">{t('contact.btnSubmit')}</Button>
+            <Button variant="outline-primary" size="md" block className="w-50 text-center rounded-pill mx-auto" type="submit">
+              {isLoading
+                ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
+                : t('contact.btnSubmit')}
+            </Button>
           </Form>
         )}
     </div>
