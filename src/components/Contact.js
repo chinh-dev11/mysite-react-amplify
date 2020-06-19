@@ -77,21 +77,21 @@ const Contact = () => {
           <Form onSubmit={submitHandler} noValidate validated={validated} className="border rounded p-4">
             <Form.Group controlId="contactName">
               {/* <Form.Label>{t('contact.field1.label')}</Form.Label> */}
-              <Form.Control type="text" placeholder={t('contact.field1.placeholder')} onChange={(evt) => setName(evt.target.value)} required aria-describedby="contactUsernameHelpBlock" />
+              <Form.Control type="text" placeholder={t('contact.field1.placeholder')} onChange={(evt) => setName(evt.target.value)} required aria-describedby="contactUsernameHelpBlock" className="border-0" />
               <Form.Control.Feedback type="invalid" id="contactUsernameHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="contactEmail">
               {/* <Form.Label>{t('contact.field2.label')}</Form.Label> */}
-              <Form.Control type="email" placeholder={t('contact.field2.placeholder')} onChange={(evt) => setEmail(evt.target.value)} required aria-describedby="contactEmailHelpBlock" />
+              <Form.Control type="email" placeholder={t('contact.field2.placeholder')} onChange={(evt) => setEmail(evt.target.value)} required aria-describedby="contactEmailHelpBlock" className="border-0" />
               <Form.Control.Feedback type="invalid" id="contactEmailHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="contactSubject">
               {/* <Form.Label>{t('contact.field3.label')}</Form.Label> */}
-              <Form.Control type="text" placeholder={t('contact.field3.placeholder')} onChange={(evt) => setSubject(evt.target.value)} />
+              <Form.Control type="text" placeholder={t('contact.field3.placeholder')} onChange={(evt) => setSubject(evt.target.value)} className="border-0" />
             </Form.Group>
             <Form.Group controlId="contactMessage">
               {/* <Form.Label>{t('contact.field4.label')}</Form.Label> */}
-              <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" />
+              <Form.Control as="textarea" row="3" placeholder={t('contact.field4.placeholder')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" className="border-0" />
               <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock">{t('contact.feedback.required')}</Form.Control.Feedback>
             </Form.Group>
             <Button variant="outline-primary" size="md" block className="w-50 text-center rounded-pill mx-auto" type="submit">
