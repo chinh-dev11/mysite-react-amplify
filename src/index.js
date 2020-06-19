@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Amplify, { Storage } from 'aws-amplify';
 import { Provider } from 'react-redux';
@@ -23,12 +23,9 @@ Amplify.configure(awsconfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={null}>
-      {/* <Suspense fallback="loading"> */}
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </Suspense>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

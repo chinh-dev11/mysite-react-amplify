@@ -5,10 +5,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Spinner from 'react-bootstrap/Spinner';
 import { Transition } from 'react-transition-group';
+import CustomSpinner from './CustomSpinner';
 import transitionHelper from '../utils/transitionHelper';
-
 import { getEducByCompletedDate } from '../graphql/queries';
 
 const Education = () => {
@@ -45,9 +44,7 @@ const Education = () => {
     <div className="Education mb-4 py-4">
       <h2 className="text-center sticky-top bg-white">
         {t('education.title')}
-        {isLoading && (
-        <Spinner animation="border" size="sm" variant="dark" role="status" className="align-middle ml-2"><span className="sr-only">{t('general.loading')}</span></Spinner>
-        )}
+        {isLoading && (<CustomSpinner sz="sm" color="dark" />)}
       </h2>
       {!isLoading && (
         <Transition

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, Suspense } from 'react';
 import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import { useTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
@@ -14,16 +14,18 @@ import Menu from './Menu';
 import Header from './Header';
 import Backdrop from '../components/Backdrop';
 import About from '../components/About';
-import ProjectWork from '../components/ProjectWork';
-import ProjectLab from '../components/ProjectLab';
-import Education from '../components/Education';
 import Contact from '../components/Contact';
 import Social from '../components/Social';
 import Resume from '../components/Resume';
 import Footer from './Footer';
+import CustomSpinner from '../components/CustomSpinner'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
+
+const ProjectWork = React.lazy(() => import('../components/ProjectWork')); // lazy-loaded
+const ProjectLab = React.lazy(() => import('../components/ProjectLab')); // lazy-loaded
+const Education = React.lazy(() => import('../components/Education')); // lazy-loaded
 
 function App() {
   // console.log('App');
@@ -101,13 +103,19 @@ function App() {
                   <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
-                  <ProjectWork />
+                  <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
+                    <ProjectWork />
+                  </Suspense>
                 </Col>
                 <Col lg="12">
-                  <ProjectLab />
+                  <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
+                    <ProjectLab />
+                  </Suspense>
                 </Col>
                 <Col lg="6">
-                  <Education />
+                  <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
+                    <Education />
+                  </Suspense>
                 </Col>
                 <Col lg="6">
                   <Contact />

@@ -5,9 +5,9 @@ import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import $ from 'jquery'; // required by Bootstrap carousel
-import Spinner from 'react-bootstrap/Spinner';
 import { Transition } from 'react-transition-group';
 import transitionHelper from '../utils/transitionHelper';
+import CustomSpinner from './CustomSpinner';
 import { menuIsOpen } from '../app/store/menuSlice';
 import { getProjectByOrder } from '../graphql/queries';
 import 'bootstrap/dist/js/bootstrap.min'; // required by Bootstrap carousel
@@ -63,9 +63,7 @@ const ProjectWork = () => {
     <div className="ProjectWork p-4 my-4 bg-dark rounded">
       <h2 className="text-center text-light">
         {t('project.work')}
-        {isLoading && (
-          <Spinner animation="border" size="sm" variant="light" role="status" className="align-middle ml-2"><span className="sr-only">{t('general.loading')}</span></Spinner>
-        )}
+        {isLoading && (<CustomSpinner sz="sm" color="dark" />)}
       </h2>
       {!isLoading && (
       <Transition

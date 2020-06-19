@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
-import Spinner from 'react-bootstrap/Spinner';
 import { Transition } from 'react-transition-group';
 import transitionHelper from '../utils/transitionHelper';
+import CustomSpinner from './CustomSpinner';
 import { getProjectByOrder } from '../graphql/queries';
 import {
   initSlick, slickHandler, debounce,
@@ -60,9 +60,7 @@ const ProjectLab = () => {
     <div className="ProjectLab mb-4 py-4">
       <h2 className="heading text-center position-sticky bg-white" ref={elemHeading}>
         {t('project.lab')}
-        {isLoading && (
-          <Spinner animation="border" size="sm" variant="dark" role="status" className="align-middle ml-2"><span className="sr-only">{t('general.loading')}</span></Spinner>
-        )}
+        {isLoading && (<CustomSpinner sz="sm" color="dark" />)}
       </h2>
       {!isLoading && (
         <Transition
