@@ -5,6 +5,8 @@ import { Storage } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
+import { Transition } from 'react-transition-group';
+import transitionHelper from '../utils/transitionHelper';
 import { authUsername } from '../app/store/authSlice';
 import { menuOpen } from '../app/store/menuSlice';
 
@@ -67,26 +69,62 @@ const Resume = () => {
     <div className="Resume border rounded mb-4 py-4">
       <h5 className="text-center">{t('resume.title')}</h5>
       <div className="text-center">
-        {(resumeUrlPdf && !isDownloadError) && (
-          <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
-            <img src={iconPdf} alt={t('resume.formatPdf')} style={{ width: '40px' }} />
-          </a>
-        )}
-        {(resumeUrlDoc && !isDownloadError) && (
-          <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
-            <img src={iconDoc} alt={t('resume.formatDoc')} style={{ width: '40px' }} />
-          </a>
+        {isUserResume && (
+          <Transition
+            in
+            timeout={transitionHelper.defaultTimeout}
+            appear
+            unmountOnExit
+          >
+            {(state) => (
+              <div
+                style={{
+                  ...transitionHelper.defaultStyle,
+                  ...transitionHelper.transitionStyles[state],
+                }}
+              >
+                {isDownloadError
+                  ? (
+                    <>
+                      <p>{t('resume.error')}</p>
+                      <Button type="button" variant="outline-primary" size="md" className="w-50 rounded-pill" onClick={tryAgainHandler}>{t('resume.tryAgain')}</Button>
+                    </>
+                  )
+                  : (
+                    <>
+                      <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
+                        <img src={iconPdf} alt={t('resume.formatPdf')} style={{ width: '40px' }} />
+                      </a>
+                      <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
+                        <img src={iconDoc} alt={t('resume.formatDoc')} style={{ width: '40px' }} />
+                      </a>
+                    </>
+                  )}
+              </div>
+            )}
+          </Transition>
         )}
         {!isUserResume && (
-          <Button type="button" onClick={cloudDownloadHandler} className="border-0 bg-transparent">
-            <img src={iconDownload} alt={t('resume.cloudDownload')} style={{ width: '40px' }} />
-          </Button>
-        )}
-        {isDownloadError && (
-          <>
-            <p>{t('resume.error')}</p>
-            <Button type="button" variant="outline-primary" size="md" className="w-50 rounded-pill" onClick={tryAgainHandler}>{t('resume.tryAgain')}</Button>
-          </>
+          <Transition
+            in
+            timeout={transitionHelper.defaultTimeout}
+            appear
+            unmountOnExit
+          >
+            {(state) => (
+              <Button
+                type="button"
+                onClick={cloudDownloadHandler}
+                className="border-0 bg-transparent"
+                style={{
+                  ...transitionHelper.defaultStyle,
+                  ...transitionHelper.transitionStyles[state],
+                }}
+              >
+                <img src={iconDownload} alt={t('resume.cloudDownload')} style={{ width: '40px' }} />
+              </Button>
+            )}
+          </Transition>
         )}
       </div>
     </div>
