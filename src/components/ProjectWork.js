@@ -1,47 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState, useEffect,
+} from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import $ from 'jquery'; // required by Bootstrap carousel
+import { Transition } from 'react-transition-group';
+import transitionHelper from '../utils/transitionHelper';
+import CustomSpinner from './CustomSpinner';
 import { menuIsOpen } from '../app/store/menuSlice';
 import { getProjectByOrder } from '../graphql/queries';
 import 'bootstrap/dist/js/bootstrap.min'; // required by Bootstrap carousel
 
 const ProjectWork = () => {
   const { t } = useTranslation(['translation']);
-  const [works, setWorks] = useState([]);
   const staticUrl = process.env.REACT_APP_STATIC_URL;
-  const [elemCarousel, setElemCarousel] = useState(null);
   const isMenuOpen = useSelector(menuIsOpen);
+  const [works, setWorks] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
-  const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
+  const getList = async () => {
+    const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
+    const result = await getProjectList('work', 'DESC');
+    // console.log(result);
+    if (result.data) {
+      return result.data.getProjectByOrder.items;
+    }
+
+    // console.error(result);
+    return null;
+  };
 
   useEffect(() => {
-    if (works.length === 0) {
-      getProjectList('work', 'DESC')
-        .then((res) => {
-        // console.log(res);
-          setWorks(res.data.getProjectByOrder.items);
-          setElemCarousel($('.carousel'));
-        })
-        .catch((e) => {
-        // throw Error(e);
-          console.error(e);
-        });
+    // console.log('useEffect');
+    const init = async () => {
+      const items = await getList();
+
+      if (items) {
+        setWorks(items);
+        setIsLoading(false);
+
+        if ($('.carousel').length > 0) {
+          $('.carousel').carousel({
+            interval: 5000,
+          });
+        }
+      }
+    };
+
+    if ($('.carousel').length > 0) {
+      if (isMenuOpen) {
+        $('.carousel').carousel('pause');
+      } else {
+        $('.carousel').carousel();
+      }
     }
 
-    if (elemCarousel) {
-      if (isMenuOpen) elemCarousel.carousel('pause');
-      else elemCarousel.carousel();
-    }
-  }, [works, isMenuOpen, elemCarousel]);
+    if (isLoading) init();
+  }, [isLoading, isMenuOpen]);
 
   return (
     <div className="ProjectWork p-4 my-4 bg-dark rounded">
-      <h2 className="text-center text-light">{t('project.work')}</h2>
-      {works.length > 0
-        && (
-          <div id="carouselProjectWork" className="carousel slide" data-ride="carousel">
+      <h2 className="text-center text-light">
+        {t('project.work')}
+        {isLoading && (<CustomSpinner sz="sm" color="dark" />)}
+      </h2>
+      {!isLoading && (
+      <Transition
+        in
+        timeout={transitionHelper.defaultTimeout}
+        appear
+        unmountOnExit
+      >
+        {(state) => (
+          <div
+            id="carouselProjectWork"
+            className="carousel slide"
+            data-ride="carousel"
+            style={{
+              ...transitionHelper.defaultStyle,
+              ...transitionHelper.transitionStyles[state],
+            }}
+          >
             <ol className="carousel-indicators">
               <li data-target="#carouselProjectWork" data-slide-to="0" className="active" />
               <li data-target="#carouselProjectWork" data-slide-to="1" />
@@ -68,6 +108,8 @@ const ProjectWork = () => {
             </a>
           </div>
         )}
+      </Transition>
+      )}
     </div>
   );
 };

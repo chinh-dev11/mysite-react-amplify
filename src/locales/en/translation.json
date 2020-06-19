@@ -158,6 +158,16 @@
     "title": "Download my resume",
     "formatPdf": "Resume pdf format",
     "formatDoc": "Resume doc format",
-    "cloudDownload": "Cloud download"
+    "cloudDownload": "Cloud download",
+    "error": "Something when wrong! Please try again later.",
+    "tryAgain": "Try again"
+  },
+  "errors": {
+    "NotAuthorizedException": "Incorrect username or password.",
+    "UserNotFoundException": "User does not exist.",
+    "CognitoAuthFailed": "I am updating the site... Please revisit me at a later time."
+  },
+  "general": {
+    "loading": "Loading..."
   }
 }
