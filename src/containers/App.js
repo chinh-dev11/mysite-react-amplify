@@ -19,6 +19,7 @@ import Social from '../components/Social';
 import Resume from '../components/Resume';
 import Footer from './Footer';
 import CustomSpinner from '../components/CustomSpinner'
+import ReactReCaptchaV3 from '../components/ReactReCaptchaV3'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
@@ -100,21 +101,22 @@ function App() {
             <Container>
               <Row className="Content">
                 <Col lg="6">
+                <ReactReCaptchaV3/>
                   <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    <ProjectWork />
+                    {/* <ProjectWork /> */}
                   </Suspense>
                 </Col>
                 <Col lg="12">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    <ProjectLab />
+                    {/* <ProjectLab /> */}
                   </Suspense>
                 </Col>
                 <Col lg="6">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    <Education />
+                    {/* <Education /> */}
                   </Suspense>
                 </Col>
                 <Col lg="6">

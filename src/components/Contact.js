@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { API, graphqlOperation } from 'aws-amplify';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+// import ReCAPTCHA from 'react-google-recaptcha'
 import { sendEmail } from '../graphql/queries';
 
 const Contact = () => {
+  // const reCaptchaSiteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
   const { t } = useTranslation(['translation']);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -16,6 +18,7 @@ const Contact = () => {
   const [sendFailed, setSendFailed] = useState(false);
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  // const reCaptchaRef = useRef(null)
 
   const i18nMsg = {
     title: t('contact.email.title'),
@@ -31,6 +34,13 @@ const Contact = () => {
 
     evt.preventDefault();
     evt.stopPropagation();
+
+    /* grecaptcha.ready(() => {
+      grecaptcha.execute(reCaptchaSiteKey, { action: 'submit' })
+        .then(((token) => {
+          console.log(token);
+        }));
+    }); */
 
     if (form.checkValidity()) {
       const payload = {
