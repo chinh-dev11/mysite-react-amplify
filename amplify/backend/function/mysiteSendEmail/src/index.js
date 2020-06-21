@@ -56,7 +56,7 @@ const emailParams = ({
 
 exports.handler = async (event, context, callback) => {
   const {
-    email, subject, name, message, i18nMsg, token,
+    email, subject, name, message, i18nMsg, token, reCaptchaSecretKey,
   } = { ...event.arguments };
   const ses = new AWS.SES({
     // SES sending limit increased (out of sandbox) approved only for Canada central region. see Case ID 7043092001 in support center
@@ -79,9 +79,9 @@ exports.handler = async (event, context, callback) => {
     sender: process.env.SENDER_EMAIL, // verified address only
   });
   // console.log('params: ', params);
-
-  const siteverifyUrl = `${process.env.RECAPTCHA_SITEVERIFY_URL}?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
-
+  console.log(`reCaptchaSecretKey: ${reCaptchaSecretKey}`);
+  const siteverifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${reCaptchaSecretKey || process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
+  console.log(`siteverifyUrl: ${siteverifyUrl}`);
   return new Promise((resolve, reject) => {
     axios.get(siteverifyUrl)
       .then((res) => {
