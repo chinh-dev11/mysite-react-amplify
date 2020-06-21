@@ -28,7 +28,6 @@ const Contact = (props) => {
 
   const sendingEmail = (token) => {
     const reCaptchaSecretKey = process.env.REACT_APP_RECAPTCHA_SECRET_KEY; // localhost
-    console.log('reCaptchaSecretKey: ', reCaptchaSecretKey);
     const payload = {
       email,
       subject,
