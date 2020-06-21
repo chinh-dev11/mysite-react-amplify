@@ -50,5 +50,6 @@ type Query {
     message: String!
     i18nMsg: MsgLang
     token: String!
+    reCaptchaSecretKey: String
   ): Response @function (name: "mysiteSendEmail-${env}")
 }

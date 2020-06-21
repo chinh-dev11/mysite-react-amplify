@@ -9,6 +9,7 @@ export const sendEmail = /* GraphQL */ `
     $message: String!
     $i18nMsg: MsgLang
     $token: String!
+    $reCaptchaSecretKey: String
   ) {
     sendEmail(
       name: $name
@@ -17,6 +18,7 @@ export const sendEmail = /* GraphQL */ `
       message: $message
       i18nMsg: $i18nMsg
       token: $token
+      reCaptchaSecretKey: $reCaptchaSecretKey
     ) {
       message
     }
