@@ -33,7 +33,7 @@ type Education @model @key(
 }
 
 type Response {
-  value: String
+  message: String!
 }
 
 input MsgLang {
@@ -49,5 +49,6 @@ type Query {
     subject: String
     message: String!
     i18nMsg: MsgLang
+    token: String!
   ): Response @function (name: "mysiteSendEmail-${env}")
 }

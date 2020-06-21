@@ -89,7 +89,7 @@
       }
     },
     "errors": {
-      "emailSending": "There's been server technical problems. Please try again later."
+      "emailSending": "There's been server/network technical problems. Please try again later."
     },
     "feedback": {
       "required": "Field required!"

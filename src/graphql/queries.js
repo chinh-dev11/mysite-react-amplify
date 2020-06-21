@@ -8,6 +8,7 @@ export const sendEmail = /* GraphQL */ `
     $subject: String
     $message: String!
     $i18nMsg: MsgLang
+    $token: String!
   ) {
     sendEmail(
       name: $name
@@ -15,8 +16,9 @@ export const sendEmail = /* GraphQL */ `
       subject: $subject
       message: $message
       i18nMsg: $i18nMsg
+      token: $token
     ) {
-      value
+      message
     }
   }
 `;

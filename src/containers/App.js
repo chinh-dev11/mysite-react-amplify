@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState, Suspense } from 'react';
+import React, { useEffect, useCallback, useState, Suspense, useRef } from 'react';
 import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import { useTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
@@ -19,7 +19,7 @@ import Social from '../components/Social';
 import Resume from '../components/Resume';
 import Footer from './Footer';
 import CustomSpinner from '../components/CustomSpinner'
-import ReactReCaptchaV3 from '../components/ReactReCaptchaV3'
+import Recaptcha3 from '../components/ReCaptcha3'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
@@ -36,6 +36,7 @@ function App() {
   const isAuthenticated = useSelector(authIsLogged);
   const dispatchRedux = useDispatch();
   const [isBackendDown, setIsBackendDown] = useState(false);
+  const recaptchaRef = useRef(null)
 
   const autoSignin = () => Auth.signIn({
     username: process.env.REACT_APP_ANON_USERNAME,
@@ -101,7 +102,6 @@ function App() {
             <Container>
               <Row className="Content">
                 <Col lg="6">
-                <ReactReCaptchaV3/>
                   <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
@@ -120,7 +120,7 @@ function App() {
                   </Suspense>
                 </Col>
                 <Col lg="6">
-                  <Contact />
+                  <Contact inRecaptchaRef={recaptchaRef} />
                   <Resume />
                   <Social />
                 </Col>
@@ -129,6 +129,7 @@ function App() {
             <Footer />
             <Backdrop />
             <Menu />
+            <Recaptcha3 ref={recaptchaRef} />
           </>
         )}
       {isBackendDown && (
