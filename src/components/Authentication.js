@@ -28,6 +28,27 @@ const Authentication = () => {
     setPassword(evt.target.value);
   };
 
+  const signingIn = () => {
+    Auth.signIn({ username, password })
+      .then((data) => {
+        // console.log(data);
+        dispatch(logIn());
+        dispatch(setAuthUsername(data.username));
+        setIsLoading(false);
+      })
+      .catch((err) => {
+      // console.error(err);
+      // todo: handle error msg
+        if (lang === 'en') {
+          setAuthError(err.message);
+        } else {
+          setAuthError(t(`errors.${err.code}`));
+        }
+
+        setIsLoading(false);
+      });
+  };
+
   const submitHandler = (evt) => {
     const form = evt.currentTarget;
 
@@ -36,24 +57,7 @@ const Authentication = () => {
 
     if (form.checkValidity()) {
       setIsLoading(true);
-      Auth.signIn({ username, password })
-        .then((data) => {
-        // console.log(data);
-          dispatch(logIn());
-          dispatch(setAuthUsername(data.username));
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          // console.error(err);
-          // todo: handle error msg
-          if (lang === 'en') {
-            setAuthError(err.message);
-          } else {
-            setAuthError(t(`errors.${err.code}`));
-          }
-
-          setIsLoading(false);
-        });
+      signingIn();
     }
 
     setValidated(true);
@@ -79,11 +83,10 @@ const Authentication = () => {
                 ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
                 : t('authentication.signIn.btn.signIn')}
             </Button>
-            <Form.Control.Feedback className="text-danger text-center mt-3">{authError}</Form.Control.Feedback>
+            <Form.Control.Feedback className="invalid-feedback text-center mt-3">{authError}</Form.Control.Feedback>
           </Form>
         )
         : <Resume />}
-      {/* : 'Logged resume'} */}
     </div>
   );
 };
