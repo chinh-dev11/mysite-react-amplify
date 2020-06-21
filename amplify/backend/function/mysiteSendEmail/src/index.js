@@ -94,7 +94,8 @@ exports.handler = async (event, context, callback) => {
           score: 0.9
         } */
         /* { success: false, 'error-codes': [ 'missing-input-response' ] } */
-        if (res.status === 200 && res.data.success) {
+        // score: 0.5 - recommended threshold by Google
+        if (res.status === 200 && res.data.success && res.data.score > 0.5) {
           AWS.config.credentials.refresh(() => {
             ses.sendEmail(params, (err) => {
               if (err) {
