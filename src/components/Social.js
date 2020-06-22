@@ -24,7 +24,7 @@ const Social = () => {
   };
 
   return (
-    <ListGroup as="ul" horizontal className="Social justify-content-center py-3">
+    <ListGroup as="ul" horizontal className="Social justify-content-center">
       <ListGroup.Item as="li" className="border-0">
         <a href={linkLinkedin} target="_blank" rel="noreferrer noopener" title={t('social.alt.linkedin')}>
           <img src={iconLinkedin} alt={t('social.alt.linkedin')} style={stylesInline} key={t('social.alt.linkedin')} />

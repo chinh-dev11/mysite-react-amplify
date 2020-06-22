@@ -101,8 +101,9 @@ function App() {
         : isAuthenticated && (
           <>
             <Header />
-            <Container>
-              <Row className="Content">
+            <Container className="Content">
+              <Row>
+              {/* <Row className="Content"> */}
                 <Col lg="6">
                   <About />
                 </Col>
@@ -123,11 +124,11 @@ function App() {
                 </Col>
                 <Col lg="6">
                   <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
-                    <Contact />
+                    {/* <Contact /> */}
                   </GoogleReCaptchaProvider>
                   {/* <Contact inRecaptchaRef={recaptchaRef} /> */}
-                  <Resume />
-                  <Social />
+                  {/* <Resume /> */}
+                  {/* <Social /> */}
                 </Col>
               </Row>
             </Container>

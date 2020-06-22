@@ -4,7 +4,7 @@ import Lang from '../components/Lang';
 import Social from '../components/Social';
 
 const Footer = () => (
-  <footer className="Footer col pt-4 pb-2 d-flex justify-content-between align-items-center">
+  <footer className="Footer pt-4 px-3 d-flex justify-content-between align-items-center">
     <Copyright />
     <Social />
     <Lang />

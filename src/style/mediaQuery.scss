@@ -19,6 +19,7 @@ xl >= 1200
 
 @media only screen and (max-width: 767px) {
   footer {
+    padding-bottom: 0.75rem;
     .Social {
       display: none;
     }
@@ -32,6 +33,7 @@ xl >= 1200
     }
   }
   footer {
+    padding-bottom: 0;
     .Social {
       display: flex;
       padding: 0;
