@@ -15,6 +15,7 @@ html, body, #root {
  flex-shrink: 0;
 }
 
+
 // Bootstrap sticky position: z-index: 1020
 .Header {
   z-index: 2000 !important;
@@ -37,3 +38,20 @@ html, body, #root {
     bottom: 50px !important;
   }
 // }
+
+
+.About {
+  color: var(--gray);
+  // background-color: var(--dark);
+  i {
+    color: var(--dark);
+    // color: var(--light);
+    // font-style: normal;
+  }
+}
+
+.Authentication {
+  > .Resume {
+    border: none !important;
+  }
+}

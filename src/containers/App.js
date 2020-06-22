@@ -23,7 +23,7 @@ import CustomSpinner from '../components/CustomSpinner'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
+import '../style/App.scss';
 
 const ProjectWork = React.lazy(() => import('../components/ProjectWork')); // lazy-loaded
 const ProjectLab = React.lazy(() => import('../components/ProjectLab')); // lazy-loaded
