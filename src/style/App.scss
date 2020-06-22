@@ -15,6 +15,7 @@ html, body, #root {
  flex-shrink: 0;
 }
 
+
 // Bootstrap sticky position: z-index: 1020
 .Header {
   z-index: 2000 !important;
@@ -25,15 +26,32 @@ html, body, #root {
 .Backdrop {
   z-index: 1800 !important;
 }
+// .reCaptchaBadge {
+  .grecaptcha-badge {
+    z-index: 1700 !important;
+    bottom: 50px !important;
+  }
+// }
 .heading {
-  z-index: 1700 !important;
-}
-.slick-arrow {
   z-index: 1600 !important;
 }
-.reCaptchaBadge {
-  .grecaptcha-badge {
-    z-index: 1500 !important;
-    bottom: 50px !important;
+.slick-arrow {
+  z-index: 1500 !important;
+}
+
+
+.About {
+  color: var(--gray);
+  // background-color: var(--dark);
+  i {
+    color: var(--dark);
+    // color: var(--light);
+    // font-style: normal;
+  }
+}
+
+.Authentication {
+  > .Resume {
+    border: none !important;
   }
 }

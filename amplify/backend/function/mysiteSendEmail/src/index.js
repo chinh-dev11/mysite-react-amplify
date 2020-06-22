@@ -79,9 +79,8 @@ exports.handler = async (event, context, callback) => {
     sender: process.env.SENDER_EMAIL, // verified address only
   });
   // console.log('params: ', params);
-  console.log(`reCaptchaSecretKey: ${reCaptchaSecretKey}`);
   const siteverifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${reCaptchaSecretKey || process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
-  console.log(`siteverifyUrl: ${siteverifyUrl}`);
+
   return new Promise((resolve, reject) => {
     axios.get(siteverifyUrl)
       .then((res) => {

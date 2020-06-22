@@ -86,7 +86,7 @@ const Authentication = () => {
             <Form.Control.Feedback className="invalid-feedback text-center mt-3">{authError}</Form.Control.Feedback>
           </Form>
         )
-        : <Resume />}
+        : <Resume className="border-0" />}
     </div>
   );
 };

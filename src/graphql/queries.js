@@ -35,6 +35,7 @@ export const getProject = /* GraphQL */ `
       image
       alt
       url
+      appName
       enabled
     }
   }
@@ -55,6 +56,7 @@ export const listProjects = /* GraphQL */ `
         image
         alt
         url
+        appName
         enabled
       }
       nextToken
@@ -128,6 +130,7 @@ export const getProjectByOrder = /* GraphQL */ `
         image
         alt
         url
+        appName
         enabled
       }
       nextToken

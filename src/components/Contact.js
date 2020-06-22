@@ -4,10 +4,11 @@ import { API, graphqlOperation } from 'aws-amplify';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { sendEmail } from '../graphql/queries';
 
 const Contact = (props) => {
-  const { inRecaptchaRef } = { ...props };
+  // const { inRecaptchaRef } = { ...props };
   const { t } = useTranslation(['translation']);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -17,6 +18,7 @@ const Contact = (props) => {
   const [sendFailed, setSendFailed] = useState(false);
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const i18nMsg = {
     title: t('contact.email.title'),
@@ -28,7 +30,6 @@ const Contact = (props) => {
 
   const sendingEmail = (token) => {
     const reCaptchaSecretKey = process.env.REACT_APP_RECAPTCHA_SECRET_KEY; // localhost
-    console.log('reCaptchaSecretKey: ', reCaptchaSecretKey);
     const payload = {
       email,
       subject,
@@ -63,14 +64,19 @@ const Contact = (props) => {
     evt.stopPropagation();
 
     if (form.checkValidity()) {
-      inRecaptchaRef.current.execute()
+      executeRecaptcha('contact_form')
+        .then((token) => {
+          // console.log(token);
+          sendingEmail(token);
+        });
+      /* inRecaptchaRef.current.execute({action: 'contact-form'})
         .then((token) => {
           // console.log(token);
           sendingEmail(token);
         })
         .catch((err) => {
           console.error(err);
-        });
+        }); */
     }
 
     setValidated(true);

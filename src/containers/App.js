@@ -19,10 +19,11 @@ import Social from '../components/Social';
 import Resume from '../components/Resume';
 import Footer from './Footer';
 import CustomSpinner from '../components/CustomSpinner'
-import Recaptcha3 from '../components/ReCaptcha3'
+// import Recaptcha3 from '../components/ReCaptcha3'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
+import '../style/App.scss';
 
 const ProjectWork = React.lazy(() => import('../components/ProjectWork')); // lazy-loaded
 const ProjectLab = React.lazy(() => import('../components/ProjectLab')); // lazy-loaded
@@ -36,7 +37,8 @@ function App() {
   const isAuthenticated = useSelector(authIsLogged);
   const dispatchRedux = useDispatch();
   const [isBackendDown, setIsBackendDown] = useState(false);
-  const recaptchaRef = useRef(null)
+  // const recaptchaRef = useRef(null)
+  const recaptchaSiteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY
 
   const autoSignin = () => Auth.signIn({
     username: process.env.REACT_APP_ANON_USERNAME,
@@ -99,28 +101,31 @@ function App() {
         : isAuthenticated && (
           <>
             <Header />
-            <Container>
-              <Row className="Content">
+            <Container className="Content">
+              <Row>
                 <Col lg="6">
                   <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectWork /> */}
+                    <ProjectWork />
                   </Suspense>
                 </Col>
                 <Col lg="12">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectLab /> */}
+                    <ProjectLab />
                   </Suspense>
                 </Col>
                 <Col lg="6">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <Education /> */}
+                    <Education />
                   </Suspense>
                 </Col>
                 <Col lg="6">
-                  <Contact inRecaptchaRef={recaptchaRef} />
+                  <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
+                    <Contact />
+                  </GoogleReCaptchaProvider>
+                  {/* <Contact inRecaptchaRef={recaptchaRef} /> */}
                   <Resume />
                   <Social />
                 </Col>
@@ -129,7 +134,7 @@ function App() {
             <Footer />
             <Backdrop />
             <Menu />
-            <Recaptcha3 ref={recaptchaRef} />
+            {/* <Recaptcha3 ref={recaptchaRef} /> */}
           </>
         )}
       {isBackendDown && (

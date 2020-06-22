@@ -13,8 +13,9 @@ import { getProjectByOrder } from '../graphql/queries';
 import 'bootstrap/dist/js/bootstrap.min'; // required by Bootstrap carousel
 
 const ProjectWork = () => {
-  const { t } = useTranslation(['translation']);
+  const siteDomain = process.env.REACT_APP_SITE_DOMAIN;
   const staticUrl = process.env.REACT_APP_STATIC_URL;
+  const { t } = useTranslation(['translation']);
   const isMenuOpen = useSelector(menuIsOpen);
   const [works, setWorks] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -35,6 +36,7 @@ const ProjectWork = () => {
     // console.log('useEffect');
     const init = async () => {
       const items = await getList();
+      // console.log('items: ', items);
 
       if (items) {
         setWorks(items);
@@ -89,13 +91,13 @@ const ProjectWork = () => {
             </ol>
             <div className="carousel-inner">
               {works.map((elem, index) => (
-                <div key={elem.id} className={`carousel-item bg-dark ${index === 0 && 'active'}`}>
+                <a href={elem.appName ? `https://${elem.appName}.${siteDomain}` : elem.url} target="_blank" key={elem.id} className={`carousel-item bg-dark ${index === 0 && 'active'}`} rel="noreferrer noopener">
                   <img className="d-block w-100" src={`${staticUrl}${elem.image}`} alt={elem.name} style={{ opacity: '0.3' }} />
                   <div className="carousel-caption d-md-block">
                     <h5>{elem.name}</h5>
                     <p><small>{elem.languages}</small></p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
             <a className="carousel-control-prev" href="#carouselProjectWork" role="button" data-slide="prev">
