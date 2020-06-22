@@ -1,4 +1,9 @@
+/* Amplify Params - DO NOT EDIT
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT */
 const AWS = require('aws-sdk');
+const axios = require('axios');
 
 const generateHTML = (name, message, i18nMsg) => (`
   <!DOCTYPE html>
@@ -50,9 +55,8 @@ const emailParams = ({
 });
 
 exports.handler = async (event, context, callback) => {
-  console.log(process.env);
   const {
-    email, subject, name, message, i18nMsg,
+    email, subject, name, message, i18nMsg, token, reCaptchaSecretKey,
   } = { ...event.arguments };
   const ses = new AWS.SES({
     // SES sending limit increased (out of sandbox) approved only for Canada central region. see Case ID 7043092001 in support center
@@ -74,17 +78,40 @@ exports.handler = async (event, context, callback) => {
     i18nMsg,
     sender: process.env.SENDER_EMAIL, // verified address only
   });
-  console.log('params: ', params);
+  // console.log('params: ', params);
+  const siteverifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${reCaptchaSecretKey || process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
 
   return new Promise((resolve, reject) => {
-    AWS.config.credentials.refresh(() => {
-      ses.sendEmail(params, (err, data) => {
-        if (err) {
-          reject(callback(err));
-        } else {
-          resolve(callback(null, data.MessageId));
+    axios.get(siteverifyUrl)
+      .then((res) => {
+        console.log(res.status);
+        console.log(res.data);
+        /* {
+          success: true,
+          challenge_ts: '2020-06-20T21:21:46Z',
+          hostname: 'localhost',
+          score: 0.9
+        } */
+        /* { success: false, 'error-codes': [ 'missing-input-response' ] } */
+        // score: 0.5 - recommended threshold by Google
+        if (res.status === 200 && res.data.success && res.data.score > 0.5) {
+          AWS.config.credentials.refresh(() => {
+            ses.sendEmail(params, (err) => {
+              if (err) {
+                console.log(`ses - ${err}`);
+                reject(callback(err));
+              }
+
+              resolve(callback(null));
+            });
+          });
         }
+
+        reject(callback(res.data['error-codes']));
+      })
+      .catch((err) => {
+        console.log(`siteverify - ${err}`);
+        reject(callback(err));
       });
-    });
   });
 };

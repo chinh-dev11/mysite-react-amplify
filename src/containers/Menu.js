@@ -3,13 +3,18 @@ import { useSelector } from 'react-redux';
 import Col from 'react-bootstrap/Col';
 import Authentication from '../components/Authentication';
 import { menuIsOpen } from '../app/store/menuSlice';
-import './Menu.scss';
+// import './Menu.scss';
 
 
 const Menu = () => {
   const [headerHeight, setHeaderHeight] = useState('72px');
   const [menuHeight, setMenuHeight] = useState('300px');
-  const menuTopInline = { top: useSelector(menuIsOpen) ? headerHeight : `-${menuHeight}` };
+  const stylesInline = {
+    top: useSelector(menuIsOpen) ? headerHeight : `-${menuHeight}`,
+    right: 0,
+    transition: 'top 0.5s ease-in',
+    width: '100%',
+  };
 
   useEffect(() => {
     const elemHeaderHeight = document.querySelector('.Header').clientHeight;
@@ -20,7 +25,7 @@ const Menu = () => {
   }, []);
 
   return (
-    <div className="Menu p-4 bg-white position-fixed d-flex flex-row" style={menuTopInline}>
+    <div className="Menu p-4 bg-white position-fixed d-flex flex-row" style={stylesInline}>
       <Col sm="10" md="8" lg="6" xl="5" className="mb-4">
         <Authentication />
       </Col>

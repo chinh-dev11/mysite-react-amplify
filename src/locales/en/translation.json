@@ -1,7 +1,7 @@
 {
   "about": {
     "title": "About",
-    "txt": "<i>Skilled</i> web developer, with a keen eye for <i>detail</i>, <i>driven</i> by working with <i>emerging technologies</i>."
+    "txt": "<i>Skilled</i> web developer, with a keen eye for <i>detail</i>, and <i>driven</i> by working with <i>emerging technologies</i>."
   },
   "authentication": {
     "title": "Authentication",
@@ -89,7 +89,7 @@
       }
     },
     "errors": {
-      "emailSending": "There's been server technical problems. Please try again later."
+      "emailSending": "There's been server/network technical problems. Please try again later."
     },
     "feedback": {
       "required": "Field required!"
@@ -158,6 +158,16 @@
     "title": "Download my resume",
     "formatPdf": "Resume pdf format",
     "formatDoc": "Resume doc format",
-    "cloudDownload": "Cloud download"
+    "cloudDownload": "Cloud download",
+    "error": "Something when wrong! Please try again later.",
+    "tryAgain": "Try again"
+  },
+  "errors": {
+    "NotAuthorizedException": "Incorrect username or password.",
+    "UserNotFoundException": "User does not exist.",
+    "CognitoAuthFailed": "I am updating the site... Please revisit me at a later time."
+  },
+  "general": {
+    "loading": "Loading..."
   }
 }

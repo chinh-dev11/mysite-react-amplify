@@ -11,6 +11,7 @@ type Project @model @key(
   image: String
   alt: String
   url: String
+  appName: String
   enabled: Boolean
 }
 
@@ -33,7 +34,7 @@ type Education @model @key(
 }
 
 type Response {
-  value: String
+  message: String!
 }
 
 input MsgLang {
@@ -49,5 +50,7 @@ type Query {
     subject: String
     message: String!
     i18nMsg: MsgLang
+    token: String!
+    reCaptchaSecretKey: String
   ): Response @function (name: "mysiteSendEmail-${env}")
 }

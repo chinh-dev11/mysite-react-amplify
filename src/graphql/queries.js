@@ -8,6 +8,8 @@ export const sendEmail = /* GraphQL */ `
     $subject: String
     $message: String!
     $i18nMsg: MsgLang
+    $token: String!
+    $reCaptchaSecretKey: String
   ) {
     sendEmail(
       name: $name
@@ -15,8 +17,10 @@ export const sendEmail = /* GraphQL */ `
       subject: $subject
       message: $message
       i18nMsg: $i18nMsg
+      token: $token
+      reCaptchaSecretKey: $reCaptchaSecretKey
     ) {
-      value
+      message
     }
   }
 `;
@@ -31,6 +35,7 @@ export const getProject = /* GraphQL */ `
       image
       alt
       url
+      appName
       enabled
     }
   }
@@ -51,6 +56,7 @@ export const listProjects = /* GraphQL */ `
         image
         alt
         url
+        appName
         enabled
       }
       nextToken
@@ -124,6 +130,7 @@ export const getProjectByOrder = /* GraphQL */ `
         image
         alt
         url
+        appName
         enabled
       }
       nextToken

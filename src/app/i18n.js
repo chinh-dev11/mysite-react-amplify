@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-// import LanguageDetector from 'i18next-browser-languagedetector';
+import LanguageDetector from 'i18next-browser-languagedetector';
 // import Backend from 'i18next-xhr-backend';
 
 import translationEN from '../locales/en/translation.json';
@@ -18,11 +18,11 @@ const resources = {
     translation: translationVN,
   },
 };
-
+// console.log(LanguageDetector);
 i18n
   // learn more: https://github.com/i18next/i18next-xhr-backend
   // .use(Backend)
-  // .use(LanguageDetector) // passes i18n down to react-i18next
+  .use(LanguageDetector) // passes i18n down to react-i18next
   // connect with React
   .use(initReactI18next)
   // for all options read: https://www.i18next.com/overview/configuration-options
@@ -43,5 +43,6 @@ i18n
     // crossDomain: true,
     // },
   });
+// console.log(i18n);
 
 export default i18n;

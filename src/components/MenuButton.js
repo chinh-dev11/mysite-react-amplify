@@ -1,45 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import Radium from 'radium';
 import { menuOpen, menuClose, menuIsOpen } from '../app/store/menuSlice';
-import './MenuButton.scss';
+import '../style/hamburger.scss';
 
-const MenuButton = () => {
+const MenuButton = (props) => {
+  const { disabled } = { ...props };
+  const [btnDisabled, setBtnDisabled] = useState(false);
   const isOpen = useSelector(menuIsOpen);
-  const dispatch = useDispatch();
+  const dispatchRedux = useDispatch();
+
+  const styles = {
+    btn: {
+      ':focus': {
+        outline: 'none',
+      },
+    },
+  };
 
   const menuHandler = () => {
-    dispatch(isOpen ? menuClose() : menuOpen());
+    dispatchRedux(isOpen ? menuClose() : menuOpen());
   };
 
   useEffect(() => {
     // console.log('useEffect');
-    const elemMenu = document.querySelector('.Menu');
-    if (isOpen) disableBodyScroll(elemMenu);
-    else enableBodyScroll(elemMenu);
+    if (disabled === 'true') {
+      setBtnDisabled(true);
+    } else {
+      const elemMenu = document.querySelector('.Menu');
+      if (isOpen) disableBodyScroll(elemMenu);
+      else enableBodyScroll(elemMenu);
+    }
 
     // cleanup - prevent memory leaks
     return () => clearAllBodyScrollLocks();
-  }, [isOpen]);
+  }, [isOpen, disabled]);
 
   return (
     <div className="MenuButton d-flex align-items-center">
-      {isOpen
-        ? (
-          <button onClick={menuHandler} type="button" className="menuIcon menuIcon--close">
-            <span className="one" />
-            <span className="two" />
-          </button>
-        )
-        : (
-          <button type="button" onClick={menuHandler} className="menuIcon menuIcon--open">
-            <span />
-            <span />
-            <span />
-          </button>
-        )}
+      <button type="button" onClick={menuHandler} disabled={btnDisabled} className="border-0 bg-transparent" style={[styles.btn]}>
+        <div className={`hamburger ${isOpen ? 'iconClose' : 'iconOpen'}`}>
+          <span />
+          <span />
+          <span />
+        </div>
+      </button>
     </div>
   );
 };
 
-export default MenuButton;
+export default Radium(MenuButton);
