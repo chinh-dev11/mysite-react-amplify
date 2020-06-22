@@ -26,18 +26,18 @@ html, body, #root {
 .Backdrop {
   z-index: 1800 !important;
 }
-.heading {
-  z-index: 1700 !important;
-}
-.slick-arrow {
-  z-index: 1600 !important;
-}
 // .reCaptchaBadge {
   .grecaptcha-badge {
-    z-index: 1500 !important;
+    z-index: 1700 !important;
     bottom: 50px !important;
   }
 // }
+.heading {
+  z-index: 1600 !important;
+}
+.slick-arrow {
+  z-index: 1500 !important;
+}
 
 
 .About {

@@ -15,6 +15,7 @@ export const createProject = /* GraphQL */ `
       image
       alt
       url
+      appName
       enabled
     }
   }
@@ -33,6 +34,7 @@ export const updateProject = /* GraphQL */ `
       image
       alt
       url
+      appName
       enabled
     }
   }
@@ -51,6 +53,7 @@ export const deleteProject = /* GraphQL */ `
       image
       alt
       url
+      appName
       enabled
     }
   }

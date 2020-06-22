@@ -11,6 +11,7 @@ type Project @model @key(
   image: String
   alt: String
   url: String
+  appName: String
   enabled: Boolean
 }
 

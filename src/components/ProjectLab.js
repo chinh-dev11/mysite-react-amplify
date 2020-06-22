@@ -11,6 +11,7 @@ import {
 import '../style/slickHelper.scss';
 
 const ProjectLab = () => {
+  const siteDomain = process.env.REACT_APP_SITE_DOMAIN;
   const staticUrl = process.env.REACT_APP_STATIC_URL;
   const { t } = useTranslation(['translation']);
   const [labs, setLabs] = useState('');
@@ -34,6 +35,7 @@ const ProjectLab = () => {
     // console.log('useEffect');
     const init = async () => {
       const items = await getList();
+      // console.log('items: ', items);
 
       if (items) {
         setLabs(items);
@@ -78,7 +80,7 @@ const ProjectLab = () => {
               }}
             >
               {labs.map((elem) => (
-                <a key={elem.id} className="d-block position-relative mb-4" href={elem.url} target="_blank" rel="noopener noreferrer">
+                <a key={elem.id} className="d-block position-relative mb-4" href={elem.appName ? `https://${elem.appName}.${siteDomain}` : elem.url} target="_blank" rel="noopener noreferrer">
                   <img src={staticUrl + elem.image} alt={elem.name} className="w-100 rounded-lg" />
                   <div className="text-dark text-center p-0 position-absolute w-100 h-100 border rounded" style={{ top: '0', left: '0', backgroundColor: 'rgba(255,255,255,0.6)' }}>
                     <h5 className="p-3 m-0 rounded-top border-bottom bg-light text-dark">{elem.name}</h5>

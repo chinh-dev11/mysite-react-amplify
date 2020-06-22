@@ -18,6 +18,11 @@ xl >= 1200
 }
 
 @media only screen and (max-width: 767px) {
+  .Content {
+    .Social {
+      padding: 1.5rem 0;
+    }
+  }
   footer {
     padding-bottom: 0.75rem;
     .Social {
