@@ -120,7 +120,7 @@ function App() {
                 </Col>
                 <Col lg="6">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <Education /> */}
+                    <Education />
                   </Suspense>
                 </Col>
                 <Col lg="6">
