@@ -104,18 +104,18 @@ function App() {
             <Header />
             <Container className="Content">
               <Row>
-                <Admin />
+                {/* <Admin /> */}
                 <Col lg="6">
-                  {/* <About /> */}
+                  <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectWork /> */}
+                    <ProjectWork />
                   </Suspense>
                 </Col>
                 <Col lg="12">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectLab /> */}
+                    <ProjectLab />
                   </Suspense>
                 </Col>
                 <Col lg="6">
@@ -125,11 +125,11 @@ function App() {
                 </Col>
                 <Col lg="6">
                   <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
-                    {/* <Contact /> */}
+                    <Contact />
                   </GoogleReCaptchaProvider>
                   {/* <Contact inRecaptchaRef={recaptchaRef} /> */}
-                  {/* <Resume /> */}
-                  {/* <Social /> */}
+                  <Resume />
+                  <Social />
                 </Col>
               </Row>
             </Container>
