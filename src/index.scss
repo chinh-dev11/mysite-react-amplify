@@ -1,0 +1,22 @@
+/* make the customizations */
+$theme-colors: (
+  "primary": #D85426,
+  "danger": rgb(198, 14, 14),
+  "dark": #222
+);
+
+@import 'bootstrap';
+@import './style/mediaQuery.scss';
+
+body {
+  margin: 0;
+  font-family: "Quicksand", "Helvetica Neue", sans-serif;
+  // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

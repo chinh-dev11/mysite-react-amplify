@@ -20,9 +20,16 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "react-hooks"
     ],
     "rules": {
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
         "react/jsx-filename-extension": [
             1,
             {
@@ -31,6 +38,8 @@
                     ".jsx"
                 ]
             }
-        ]
+        ],
+        "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+        "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
     }
 }

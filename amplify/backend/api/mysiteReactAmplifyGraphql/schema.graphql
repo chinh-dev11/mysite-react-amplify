@@ -1,0 +1,56 @@
+type Project @model @key(
+  name: "byOrder",
+  fields: ["type", "order"],
+  queryField: "getProjectByOrder"
+) {
+  id: ID!
+  order: Int!
+  name: String!
+  type: String!
+  languages: String!
+  image: String
+  alt: String
+  url: String
+  appName: String
+  enabled: Boolean
+}
+
+type Education @model @key(
+  name: "byCompletedDate"
+  fields: ["type", "completedDate"]
+  queryField: "getEducByCompletedDate"
+) {
+  id: ID!
+  name: String!
+  type: String!
+  completedDate: String!
+  languages: [String!]!
+  image: String
+  alt: String
+  url: String
+  urlFrom: String
+  enabled: Boolean
+  institution: String
+}
+
+type Response {
+  message: String!
+}
+
+input MsgLang {
+  title: String
+  headingLabel: String
+  textLabel: String
+}
+
+type Query {
+  sendEmail(
+    name: String!
+    email: String!
+    subject: String
+    message: String!
+    i18nMsg: MsgLang
+    token: String!
+    reCaptchaSecretKey: String
+  ): Response @function (name: "mysiteSendEmail-${env}")
+}

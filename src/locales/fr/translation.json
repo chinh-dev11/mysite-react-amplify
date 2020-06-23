@@ -1,0 +1,146 @@
+{
+  "about": {
+    "title": "About",
+    "txt": "Développeur web <i>compétent</i>, avec un sens aigu du <i>détail</i>, motivé par le travail avec les technologies <i>émergentes</i>."
+  },
+  "authentication": {
+    "title": "Authentication",
+    "signIn": {
+      "heading1": "Sign in to download my resume",
+      "field1": {
+        "label": "Username",
+        "desc": "Enter your username"
+      },
+      "field2": {
+        "label": "Password",
+        "desc": "Enter your password"
+      },
+      "t1": "Forget your password?",
+      "t2": "Reset password",
+      "t3": "No account?",
+      "t4": "Create account",
+      "t5": "Sign In"
+    },
+    "reset": {
+      "heading1": "Reset your password",
+      "field1": {
+        "label": "Username",
+        "desc": "Enter your username"
+      },
+      "t1": "Back to Sign In",
+      "t2": "Send Code"
+    },
+    "create": {
+      "heading1": "Create a new account resume",
+      "field1": {
+        "label": "Username",
+        "desc": "Username"
+      },
+      "field2": {
+        "label": "Password",
+        "desc": "Password"
+      },
+      "field3": {
+        "label": "Email",
+        "desc": "Email"
+      },
+      "field4": {
+        "label": "Phone Number",
+        "desc": "Phone Number"
+      },
+      "t1": "Have an account?",
+      "t2": "Sign in",
+      "t3": "Create account"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "heading1": "Get in touch",
+    "field1": {
+      "desc": "Name"
+    },
+    "field2": {
+      "desc": "Email"
+    },
+    "field3": {
+      "desc": "Subject"
+    },
+    "field4": {
+      "desc": "Message"
+    },
+    "t1": "Send message",
+    "t2": "Your message has been sent",
+    "t3": "I will get back to you as soon as possible",
+    "t4": "Thank you",
+    "email": {
+      "title": "Demande",
+      "headingLabel": "Nom",
+      "textLabel": "Message",
+      "confirmation": {
+        "heading": "Bonjour",
+        "message": "<h3>Merci de NE PAS RÉPONDRE à ce message!</h3><p>Ce message est seulement de confirmer que j'ai bien reçu votre demande, assurant ainsi l'adresse fournie est valide.</p><p>Je vous recontacterai dès que possible.</p><p>Merci.</p>"
+      }
+    },
+    "errors": {
+      "emailSending": "Il y eu des problèmes techniques du serveur pour l'envoi de courriel. Veuillez réessayer plus tard."
+    }
+  },
+  "copyright": {
+    "title": "Droits d'auteur",
+    "t1": "chinhle.ca 2020",
+    "t2": "Tous droits réservés"
+  },
+  "lang": {
+    "title": "Languages",
+    "en": {
+      "label": "en",
+      "alt": "English"
+    },
+    "fr": {
+      "label": "fr",
+      "alt": "French"
+    },
+    "vn": {
+      "label": "vn",
+      "alt": "Vietnamese"
+    }
+  },
+  "project": {
+    "title": "Projet",
+    "work": "Work",
+    "lab": "Lab",
+    "demo": "Démo"
+  },
+  "education": {
+    "title": "Education",
+    "certificate": "certificat",
+    "completed": "Completé",
+    "languages": "Langues",
+    "link": "Certificat",
+    "linkDetail": "Infos du certificat"
+  },
+  "social": {
+    "title": "Social Media",
+    "alt": {
+      "linkedin": "Linkedin account",
+      "github": "Github account",
+      "instagram": "Instagram account"
+    }
+  },
+  "recaptcha": {
+    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
+    "url1": "https://policies.google.com/privacy",
+    "url2": "https://policies.google.com/terms"
+  },
+  "server": {
+    "error": {
+      "request": {
+        "t1": "There's something wrong with our server",
+        "t2": "Please try again later"
+      }
+    }
+  },
+  "menu": {
+    "backdropLabel": "Fermer la navigation"
+  }
+}

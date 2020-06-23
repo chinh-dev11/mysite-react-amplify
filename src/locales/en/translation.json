@@ -1,0 +1,173 @@
+{
+  "about": {
+    "title": "About",
+    "txt": "<i>Skilled</i> web developer, with a keen eye for <i>detail</i>, and <i>driven</i> by working with <i>emerging technologies</i>."
+  },
+  "authentication": {
+    "title": "Authentication",
+    "signIn": {
+      "field1": {
+        "label": "Username",
+        "desc": "Enter provided username"
+      },
+      "field2": {
+        "label": "Password",
+        "desc": "Enter provided password"
+      },
+      "btn": {
+        "signIn": "Sign In",
+        "download": "Download resume"
+      },
+      "t1": "Forget your password?",
+      "t2": "Reset password",
+      "t3": "No account?",
+      "t4": "Create account",
+      "t5": "Sign In"
+    },
+    "reset": {
+      "heading1": "Reset your password",
+      "field1": {
+        "label": "Username",
+        "desc": "Enter your username"
+      },
+      "t1": "Back to Sign In",
+      "t2": "Send Code"
+    },
+    "create": {
+      "heading1": "Create a new account resume",
+      "field1": {
+        "label": "Username",
+        "desc": "Username"
+      },
+      "field2": {
+        "label": "Password",
+        "desc": "Password"
+      },
+      "field3": {
+        "label": "Email",
+        "desc": "Email"
+      },
+      "field4": {
+        "label": "Phone Number",
+        "desc": "Phone Number"
+      },
+      "t1": "Have an account?",
+      "t2": "Sign in",
+      "t3": "Create account"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "heading1": "Get in touch",
+    "field1": {
+      "label": "Name",
+      "placeholder": "Your name"
+    },
+    "field2": {
+      "label": "Email",
+      "placeholder": "name@example.com"
+    },
+    "field3": {
+      "label": "Subject",
+      "placeholder": "About..."
+    },
+    "field4": {
+      "label": "Message",
+      "placeholder": "Your message..."
+    },
+    "btnSubmit": "Send message",
+    "t1": "Your message has been sent",
+    "t2": "I will get back to you as soon as possible",
+    "t3": "Thank you",
+    "email": {
+      "title": "Inquiry",
+      "headingLabel": "Name",
+      "textLabel": "Message",
+      "confirmation": {
+        "heading": "Hello",
+        "message": "<h3>Please DO NOT REPLY to this message!</h3><p>This email is only to confirm that I've received your inquiry, hence ensuring that the email address provided is valid.</p><p>I'll get back to you asap.</p><p>Thank you.</p>"
+      }
+    },
+    "errors": {
+      "emailSending": "There's been server/network technical problems. Please try again later."
+    },
+    "feedback": {
+      "required": "Field required!"
+    }
+  },
+  "copyright": {
+    "title": "Copyright",
+    "t1": "chinhle.ca, 2020",
+    "t2": "All rights reserved"
+  },
+  "lang": {
+    "title": "Languages",
+    "en": {
+      "label": "en",
+      "alt": "English"
+    },
+    "fr": {
+      "label": "fr",
+      "alt": "French"
+    },
+    "vn": {
+      "label": "vn",
+      "alt": "Vietnamese"
+    }
+  },
+  "project": {
+    "title": "Project",
+    "work": "Work",
+    "lab": "Lab",
+    "demo": "Demo"
+  },
+  "education": {
+    "title": "Education",
+    "certificate": "certificate",
+    "completed": "Completed",
+    "languages": "Languages",
+    "link": "Certificate",
+    "linkDetail": "Details"
+  },
+  "social": {
+    "title": "Social Media",
+    "alt": {
+      "linkedin": "Linkedin account",
+      "github": "Github account",
+      "gitlab": "Gitlab account",
+      "instagram": "Instagram account"
+    }
+  },
+  "recaptcha": {
+    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
+    "url1": "https://policies.google.com/privacy",
+    "url2": "https://policies.google.com/terms"
+  },
+  "server": {
+    "error": {
+      "request": {
+        "t1": "There's something wrong with our server",
+        "t2": "Please try again later"
+      }
+    }
+  },
+  "menu": {
+    "backdropLabel": "Close the navigation"
+  },
+  "resume": {
+    "title": "Download my resume",
+    "formatPdf": "Resume pdf format",
+    "formatDoc": "Resume doc format",
+    "cloudDownload": "Cloud download",
+    "error": "Something when wrong! Please try again later.",
+    "tryAgain": "Try again"
+  },
+  "errors": {
+    "NotAuthorizedException": "Incorrect username or password.",
+    "UserNotFoundException": "User does not exist.",
+    "CognitoAuthFailed": "I am updating the site... Please revisit me at a later time."
+  },
+  "general": {
+    "loading": "Loading..."
+  }
+}
