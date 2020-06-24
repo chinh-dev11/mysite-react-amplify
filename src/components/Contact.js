@@ -67,7 +67,7 @@ const Contact = (props) => {
     evt.stopPropagation();
 
     if (form.checkValidity()) {
-      executeRecaptcha('contact_form')
+      executeRecaptcha('form/contact')
         .then((token) => {
           // console.log(token);
           sendingEmail(token);
