@@ -17,14 +17,19 @@ const Education = () => {
 
   const getList = async () => {
     const getCertsList = (type, sortDirection) => API.graphql(graphqlOperation(getEducByCompletedDate, { type, sortDirection }));
-    const result = await getCertsList('certificate', 'DESC');
-    // console.log(result);
-    if (result.data) {
-      return result.data.getEducByCompletedDate.items;
-    }
 
-    // console.error(result);
-    return null;
+    try {
+      const result = await getCertsList('certificate', 'DESC');
+      // console.log(result);
+      if (result.data) {
+        return result.data.getEducByCompletedDate.items;
+      }
+
+      return null;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
   };
 
   useEffect(() => {
@@ -43,10 +48,10 @@ const Education = () => {
   return (
     <div className="Education mb-4 py-4">
       <h2 className="text-center sticky-top bg-white">
-        {t('education.title')}
+        <span className="mr-2">{t('education.title')}</span>
         {isLoading && (<CustomSpinner sz="sm" color="dark" />)}
       </h2>
-      {!isLoading && (
+      {!isLoading && certs.length > 0 && (
         <Transition
           in
           timeout={transitionHelper.defaultTimeout}

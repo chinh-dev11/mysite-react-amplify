@@ -63,6 +63,39 @@ export const listProjects = /* GraphQL */ `
     }
   }
 `;
+export const getProjectByOrder = /* GraphQL */ `
+  query GetProjectByOrder(
+    $type: String
+    $order: ModelIntKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelProjectFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getProjectByOrder(
+      type: $type
+      order: $order
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        order
+        name
+        type
+        languages
+        image
+        alt
+        url
+        appName
+        enabled
+      }
+      nextToken
+    }
+  }
+`;
 export const getEducation = /* GraphQL */ `
   query GetEducation($id: ID!) {
     getEducation(id: $id) {
@@ -99,39 +132,6 @@ export const listEducations = /* GraphQL */ `
         urlFrom
         enabled
         institution
-      }
-      nextToken
-    }
-  }
-`;
-export const getProjectByOrder = /* GraphQL */ `
-  query GetProjectByOrder(
-    $type: String
-    $order: ModelIntKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelProjectFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    getProjectByOrder(
-      type: $type
-      order: $order
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        order
-        name
-        type
-        languages
-        image
-        alt
-        url
-        appName
-        enabled
       }
       nextToken
     }

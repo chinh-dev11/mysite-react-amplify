@@ -21,14 +21,20 @@ const ProjectLab = () => {
   const getList = async () => {
     // console.log('getList');
     const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
-    const result = await getProjectList('lab', 'DESC');
-    // console.log(result);
-    if (result.data) {
-      return result.data.getProjectByOrder.items;
-    }
 
-    // console.error(result);
-    return null;
+    try {
+      const result = await getProjectList('lab', 'DESC');
+      // console.log(result);
+      if (result.data) {
+        return result.data.getProjectByOrder.items;
+      }
+
+      // console.error(result);
+      return null;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
   };
 
   useEffect(() => {
@@ -61,10 +67,10 @@ const ProjectLab = () => {
   return (
     <div className="ProjectLab mb-4 py-4">
       <h2 className="heading text-center position-sticky bg-white" ref={elemHeading}>
-        {t('project.lab')}
+        <span className="mr-2">{t('project.lab')}</span>
         {isLoading && (<CustomSpinner sz="sm" color="dark" />)}
       </h2>
-      {!isLoading && (
+      {!isLoading && labs.length > 0 && (
         <Transition
           in
           timeout={transitionHelper.defaultTimeout}

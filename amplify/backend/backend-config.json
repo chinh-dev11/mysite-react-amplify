@@ -12,12 +12,16 @@
             "providerPlugin": "awscloudformation",
             "output": {
                 "authConfig": {
-                    "additionalAuthenticationProviders": [],
-                    "defaultAuthentication": {
-                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-                        "userPoolConfig": {
-                            "userPoolId": "authmysitereactamplify790b397d"
+                    "additionalAuthenticationProviders": [
+                        {
+                            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                            "userPoolConfig": {
+                                "userPoolId": "authmysitereactamplify790b397d"
+                            }
                         }
+                    ],
+                    "defaultAuthentication": {
+                        "authenticationType": "AWS_IAM"
                     }
                 }
             }
