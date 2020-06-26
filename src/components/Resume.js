@@ -68,7 +68,7 @@ const Resume = () => {
         }
 
         // doc
-        url = await getFetchUrl('docs');
+        url = await getFetchUrl('docx');
         data = await fetch(url);
         if (data.status === 200) {
           setResumeUrlDoc(data.url);
