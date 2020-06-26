@@ -52,27 +52,32 @@ const Resume = () => {
     setIsDownloadError(false);
   };
 
+  const getFetchUrl = useCallback(
+    (ext) => Storage.get(`${resumePath}${lang}.${ext}`),
+    [resumePath, lang],
+  );
+
   const getResumeUrl = useCallback(
-    async (ext, cb) => {
-      console.log('getResumeUrl');
+    async () => {
       try {
-        const getFetchUrl = () => Storage.get(`${resumePath}${lang}.${ext}`);
+        // pdf
+        let url = await getFetchUrl('pdf');
+        let data = await fetch(url);
+        if (data.status === 200) {
+          setResumeUrlPdf(data.url);
+        }
 
-        const url = await getFetchUrl();
-        const data = await fetch(url);
-        // console.log(data);
-        if (data.status === 200) return cb(data.url);
-
-        // error
-        // console.error(data.status, data.statusText);
-        setIsDownloadError(() => true);
-        return cb(null);
+        // doc
+        url = await getFetchUrl('docs');
+        data = await fetch(url);
+        if (data.status === 200) {
+          setResumeUrlDoc(data.url);
+        }
       } catch (e) {
         // console.error(e);
         setIsDownloadError(() => true);
-        return cb(null);
       }
-    }, [lang, resumePath],
+    }, [getFetchUrl],
   );
 
   // todo: private and protected storage
@@ -80,20 +85,11 @@ const Resume = () => {
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    console.log('useEffect');
-    console.log('isUserResume: ', isUserResume);
-    console.log('isDownloadError: ', isDownloadError);
-    console.log('resumeUrlPdf: ', resumeUrlPdf);
-    console.log('resumeUrlDoc: ', resumeUrlDoc);
+    // console.log('useEffect');
     if (isUserResume && !isDownloadError) {
-      if (!resumeUrlPdf) {
-        getResumeUrl('pdf', setResumeUrlPdf);
-      }
-      if (!resumeUrlDoc) {
-        getResumeUrl('docx', setResumeUrlDoc);
-      }
+      getResumeUrl();
     }
-  }, [isUserResume, resumeUrlPdf, resumeUrlDoc, isDownloadError, getResumeUrl]);
+  }, [isUserResume, isDownloadError, getResumeUrl]);
 
   return (
     <div className="Resume border rounded mb-4 py-4">
