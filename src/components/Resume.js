@@ -57,7 +57,9 @@ const Resume = () => {
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    // console.log('useEffect');
+    console.log('useEffect');
+    console.log('isUserResume: ', isUserResume);
+    console.log('isDownloadError: ', isDownloadError);
     const getFetchUrl = (ext) => Storage.get(`${resumePath}${lang}.${ext}`);
     const fetchData = async (ext, cb) => {
       const url = await getFetchUrl(ext);
