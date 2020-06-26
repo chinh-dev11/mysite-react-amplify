@@ -52,6 +52,29 @@ const Resume = () => {
     setIsDownloadError(false);
   };
 
+  const getResumeUrl = useCallback(
+    async (ext, cb) => {
+      console.log('getResumeUrl');
+      try {
+        const getFetchUrl = () => Storage.get(`${resumePath}${lang}.${ext}`);
+
+        const url = await getFetchUrl();
+        const data = await fetch(url);
+        // console.log(data);
+        if (data.status === 200) return cb(data.url);
+
+        // error
+        // console.error(data.status, data.statusText);
+        setIsDownloadError(() => true);
+        return cb(null);
+      } catch (e) {
+        // console.error(e);
+        setIsDownloadError(() => true);
+        return cb(null);
+      }
+    }, [lang, resumePath],
+  );
+
   // todo: private and protected storage
   // Error: The specified key does not exist (identityId)
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
@@ -60,28 +83,17 @@ const Resume = () => {
     console.log('useEffect');
     console.log('isUserResume: ', isUserResume);
     console.log('isDownloadError: ', isDownloadError);
-    const getFetchUrl = (ext) => Storage.get(`${resumePath}${lang}.${ext}`);
-    const fetchData = async (ext, cb) => {
-      const url = await getFetchUrl(ext);
-      const data = await fetch(url);
-      // console.log(data);
-      if (data.status === 200) return cb(data.url);
-
-      // error
-      // console.error(data.status, data.statusText);
-      setIsDownloadError(() => true);
-      return cb(null);
-    };
-
+    console.log('resumeUrlPdf: ', resumeUrlPdf);
+    console.log('resumeUrlDoc: ', resumeUrlDoc);
     if (isUserResume && !isDownloadError) {
       if (!resumeUrlPdf) {
-        fetchData('pdf', setResumeUrlPdf);
+        getResumeUrl('pdf', setResumeUrlPdf);
       }
       if (!resumeUrlDoc) {
-        fetchData('docx', setResumeUrlDoc);
+        getResumeUrl('docx', setResumeUrlDoc);
       }
     }
-  }, [lang, resumePath, isUserResume, resumeUrlPdf, resumeUrlDoc, isDownloadError]);
+  }, [isUserResume, resumeUrlPdf, resumeUrlDoc, isDownloadError, getResumeUrl]);
 
   return (
     <div className="Resume border rounded mb-4 py-4">
@@ -92,7 +104,7 @@ const Resume = () => {
             {isDownloadError
               ? (
                 <>
-                  <p>{t('resume.error')}</p>
+                  <p className="text-danger my-4">{t('resume.error')}</p>
                   <Button type="button" variant="outline-primary" size="md" className="w-50 rounded-pill" onClick={tryAgainHandler}>{t('resume.tryAgain')}</Button>
                 </>
               )
