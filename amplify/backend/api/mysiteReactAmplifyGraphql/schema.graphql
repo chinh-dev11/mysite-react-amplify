@@ -1,8 +1,16 @@
-type Project @model @key(
-  name: "byOrder",
-  fields: ["type", "order"],
-  queryField: "getProjectByOrder"
-) {
+type Project 
+  @model 
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read], provider: iam }
+    ]
+  )
+  @key(
+    name: "byOrder",
+    fields: ["type", "order"],
+    queryField: "getProjectByOrder"
+  ) {
   id: ID!
   order: Int!
   name: String!
@@ -15,11 +23,19 @@ type Project @model @key(
   enabled: Boolean
 }
 
-type Education @model @key(
-  name: "byCompletedDate"
-  fields: ["type", "completedDate"]
-  queryField: "getEducByCompletedDate"
-) {
+type Education 
+  @model 
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read], provider: iam }
+    ]
+  )
+  @key(
+    name: "byCompletedDate"
+    fields: ["type", "completedDate"]
+    queryField: "getEducByCompletedDate"
+  ) {
   id: ID!
   name: String!
   type: String!

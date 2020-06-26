@@ -1,6 +1,6 @@
 {
     "identityPoolName": "mysitereactamplify790b397d_identitypool_790b397d",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "mysite790b397d",
     "userPoolName": "mysitereactamplify790b397d_userpool_790b397d",
     "autoVerifiedAttributes": [
@@ -44,12 +44,16 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "manual",
     "triggers": "{}",
     "userPoolGroupList": [],
     "parentStack": {
         "Ref": "AWS::StackId"
     },
     "permissions": [],
-    "dependsOn": []
+    "dependsOn": [],
+    "thirdPartyAuth": false,
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "hostedUI": false
 }

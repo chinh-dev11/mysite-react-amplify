@@ -58,42 +58,43 @@ function App() {
     }, [dispatchRedux],
   );
 
-  useEffect(() => {
-    console.log('useEffect');
-    if (!withCognitoHostedUI) {
-      let user = null;
-      const init = async () => {
-        try {
-          // if anon idToken exists and valid
-          user = await Auth.currentAuthenticatedUser();
-          // console.log(`try1: ${user}`);
-        } catch (err) {
-          // anon auto-signin - no Cognito idToken exists in Local Storage
-          // console.error(err); // not authenticated
-          try {
-            user = await autoSignin();
-            // console.log(`try2: ${user}`);
-          } catch (error) {
-            // console.error(error); // "NotAuthorizedException" - Incorrect username or password.
-            /* this should not happen since the anon credentials are programmatically provided in code. Unless there's a problem with Cognito authentication, network problem,...
-            in this case, site showing an updating message - see isBackendDown 'errors.CognitoAuthFailed' node at the end of file */
-          }
-        } finally {
-          // console.log(user);
-          if (user) {
-            setAuth(user.username);
-          } else {
-            setAuth();
-            setIsBackendDown(true);
-          }
-        }
+  const autoLogin = async () => {
+    let user = null;
 
-        document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
-      };
-
-      init();
+    try {
+      // if anon idToken exists and valid
+      user = await Auth.currentAuthenticatedUser();
+      // console.log(`try1: ${user}`);
+    } catch (err) {
+      // anon auto-signin - no Cognito idToken exists in Local Storage
+      // console.error(err); // not authenticated
+      try {
+        user = await autoSignin();
+        // console.log(`try2: ${user}`);
+      } catch (error) {
+        // console.error(error); // "NotAuthorizedException" - Incorrect username or password.
+        /* this should not happen since the anon credentials are programmatically provided in code. Unless there's a problem with Cognito authentication, network problem,...
+        in this case, site showing an updating message - see isBackendDown 'errors.CognitoAuthFailed' node at the end of file */
+      }
+    } finally {
+      // console.log(user);
+      if (user) {
+        setAuth(user.username);
+      } else {
+        setAuth();
+        setIsBackendDown(true);
+      }
     }
-  }, [withCognitoHostedUI, setAuth]);
+  }
+
+  useEffect(() => {
+    // console.log('useEffect');
+    if (!withCognitoHostedUI) {
+      // autoLogin()
+
+      document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
+    };
+  }, [withCognitoHostedUI]);
 
   return (
     <div className="App">
@@ -110,17 +111,17 @@ function App() {
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectWork /> */}
+                    <ProjectWork />
                   </Suspense>
                 </Col>
                 <Col lg="12">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectLab /> */}
+                    <ProjectLab />
                   </Suspense>
                 </Col>
                 <Col lg="6">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <Education /> */}
+                    <Education />
                   </Suspense>
                 </Col>
                 <Col lg="6">

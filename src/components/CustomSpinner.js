@@ -7,7 +7,7 @@ const CustomSpinner = (props) => {
   const { sz, color } = { ...props };
 
   return (
-    <Spinner animation="border" size={sz} variant={color} role="status" className="align-middle"><span className="sr-only">{t('general.loading')}</span></Spinner>
+    <Spinner animation="border" size={sz} variant={color} role="status" className="CustomSpinner align-middle"><span className="sr-only">{t('general.loading')}</span></Spinner>
   );
 };
 
