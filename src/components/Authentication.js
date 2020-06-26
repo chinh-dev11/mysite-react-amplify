@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
@@ -65,6 +65,17 @@ const Authentication = () => {
 
     setValidated(true);
   };
+
+  useEffect(() => {
+    // console.log('useEffect');
+    Auth.currentUserInfo()
+      .then((user) => {
+        // console.log(user);
+        if (user) {
+          dispatch(setAuthUsername(user.username));
+        }
+      });
+  }, [dispatch]);
 
   return (
     <div className="Authentication border rounded p-4">
