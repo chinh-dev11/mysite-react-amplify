@@ -3,6 +3,9 @@ import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {Auth} from 'aws-amplify'
+import {useDispatch} from 'react-redux'
+import {setAuthUsername} from '../app/store/authSlice'
 
 import Menu from './Menu';
 import Header from './Header';
@@ -29,10 +32,19 @@ function App() {
   const withCognitoHostedUI = process.env.REACT_APP_COGNITO_HOSTED_UI === 'true';
   // const recaptchaRef = useRef(null)
   const recaptchaSiteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY
+  const dispatchRedux = useDispatch()
 
   useEffect(() => {
     // console.log('useEffect');
     if (!withCognitoHostedUI) {
+      Auth.currentUserInfo()
+      .then((user) => {
+        console.log(user);
+        if (user) {
+          dispatchRedux(setAuthUsername(user.username));
+        }
+      });
+
       document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
     };
   }, [withCognitoHostedUI]);
