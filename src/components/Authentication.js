@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Auth } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { useSelector, useDispatch } from 'react-redux';
 import { authUsername, setAuthUsername, logIn } from '../app/store/authSlice';
+import { menuIsOpen } from '../app/store/menuSlice';
 import Resume from './Resume';
 
 const Authentication = () => {
@@ -17,6 +18,8 @@ const Authentication = () => {
   const isUserResume = useSelector(authUsername) === process.env.REACT_APP_RESUME_USERNAME;
   const [validated, setValidated] = useState(false);
   const usernameInput = React.createRef();
+  const isMenuOpen = useSelector(menuIsOpen);
+  const [focusSet, setFocusSet] = useState(false);
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const stylesInline = {
@@ -66,6 +69,21 @@ const Authentication = () => {
     setValidated(true);
   };
 
+  const setFocusHandler = useCallback(
+    () => {
+      // console.log('setFocusHandler');
+      if (isMenuOpen) {
+        if (usernameInput.current && !focusSet) {
+          usernameInput.current.focus();
+          setFocusSet(true);
+        }
+      } else {
+        setFocusSet(false);
+      }
+    },
+    [isMenuOpen, usernameInput, focusSet, setFocusSet],
+  );
+
   useEffect(() => {
     // console.log('useEffect');
     Auth.currentUserInfo()
@@ -75,7 +93,9 @@ const Authentication = () => {
           dispatch(setAuthUsername(user.username));
         }
       });
-  }, [dispatch]);
+
+    setFocusHandler();
+  }, [dispatch, setFocusHandler]);
 
   return (
     <div className="Authentication border rounded p-4">
@@ -84,7 +104,7 @@ const Authentication = () => {
           <Form noValidate validated={validated} onSubmit={submitHandler}>
             <Form.Group controlId="validationAuthUsername">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field1.label')}</Form.Label>
-              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInput} autoFocus />
+              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInput} />
               <Form.Control.Feedback type="invalid" id="authUsernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="validationAuthPassword">
