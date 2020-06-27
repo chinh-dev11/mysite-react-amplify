@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, {
+  useState, useEffect, useCallback, useRef,
+} from 'react';
 import { Auth } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Form from 'react-bootstrap/Form';
@@ -17,9 +19,12 @@ const Authentication = () => {
   const dispatch = useDispatch();
   const isUserResume = useSelector(authUsername) === process.env.REACT_APP_RESUME_USERNAME;
   const [validated, setValidated] = useState(false);
-  const usernameInput = React.createRef();
+  // const usernameInput = React.createRef();
+  // const usernameInput = useRef(null);
+  const usernameInputRef = useRef(null);
   const isMenuOpen = useSelector(menuIsOpen);
   const [focusSet, setFocusSet] = useState(false);
+  const [focusStatus, setFocusStatus] = useState(false);
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const stylesInline = {
@@ -71,31 +76,52 @@ const Authentication = () => {
 
   const setFocusHandler = useCallback(
     () => {
-      // console.log('setFocusHandler');
-      if (isMenuOpen) {
-        if (usernameInput.current && !focusSet) {
-          usernameInput.current.focus();
+      // console.log(isUserResume);
+      if (!isUserResume) {
+        if (isMenuOpen && !focusStatus) {
+          usernameInputRef.current.focus();
           setFocusSet(true);
+
+          // if (usernameInput.current) {
+          // console.log('here');
+          // }
+          /* if (usernameInput.current && !focusSet) {
+            usernameInput.current.focus();
+            setFocusSet(true);
+          } */
+          // setFocusSet(true);
+        } else {
+          setFocusSet(false);
         }
-      } else {
-        setFocusSet(false);
       }
     },
-    [isMenuOpen, usernameInput, focusSet, setFocusSet],
+    [isMenuOpen, isUserResume, focusStatus],
+    // [isMenuOpen, usernameInput, focusSet, setFocusSet],
   );
 
   useEffect(() => {
-    // console.log('useEffect');
-    Auth.currentUserInfo()
+    // console.log('authentication - useEffect');
+    /* Auth.currentUserInfo()
       .then((user) => {
         // console.log(user);
         if (user) {
           dispatch(setAuthUsername(user.username));
         }
-      });
+      }); */
 
     setFocusHandler();
-  }, [dispatch, setFocusHandler]);
+    /* console.log('isUserResume: ', isUserResume);
+    if (isMenuOpen) {
+      if (!focusStatus) {
+        usernameInput.current.focus();
+        setFocusStatus(true);
+      }
+    } else {
+      setFocusStatus(false);
+    } */
+    // console.log(usernameInputRef);
+  }, [setFocusHandler]);
+  // }, [dispatch, setFocusHandler]);
 
   return (
     <div className="Authentication border rounded p-4">
@@ -104,7 +130,7 @@ const Authentication = () => {
           <Form noValidate validated={validated} onSubmit={submitHandler}>
             <Form.Group controlId="validationAuthUsername">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field1.label')}</Form.Label>
-              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInput} />
+              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInputRef} />
               <Form.Control.Feedback type="invalid" id="authUsernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="validationAuthPassword">

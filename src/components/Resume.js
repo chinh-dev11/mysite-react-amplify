@@ -59,9 +59,44 @@ const Resume = () => {
 
   const getResumeUrl = useCallback(
     async () => {
+      console.log('getResumeUrl');
+
+      const fetchUrl = async (ext) => {
+        const url = await getFetchUrl(ext);
+        const data = await fetch(url);
+
+        if (data.status === 200) {
+          setResumeUrlDoc(data.url);
+          setIsDownloadError(false);
+          return true;
+        }
+
+        setResumeUrlDoc(null);
+        setIsDownloadError(true);
+        return false;
+      };
+
       try {
         // pdf
-        let url = await getFetchUrl('pdf');
+        const result = await fetchUrl('pdf');
+        console.log('result');
+        console.log(result);
+        if (result) {
+          console.log('if');
+        } else {
+          console.log('else');
+        }
+        /* fetchUrl('pdf')
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((e) => {
+            console.log('here');
+            console.log(e);
+          }); */
+
+        return false;
+        /* let url = await getFetchUrl('pdf');
         let data = await fetch(url);
         if (data.status === 200) {
           setResumeUrlPdf(data.url);
@@ -69,10 +104,11 @@ const Resume = () => {
         } else {
           setResumeUrlPdf(null);
           setIsDownloadError(true);
-        }
+          return null;
+        } */
 
         // doc
-        url = await getFetchUrl('docx');
+        /* url = await getFetchUrl('docx');
         data = await fetch(url);
         if (data.status === 200) {
           setResumeUrlDoc(data.url);
@@ -80,10 +116,15 @@ const Resume = () => {
         } else {
           setResumeUrlDoc(null);
           setIsDownloadError(true);
+          return null;
         }
+
+        return true; */
       } catch (e) {
+        console.log('catch error');
         console.error(e);
         setIsDownloadError(true);
+        return null;
       }
     }, [getFetchUrl],
   );
@@ -93,11 +134,14 @@ const Resume = () => {
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    // console.log('useEffect');
+    console.log('resume - useEffect');
+    console.log(isUserResume);
+    // if (isUserResume && (!resumeUrlPdf || !resumeUrlDoc)) {
     if (isUserResume && !isDownloadError) {
       getResumeUrl();
     }
   }, [isUserResume, isDownloadError, getResumeUrl]);
+  // }, [isUserResume, isDownloadError, getResumeUrl]);
 
   return (
     <div className="Resume border rounded mb-4 py-4">
