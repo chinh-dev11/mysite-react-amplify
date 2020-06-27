@@ -65,6 +65,10 @@ const Resume = () => {
         let data = await fetch(url);
         if (data.status === 200) {
           setResumeUrlPdf(data.url);
+          setIsDownloadError(false);
+        } else {
+          setResumeUrlPdf(null);
+          setIsDownloadError(true);
         }
 
         // doc
@@ -72,10 +76,14 @@ const Resume = () => {
         data = await fetch(url);
         if (data.status === 200) {
           setResumeUrlDoc(data.url);
+          setIsDownloadError(false);
+        } else {
+          setResumeUrlDoc(null);
+          setIsDownloadError(true);
         }
       } catch (e) {
-        // console.error(e);
-        setIsDownloadError(() => true);
+        console.error(e);
+        setIsDownloadError(true);
       }
     }, [getFetchUrl],
   );
