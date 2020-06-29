@@ -52,81 +52,72 @@ const Resume = () => {
     setIsDownloadError(false);
   };
 
-  const getFetchUrl = useCallback(
+  /* const getFetchUrl = useCallback(
     (ext) => Storage.get(`${resumePath}${lang}.${ext}`),
     [resumePath, lang],
-  );
+  ); */
 
   const getResumeUrl = useCallback(
     async () => {
       console.log('getResumeUrl');
 
       const fetchUrl = async (ext) => {
-        const url = await getFetchUrl(ext);
+        // const url = await getFetchUrl(ext);
+        const url = await Storage.get(`${resumePath}${lang}.${ext}`);
         const data = await fetch(url);
+        console.log('data: ', data);
 
         if (data.status === 200) {
-          setResumeUrlDoc(data.url);
-          setIsDownloadError(false);
-          return true;
+          // setResumeUrlDoc(data.url);
+          // setIsDownloadError(false);
+          return data.url;
         }
 
-        setResumeUrlDoc(null);
-        setIsDownloadError(true);
-        return false;
+        // setResumeUrlDoc(null);
+        // setIsDownloadError(true);
+        return null;
       };
 
       try {
         // pdf
-        const result = await fetchUrl('pdf');
-        console.log('result');
-        console.log(result);
-        if (result) {
-          console.log('if');
-        } else {
-          console.log('else');
-        }
-        /* fetchUrl('pdf')
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((e) => {
-            console.log('here');
-            console.log(e);
-          }); */
+        let result;
 
-        return false;
-        /* let url = await getFetchUrl('pdf');
-        let data = await fetch(url);
-        if (data.status === 200) {
-          setResumeUrlPdf(data.url);
-          setIsDownloadError(false);
-        } else {
-          setResumeUrlPdf(null);
-          setIsDownloadError(true);
-          return null;
-        } */
-
-        // doc
-        /* url = await getFetchUrl('docx');
-        data = await fetch(url);
-        if (data.status === 200) {
-          setResumeUrlDoc(data.url);
-          setIsDownloadError(false);
-        } else {
-          setResumeUrlDoc(null);
-          setIsDownloadError(true);
-          return null;
+        if (!resumeUrlPdf) {
+          result = await fetchUrl('pdf');
+          console.log('result');
+          console.log(result);
+          if (result) {
+            console.log('if');
+            setResumeUrlPdf(result);
+          } else {
+            console.log('else');
+            setIsDownloadError(true);
+            return false;
+          }
         }
 
-        return true; */
+        if (!resumeUrlDoc) {
+          result = await fetchUrl('docx');
+          console.log('result');
+          console.log(result);
+          if (result) {
+            console.log('if');
+            setResumeUrlDoc(result);
+          } else {
+            console.log('else');
+            setIsDownloadError(true);
+            return false;
+          }
+        }
+
+        return true;
       } catch (e) {
         console.log('catch error');
         console.error(e);
         setIsDownloadError(true);
-        return null;
+        return false;
       }
-    }, [getFetchUrl],
+    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc],
   );
 
   // todo: private and protected storage
@@ -135,7 +126,7 @@ const Resume = () => {
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
     console.log('resume - useEffect');
-    console.log(isUserResume);
+    // console.log(isUserResume);
     // if (isUserResume && (!resumeUrlPdf || !resumeUrlDoc)) {
     if (isUserResume && !isDownloadError) {
       getResumeUrl();
