@@ -87,7 +87,7 @@ const Resume = () => {
 
         if (!resumeUrlPdf) {
           result = await fetchUrl('pdf');
-          console.log('result');
+          console.log('result pdf');
           console.log(result);
           if (result) {
             console.log('if');
@@ -102,7 +102,7 @@ const Resume = () => {
 
         if (!resumeUrlDoc) {
           result = await fetchUrl('docx');
-          console.log('result');
+          console.log('result doc');
           console.log(result);
           if (result) {
             console.log('if');
