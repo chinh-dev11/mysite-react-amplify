@@ -159,7 +159,7 @@
     "formatPdf": "Resume pdf format",
     "formatDoc": "Resume doc format",
     "cloudDownload": "Cloud download",
-    "error": "Something when wrong! Please try again later.",
+    "error": "Looks like something when wrong! Please try again later.",
     "tryAgain": "Try again"
   },
   "errors": {

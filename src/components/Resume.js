@@ -5,9 +5,7 @@ import { Storage } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { Transition } from 'react-transition-group';
 import Radium from 'radium';
-import transitionHelper from '../utils/transitionHelper';
 import { authUsername } from '../app/store/authSlice';
 import { menuOpen } from '../app/store/menuSlice';
 
@@ -56,7 +54,9 @@ const Resume = () => {
   const getResumeUrl = useCallback(
     async () => {
       const fetchUrl = async (ext) => {
-        const url = !process.env.REACT_APP_AMPLIFY_MOCK ? await Storage.get(`${resumePath}${lang}.${ext}`) : `${process.env.REACT_APP_STORAGE_URL_MOCK}${resumePath}${lang}.${ext}`;
+        let url = await Storage.get(`${resumePath}${lang}.${ext}`);
+        url = url.replace(/https:\/\/localhost/, 'http://localhost');
+        console.log('url ', url);
         const data = await fetch(url);
 
         return data.status === 200 ? data.url : null;
@@ -107,7 +107,7 @@ const Resume = () => {
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    // console.log('resume - useEffect');
+    console.log('resume - useEffect');
     if (isUserResume && !isDownloadError && !isFetching) {
       getResumeUrl();
     }
@@ -138,7 +138,6 @@ const Resume = () => {
               )}
           </>
         )}
-
         {!isUserResume && (
         <Button
           type="button"
