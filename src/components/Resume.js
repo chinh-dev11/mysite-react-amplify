@@ -53,62 +53,38 @@ const Resume = () => {
     setIsDownloadError(false);
   };
 
-  /* const getFetchUrl = useCallback(
-    (ext) => Storage.get(`${resumePath}${lang}.${ext}`),
-    [resumePath, lang],
-  ); */
-
   const getResumeUrl = useCallback(
     async () => {
-      console.log('getResumeUrl');
-
       const fetchUrl = async (ext) => {
-        // const url = await getFetchUrl(ext);
-        const url = await Storage.get(`${resumePath}${lang}.${ext}`);
+        const url = !process.env.REACT_APP_AMPLIFY_MOCK ? await Storage.get(`${resumePath}${lang}.${ext}`) : `${process.env.REACT_APP_STORAGE_URL_MOCK}${resumePath}${lang}.${ext}`;
         const data = await fetch(url);
-        console.log('data: ', data);
 
-        if (data.status === 200) {
-          // setResumeUrlDoc(data.url);
-          // setIsDownloadError(false);
-          return data.url;
-        }
-
-        // setResumeUrlDoc(null);
-        // setIsDownloadError(true);
-        return null;
+        return data.status === 200 ? data.url : null;
       };
 
       try {
-        // pdf
-        let result;
-
         setIsFetching(true);
 
+        let result;
+
+        // pdf
         if (!resumeUrlPdf) {
           result = await fetchUrl('pdf');
-          console.log('result');
-          console.log(result);
           if (result) {
-            console.log('if');
             setResumeUrlPdf(result);
           } else {
-            console.log('else');
             setIsDownloadError(true);
             setIsFetching(false);
             return false;
           }
         }
 
+        // doc
         if (!resumeUrlDoc) {
           result = await fetchUrl('docx');
-          console.log('result');
-          console.log(result);
           if (result) {
-            console.log('if');
             setResumeUrlDoc(result);
           } else {
-            console.log('else');
             setIsDownloadError(true);
             setIsFetching(false);
             return false;
@@ -118,13 +94,12 @@ const Resume = () => {
         setIsFetching(false);
         return true;
       } catch (e) {
-        console.log('catch error');
-        console.error(e);
+        // console.error(e);
         setIsDownloadError(true);
         setIsFetching(false);
         return false;
       }
-    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc, setIsFetching],
+    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc],
   );
 
   // todo: private and protected storage
@@ -132,14 +107,11 @@ const Resume = () => {
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    console.log('resume - useEffect');
-    // console.log(isUserResume);
-    // if (isUserResume && (!resumeUrlPdf || !resumeUrlDoc)) {
+    // console.log('resume - useEffect');
     if (isUserResume && !isDownloadError && !isFetching) {
       getResumeUrl();
     }
   }, [isUserResume, isDownloadError, isFetching, getResumeUrl]);
-  // }, [isUserResume, isDownloadError, getResumeUrl]);
 
   return (
     <div className="Resume border rounded mb-4 py-4">
