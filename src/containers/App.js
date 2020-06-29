@@ -39,7 +39,7 @@ function App() {
     if (!withCognitoHostedUI) {
       Auth.currentUserInfo()
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         if (user) {
           dispatchRedux(setAuthUsername(user.username));
         }

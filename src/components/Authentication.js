@@ -74,54 +74,17 @@ const Authentication = () => {
     setValidated(true);
   };
 
-  const setFocusHandler = useCallback(
-    () => {
-      // console.log(isUserResume);
-      if (!isUserResume) {
-        if (isMenuOpen && !focusStatus) {
-          usernameInputRef.current.focus();
-          setFocusSet(true);
-
-          // if (usernameInput.current) {
-          // console.log('here');
-          // }
-          /* if (usernameInput.current && !focusSet) {
-            usernameInput.current.focus();
-            setFocusSet(true);
-          } */
-          // setFocusSet(true);
-        } else {
-          setFocusSet(false);
-        }
-      }
-    },
-    [isMenuOpen, isUserResume, focusStatus],
-    // [isMenuOpen, usernameInput, focusSet, setFocusSet],
-  );
-
   useEffect(() => {
-    // console.log('authentication - useEffect');
-    /* Auth.currentUserInfo()
-      .then((user) => {
-        // console.log(user);
-        if (user) {
-          dispatch(setAuthUsername(user.username));
-        }
-      }); */
-
-    setFocusHandler();
-    /* console.log('isUserResume: ', isUserResume);
-    if (isMenuOpen) {
-      if (!focusStatus) {
-        usernameInput.current.focus();
-        setFocusStatus(true);
+    // console.log('Authentication useEffect');
+    if (!isUserResume) {
+      if (isMenuOpen && !focusStatus) {
+        usernameInputRef.current.focus();
+        setFocusSet(true);
+      } else {
+        setFocusSet(false);
       }
-    } else {
-      setFocusStatus(false);
-    } */
-    // console.log(usernameInputRef);
-  }, [setFocusHandler]);
-  // }, [dispatch, setFocusHandler]);
+    }
+  }, [isUserResume, isMenuOpen, focusStatus]);
 
   return (
     <div className="Authentication border rounded p-4">
