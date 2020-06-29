@@ -25,6 +25,7 @@ const Resume = () => {
   const isUserResume = useRef(useSelector(authUsername)).current === process.env.REACT_APP_RESUME_USERNAME;
   const dispatchRedux = useDispatch();
   const [isDownloadError, setIsDownloadError] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const stylesInline = {
     hrefImg: {
       width: '40px',
@@ -82,6 +83,8 @@ const Resume = () => {
         // pdf
         let result;
 
+        setIsFetching(true);
+
         if (!resumeUrlPdf) {
           result = await fetchUrl('pdf');
           console.log('result');
@@ -92,6 +95,7 @@ const Resume = () => {
           } else {
             console.log('else');
             setIsDownloadError(true);
+            setIsFetching(false);
             return false;
           }
         }
@@ -106,18 +110,21 @@ const Resume = () => {
           } else {
             console.log('else');
             setIsDownloadError(true);
+            setIsFetching(false);
             return false;
           }
         }
 
+        setIsFetching(false);
         return true;
       } catch (e) {
         console.log('catch error');
         console.error(e);
         setIsDownloadError(true);
+        setIsFetching(false);
         return false;
       }
-    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc],
+    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc, setIsFetching],
   );
 
   // todo: private and protected storage
@@ -128,10 +135,10 @@ const Resume = () => {
     console.log('resume - useEffect');
     // console.log(isUserResume);
     // if (isUserResume && (!resumeUrlPdf || !resumeUrlDoc)) {
-    if (isUserResume && !isDownloadError) {
+    if (isUserResume && !isDownloadError && !isFetching) {
       getResumeUrl();
     }
-  }, [isUserResume, isDownloadError, getResumeUrl]);
+  }, [isUserResume, isDownloadError, isFetching, getResumeUrl]);
   // }, [isUserResume, isDownloadError, getResumeUrl]);
 
   return (
