@@ -18,6 +18,7 @@ const Resume = () => {
   const { t, i18n } = useTranslation(['translation']);
   const lang = i18n.language;
   // console.log('lang: ', lang);
+  const [currLang, setCurrLang] = useState(lang);
   const [resumeUrlPdf, setResumeUrlPdf] = useState(null);
   const [resumeUrlDoc, setResumeUrlDoc] = useState(null);
   const isUserResume = useRef(useSelector(authUsername)).current === process.env.REACT_APP_RESUME_USERNAME;
@@ -73,6 +74,12 @@ const Resume = () => {
       try {
         setIsFetching(true);
 
+        if (currLang !== lang) {
+          setCurrLang(lang);
+          setResumeUrlPdf(null);
+          setResumeUrlDoc(null);
+        }
+
         let result;
 
         // pdf
@@ -107,7 +114,7 @@ const Resume = () => {
         setIsFetching(false);
         return false;
       }
-    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc],
+    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc, currLang],
   );
 
   // todo: private and protected storage
