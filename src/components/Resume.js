@@ -49,14 +49,22 @@ const Resume = () => {
     setResumeUrlPdf(null);
     setResumeUrlDoc(null);
     setIsDownloadError(false);
+    setIsFetching(false);
   };
 
   const getResumeUrl = useCallback(
     async () => {
       const fetchUrl = async (ext) => {
         let url = await Storage.get(`${resumePath}${lang}.${ext}`);
+        /**
+         * Temp solution, until next fix by Amplify dev team
+         *  - replacing https by http
+         * Storage mock mode error: net::ERR_SSL_PROTOCOL_ERROR (https)
+         * ➜ amplify mock
+         *    Mock Storage endpoint is running at http://localhost:20005
+         * Issue: https://github.com/aws-amplify/amplify-js/issues/5320
+         */
         url = url.replace(/https:\/\/localhost/, 'http://localhost');
-        console.log('url ', url);
         const data = await fetch(url);
 
         return data.status === 200 ? data.url : null;
@@ -107,7 +115,7 @@ const Resume = () => {
   // Storage.get('private.png', { level: 'private' }) // Storage.vault.get('resume-en-new.pdf')
   // Storage.get('protected.png', { level: 'protected' })
   useEffect(() => {
-    console.log('resume - useEffect');
+    // console.log('resume - useEffect');
     if (isUserResume && !isDownloadError && !isFetching) {
       getResumeUrl();
     }
