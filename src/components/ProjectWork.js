@@ -12,6 +12,10 @@ import { menuIsOpen } from '../app/store/menuSlice';
 import { getProjectByOrder } from '../graphql/queries';
 import 'bootstrap/dist/js/bootstrap.min'; // required by Bootstrap carousel
 
+import videotronImgEn from '../assets/project/videotron-mobility-640x340-en.jpg';
+import clubillicoImgEn from '../assets/project/clubillico-640x340-en.jpg';
+import illicowebImgEn from '../assets/project/illicoweb-640x340-en.jpg';
+
 const ProjectWork = () => {
   const siteDomain = process.env.REACT_APP_SITE_DOMAIN;
   const staticUrl = process.env.REACT_APP_STATIC_URL;
@@ -105,6 +109,7 @@ const ProjectWork = () => {
             <div className="carousel-inner">
               {works.map((elem, i) => (
                 <a href={elem.appName ? `https://${elem.appName}.${siteDomain}` : elem.url} target="_blank" key={elem.id} className={`carousel-item bg-dark ${i === 0 && 'active'}`} rel="noreferrer noopener">
+                  {/* <img className="d-block w-100" src={clubillicoImgEn} alt={elem.name} style={{ opacity: '0.3' }} /> */}
                   <img className="d-block w-100" src={`${staticUrl}${elem.image}`} alt={elem.name} style={{ opacity: '0.3' }} />
                   <div className="carousel-caption d-md-block" id={`workLabel${i}`}>
                     <h5>{elem.name}</h5>
