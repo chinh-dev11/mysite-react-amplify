@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useCallback, useRef,
+  useState, useEffect, useRef,
 } from 'react';
 import { Auth } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
@@ -23,8 +23,6 @@ const Authentication = () => {
   // const usernameInput = useRef(null);
   const usernameInputRef = useRef(null);
   const isMenuOpen = useSelector(menuIsOpen);
-  const [focusSet, setFocusSet] = useState(false);
-  const [focusStatus, setFocusStatus] = useState(false);
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const stylesInline = {
@@ -75,16 +73,11 @@ const Authentication = () => {
   };
 
   useEffect(() => {
-    // console.log('Authentication useEffect');
-    if (!isUserResume) {
-      if (isMenuOpen && !focusStatus) {
-        usernameInputRef.current.focus();
-        setFocusSet(true);
-      } else {
-        setFocusSet(false);
-      }
+    // console.log('Authentication - useEffect');
+    if (!isUserResume && isMenuOpen) {
+      if (usernameInputRef.current) usernameInputRef.current.focus();
     }
-  }, [isUserResume, isMenuOpen, focusStatus]);
+  }, [isUserResume, isMenuOpen]);
 
   return (
     <div className="Authentication border rounded p-4">

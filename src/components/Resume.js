@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useCallback, useRef, useReducer,
+  useState, useEffect, useCallback, useRef,
 } from 'react';
 import { Storage } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';

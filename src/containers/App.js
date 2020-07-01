@@ -1,5 +1,5 @@
-import React, { useEffect, useCallback, useState, Suspense, useRef } from 'react';
-import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
+import React, { useEffect, Suspense } from 'react';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -47,7 +47,7 @@ function App() {
 
       document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
     };
-  }, [withCognitoHostedUI]);
+  }, [withCognitoHostedUI, dispatchRedux]);
 
   return (
     <div className="App">
@@ -98,4 +98,3 @@ function App() {
 }
 
 export default App;
-// export default withAuthenticator(App);

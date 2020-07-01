@@ -1,14 +1,13 @@
 import React, {
   useState, useEffect, useCallback,
 } from 'react';
-import { API, graphqlOperation, Auth } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import $ from 'jquery'; // required by Bootstrap carousel
 import { Transition } from 'react-transition-group';
 import transitionHelper from '../utils/transitionHelper';
 import CustomSpinner from './CustomSpinner';
-// import { authUsername } from '../app/store/authSlice';
 import { menuIsOpen } from '../app/store/menuSlice';
 import { getProjectByOrder } from '../graphql/queries';
 import 'bootstrap/dist/js/bootstrap.min'; // required by Bootstrap carousel
@@ -17,17 +16,11 @@ const ProjectWork = () => {
   const siteDomain = process.env.REACT_APP_SITE_DOMAIN;
   const staticUrl = process.env.REACT_APP_STATIC_URL;
   const { t } = useTranslation(['translation']);
-  // const isAuthUsername = useSelector(authUsername);
   const isMenuOpen = useSelector(menuIsOpen);
   const [works, setWorks] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const getList = async () => {
-    // const user1 = await Auth.currentCredentials(); // IAM - currentUserCredentials()
-    // console.log(user1); // NotAuthorizedException: Unauthenticated access is not supported for this identity pool.
-    // const user2 = await Auth.currentAuthenticatedUser(); // Cognito - currentUserPoolUser()
-    // console.log(user2); // not authenticated
-    // const user4 = await Auth.currentUserInfo(); // Cognito
     const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
 
     try {
@@ -46,12 +39,8 @@ const ProjectWork = () => {
 
   const getWorks = useCallback(
     async () => {
-      // console.log('getWorks');
-      // const user1 = await Auth.currentCredentials();
-      // console.log(user1);
       const items = await getList();
       // console.log('items: ', items);
-
       if (items) {
         setWorks(items);
         setIsLoading(false);
@@ -67,7 +56,6 @@ const ProjectWork = () => {
 
   const toggleCarousel = useCallback(
     () => {
-      // console.log('toggleCarousel: ');
       if (isMenuOpen) {
         $('.carousel').carousel('pause');
       } else {
@@ -79,7 +67,6 @@ const ProjectWork = () => {
 
   useEffect(() => {
     // console.log('useEffect');
-    // if (isAuthUsername && works.length === 0) {
     if (works.length === 0) {
       getWorks();
     }
@@ -88,7 +75,6 @@ const ProjectWork = () => {
       toggleCarousel();
     }
   }, [works.length, getWorks, toggleCarousel]);
-  // }, [isAuthUsername, works.length, getWorks, toggleCarousel]);
 
   return (
     <div className="ProjectWork p-4 my-4 bg-dark rounded">
