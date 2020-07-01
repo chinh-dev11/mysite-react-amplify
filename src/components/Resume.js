@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useCallback, useRef, useReducer,
+  useState, useEffect, useCallback, useRef,
 } from 'react';
 import { Storage } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +18,7 @@ const Resume = () => {
   const { t, i18n } = useTranslation(['translation']);
   const lang = i18n.language;
   // console.log('lang: ', lang);
+  const [currLang, setCurrLang] = useState(lang);
   const [resumeUrlPdf, setResumeUrlPdf] = useState(null);
   const [resumeUrlDoc, setResumeUrlDoc] = useState(null);
   const isUserResume = useRef(useSelector(authUsername)).current === process.env.REACT_APP_RESUME_USERNAME;
@@ -73,6 +74,12 @@ const Resume = () => {
       try {
         setIsFetching(true);
 
+        if (currLang !== lang) {
+          setCurrLang(lang);
+          setResumeUrlPdf(null);
+          setResumeUrlDoc(null);
+        }
+
         let result;
 
         // pdf
@@ -107,7 +114,7 @@ const Resume = () => {
         setIsFetching(false);
         return false;
       }
-    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc],
+    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc, currLang],
   );
 
   // todo: private and protected storage
@@ -130,16 +137,16 @@ const Resume = () => {
             {isDownloadError
               ? (
                 <>
-                  <p className="text-danger my-4">{t('resume.error')}</p>
-                  <Button type="button" variant="outline-primary" size="md" className="w-50 rounded-pill" onClick={tryAgainHandler}>{t('resume.tryAgain')}</Button>
+                  <p className="text-danger my-4">{t('errors.somethingWrong')}</p>
+                  <Button type="button" variant="outline-primary" size="md" className="w-50 rounded-pill" onClick={tryAgainHandler} aria-label={t('errors.tryAgain')}>{t('errors.tryAgain')}</Button>
                 </>
               )
               : (
                 <>
-                  <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
+                  <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2" aria-label={t('resume.formatPdf')}>
                     <img src={iconPdf} alt={t('resume.formatPdf')} style={[stylesInline.hrefImg, stylesInline.imgColor]} key="pdf" />
                   </a>
-                  <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2">
+                  <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2" aria-label={t('resume.formatDoc')}>
                     <img src={iconDoc} alt={t('resume.formatDoc')} style={[stylesInline.hrefImg, stylesInline.imgColor]} key="doc" />
                   </a>
                 </>
@@ -151,6 +158,7 @@ const Resume = () => {
           type="button"
           onClick={cloudDownloadHandler}
           className="border-0 bg-transparent"
+          aria-label={t('resume.cloudDownload')}
         >
           <img src={iconDownload} alt={t('resume.cloudDownload')} style={[stylesInline.btnImg, stylesInline.imgColor]} key="imgDownload" />
         </Button>

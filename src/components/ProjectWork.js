@@ -1,33 +1,30 @@
 import React, {
   useState, useEffect, useCallback,
 } from 'react';
-import { API, graphqlOperation, Auth } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import $ from 'jquery'; // required by Bootstrap carousel
 import { Transition } from 'react-transition-group';
 import transitionHelper from '../utils/transitionHelper';
 import CustomSpinner from './CustomSpinner';
-// import { authUsername } from '../app/store/authSlice';
 import { menuIsOpen } from '../app/store/menuSlice';
 import { getProjectByOrder } from '../graphql/queries';
 import 'bootstrap/dist/js/bootstrap.min'; // required by Bootstrap carousel
+
+import videotronImgEn from '../assets/project/videotron-mobility-640x340-en.jpg';
+import clubillicoImgEn from '../assets/project/clubillico-640x340-en.jpg';
+import illicowebImgEn from '../assets/project/illicoweb-640x340-en.jpg';
 
 const ProjectWork = () => {
   const siteDomain = process.env.REACT_APP_SITE_DOMAIN;
   const staticUrl = process.env.REACT_APP_STATIC_URL;
   const { t } = useTranslation(['translation']);
-  // const isAuthUsername = useSelector(authUsername);
   const isMenuOpen = useSelector(menuIsOpen);
   const [works, setWorks] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const getList = async () => {
-    // const user1 = await Auth.currentCredentials(); // IAM - currentUserCredentials()
-    // console.log(user1); // NotAuthorizedException: Unauthenticated access is not supported for this identity pool.
-    // const user2 = await Auth.currentAuthenticatedUser(); // Cognito - currentUserPoolUser()
-    // console.log(user2); // not authenticated
-    // const user4 = await Auth.currentUserInfo(); // Cognito
     const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
 
     try {
@@ -46,12 +43,8 @@ const ProjectWork = () => {
 
   const getWorks = useCallback(
     async () => {
-      // console.log('getWorks');
-      // const user1 = await Auth.currentCredentials();
-      // console.log(user1);
       const items = await getList();
       // console.log('items: ', items);
-
       if (items) {
         setWorks(items);
         setIsLoading(false);
@@ -67,7 +60,6 @@ const ProjectWork = () => {
 
   const toggleCarousel = useCallback(
     () => {
-      // console.log('toggleCarousel: ');
       if (isMenuOpen) {
         $('.carousel').carousel('pause');
       } else {
@@ -79,7 +71,6 @@ const ProjectWork = () => {
 
   useEffect(() => {
     // console.log('useEffect');
-    // if (isAuthUsername && works.length === 0) {
     if (works.length === 0) {
       getWorks();
     }
@@ -88,7 +79,6 @@ const ProjectWork = () => {
       toggleCarousel();
     }
   }, [works.length, getWorks, toggleCarousel]);
-  // }, [isAuthUsername, works.length, getWorks, toggleCarousel]);
 
   return (
     <div className="ProjectWork p-4 my-4 bg-dark rounded">
@@ -114,28 +104,27 @@ const ProjectWork = () => {
             }}
           >
             <ol className="carousel-indicators">
-              <li data-target="#carouselProjectWork" data-slide-to="0" className="active" />
-              <li data-target="#carouselProjectWork" data-slide-to="1" />
-              <li data-target="#carouselProjectWork" data-slide-to="2" />
+              {works.map((elem, i) => <li key={elem.id} data-target="#carouselProjectWork" data-slide-to={i} className={`${i === 0 ? 'active' : ''}`} role="tab" aria-labelledby={`workLabel${i}`} />)}
             </ol>
             <div className="carousel-inner">
-              {works.map((elem, index) => (
-                <a href={elem.appName ? `https://${elem.appName}.${siteDomain}` : elem.url} target="_blank" key={elem.id} className={`carousel-item bg-dark ${index === 0 && 'active'}`} rel="noreferrer noopener">
+              {works.map((elem, i) => (
+                <a href={elem.appName ? `https://${elem.appName}.${siteDomain}` : elem.url} target="_blank" key={elem.id} className={`carousel-item bg-dark ${i === 0 && 'active'}`} rel="noreferrer noopener">
+                  {/* <img className="d-block w-100" src={clubillicoImgEn} alt={elem.name} style={{ opacity: '0.3' }} /> */}
                   <img className="d-block w-100" src={`${staticUrl}${elem.image}`} alt={elem.name} style={{ opacity: '0.3' }} />
-                  <div className="carousel-caption d-md-block">
+                  <div className="carousel-caption d-md-block" id={`workLabel${i}`}>
                     <h5>{elem.name}</h5>
                     <p><small>{elem.languages}</small></p>
                   </div>
                 </a>
               ))}
             </div>
-            <a className="carousel-control-prev" href="#carouselProjectWork" role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="sr-only">Previous</span>
+            <a className="carousel-control-prev" href="#carouselProjectWork" role="button" data-slide="prev" aria-label={t('general.previous')}>
+              <span className="carousel-control-prev-icon" />
+              <span className="sr-only">{t('general.previous')}</span>
             </a>
-            <a className="carousel-control-next" href="#carouselProjectWork" role="button" data-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="sr-only">Next</span>
+            <a className="carousel-control-next" href="#carouselProjectWork" role="button" data-slide="next" aria-label={t('general.next')}>
+              <span className="carousel-control-next-icon" />
+              <span className="sr-only">{t('general.next')}</span>
             </a>
           </div>
         )}

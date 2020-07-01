@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useCallback, useRef,
+  useState, useEffect, useRef,
 } from 'react';
 import { Auth } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
@@ -23,8 +23,6 @@ const Authentication = () => {
   // const usernameInput = useRef(null);
   const usernameInputRef = useRef(null);
   const isMenuOpen = useSelector(menuIsOpen);
-  const [focusSet, setFocusSet] = useState(false);
-  const [focusStatus, setFocusStatus] = useState(false);
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const stylesInline = {
@@ -75,16 +73,11 @@ const Authentication = () => {
   };
 
   useEffect(() => {
-    // console.log('Authentication useEffect');
-    if (!isUserResume) {
-      if (isMenuOpen && !focusStatus) {
-        usernameInputRef.current.focus();
-        setFocusSet(true);
-      } else {
-        setFocusSet(false);
-      }
+    // console.log('Authentication - useEffect');
+    if (!isUserResume && isMenuOpen) {
+      if (usernameInputRef.current) usernameInputRef.current.focus();
     }
-  }, [isUserResume, isMenuOpen, focusStatus]);
+  }, [isUserResume, isMenuOpen]);
 
   return (
     <div className="Authentication border rounded p-4">
@@ -93,20 +86,20 @@ const Authentication = () => {
           <Form noValidate validated={validated} onSubmit={submitHandler}>
             <Form.Group controlId="validationAuthUsername">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field1.label')}</Form.Label>
-              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInputRef} />
+              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInputRef} aria-required />
               <Form.Control.Feedback type="invalid" id="authUsernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="validationAuthPassword">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field2.label')}</Form.Label>
-              <Form.Control onChange={passwordHandler} type="password" aria-describedby="authPasswordHelpBlock" required className="text-center border-0" style={stylesInline} />
+              <Form.Control onChange={passwordHandler} type="password" aria-describedby="authPasswordHelpBlock" required className="text-center border-0" style={stylesInline} aria-required />
               <Form.Control.Feedback type="invalid" id="authPasswordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
             </Form.Group>
-            <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto rounded-pill">
+            <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto rounded-pill" aria-label={t('authentication.signIn.btn.signin')}>
               {isLoading
                 ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
                 : t('authentication.signIn.btn.signIn')}
             </Button>
-            <Form.Control.Feedback className="invalid-feedback text-center mt-3">{authError}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid" className={`${authError ? 'd-block' : ''} text-center mt-3`} aria-hidden={!authError}>{authError}</Form.Control.Feedback>
           </Form>
         )
         : <Resume className="border-0" />}
