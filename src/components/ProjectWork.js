@@ -86,6 +86,9 @@ const ProjectWork = () => {
         <span className="mr-2">{t('project.work')}</span>
         {isLoading && (<CustomSpinner sz="sm" color="light" />)}
       </h2>
+      <img src={videotronImgEn} alt="" />
+      <img src={clubillicoImgEn} alt="" />
+      <img src={illicowebImgEn} alt="" />
       {!isLoading && works.length > 0 && (
       <Transition
         in
