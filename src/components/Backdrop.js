@@ -40,7 +40,7 @@ const Backdrop = () => {
   }, [isOpen, keyDownHandler]);
 
   return (
-    <div onClick={menuCloseHandler} onKeyDown={keyDownHandler} role="button" tabIndex="0" aria-label={t('menu.backdropLabel')} className="Backdrop" style={stylesInline} />
+    <div onClick={menuCloseHandler} onKeyDown={keyDownHandler} role="button" tabIndex="0" aria-label={t('menu.backdropLabel')} className="Backdrop" style={stylesInline} aria-hidden={!isOpen} />
   );
 };
 

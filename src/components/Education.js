@@ -60,20 +60,23 @@ const Education = () => {
         >
           {(state) => (
             <Accordion
+              as="ul"
               defaultActiveKey="0"
               style={{
                 ...transitionHelper.defaultStyle,
                 ...transitionHelper.transitionStyles[state],
               }}
+              className="p-0"
+              role="tablist"
             >
               {certs.map((elem, i) => (
-                <Card key={elem.id}>
-                  <Accordion.Toggle as={Card.Header} eventKey={i}>
+                <Card key={elem.id} as="li">
+                  <Accordion.Toggle as={Card.Header} eventKey={i} id={`cert${i}Tab`} role="tab">
                     {elem.name}
                     {elem.type === 'certificate' && ` (${t('education.certificate')})`}
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey={i}>
-                    <Card.Body>
+                    <Card.Body role="tabpanel" aria-labelledby={`cert${i}Tab`}>
                       <Card.Title>{elem.institution}</Card.Title>
                       <Row className="no-gutters flex-row">
                         <Col xs="7">

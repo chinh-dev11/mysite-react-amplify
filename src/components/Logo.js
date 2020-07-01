@@ -13,7 +13,7 @@ const Logo = () => {
   };
   return (
     <div>
-      <i style={styleInline}>clê</i>
+      <a href="/" className="d-block" rel="noopener noreferrer"><i style={styleInline}>clê</i></a>
     </div>
   );
 };

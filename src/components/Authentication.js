@@ -93,20 +93,20 @@ const Authentication = () => {
           <Form noValidate validated={validated} onSubmit={submitHandler}>
             <Form.Group controlId="validationAuthUsername">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field1.label')}</Form.Label>
-              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInputRef} />
+              <Form.Control onChange={usernameHandler} type="text" aria-describedby="authUsernameHelpBlock" required className="text-center border-0" style={stylesInline} tabIndex="0" ref={usernameInputRef} aria-required />
               <Form.Control.Feedback type="invalid" id="authUsernameHelpBlock" className="text-center">{t('authentication.signIn.field1.desc')}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="validationAuthPassword">
               <Form.Label className="d-block text-center">{t('authentication.signIn.field2.label')}</Form.Label>
-              <Form.Control onChange={passwordHandler} type="password" aria-describedby="authPasswordHelpBlock" required className="text-center border-0" style={stylesInline} />
+              <Form.Control onChange={passwordHandler} type="password" aria-describedby="authPasswordHelpBlock" required className="text-center border-0" style={stylesInline} aria-required />
               <Form.Control.Feedback type="invalid" id="authPasswordHelpBlock" className="text-center">{t('authentication.signIn.field2.desc')}</Form.Control.Feedback>
             </Form.Group>
-            <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto rounded-pill">
+            <Button type="submit" variant="outline-primary" size="md" className="w-50 text-center mt-2 d-block mx-auto rounded-pill" aria-label={t('authentication.signIn.btn.signin')}>
               {isLoading
                 ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
                 : t('authentication.signIn.btn.signIn')}
             </Button>
-            <Form.Control.Feedback className="invalid-feedback text-center mt-3">{authError}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid" className={`${authError ? 'd-block' : ''} text-center mt-3`} aria-hidden={!authError}>{authError}</Form.Control.Feedback>
           </Form>
         )
         : <Resume className="border-0" />}
