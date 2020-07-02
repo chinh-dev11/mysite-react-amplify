@@ -60,7 +60,7 @@ function App() {
               <Row>
                 {/* <Admin /> */}
                 <Col lg="6">
-                  {/* <About /> */}
+                  <About />
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
@@ -69,12 +69,12 @@ function App() {
                 </Col>
                 <Col lg="12">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectLab /> */}
+                    <ProjectLab />
                   </Suspense>
                 </Col>
                 <Col lg="6">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <Education /> */}
+                    <Education />
                   </Suspense>
                 </Col>
                 <Col lg="6">
