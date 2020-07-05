@@ -84,8 +84,8 @@ exports.handler = async (event, context, callback) => {
   return new Promise((resolve, reject) => {
     axios.get(siteverifyUrl)
       .then((res) => {
-        console.log(res.status);
-        console.log(res.data);
+        // console.log(res.status);
+        // console.log(res.data);
         /* {
           success: true,
           challenge_ts: '2020-06-20T21:21:46Z',
@@ -98,7 +98,7 @@ exports.handler = async (event, context, callback) => {
           AWS.config.credentials.refresh(() => {
             ses.sendEmail(params, (err) => {
               if (err) {
-                console.log(`ses - ${err}`);
+                console.error(err);
                 reject(callback(err));
               }
 
@@ -110,7 +110,7 @@ exports.handler = async (event, context, callback) => {
         reject(callback(res.data['error-codes']));
       })
       .catch((err) => {
-        console.log(`siteverify - ${err}`);
+        console.error(err);
         reject(callback(err));
       });
   });
