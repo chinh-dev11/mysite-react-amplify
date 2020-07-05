@@ -1,11 +1,14 @@
-import React, { useEffect, Suspense } from 'react';
-import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import React, { useEffect, useCallback, useState, Suspense, useRef } from 'react';
+import { AmplifyAuthenticator, withAuthenticator } from '@aws-amplify/ui-react';
+import { useTranslation } from 'react-i18next';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {Auth} from 'aws-amplify'
-import {useDispatch} from 'react-redux'
-import {setAuthUsername} from '../app/store/authSlice'
+import { Auth } from 'aws-amplify';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  logIn, logOut, authIsLogged, setAuthUsername,
+} from '../app/store/authSlice';
 
 import Menu from './Menu';
 import Header from './Header';
@@ -18,7 +21,7 @@ import Footer from './Footer';
 import CustomSpinner from '../components/CustomSpinner'
 // import Recaptcha3 from '../components/ReCaptcha3'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
-// import Admin from '../components/Admin'
+import Admin from '../components/Admin'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.scss';
@@ -29,31 +32,76 @@ const Education = React.lazy(() => import('../components/Education')); // lazy-l
 
 function App() {
   // console.log('App');
+  // console.log(process.env);
+  const { t } = useTranslation(['translation']);
   const withCognitoHostedUI = process.env.REACT_APP_COGNITO_HOSTED_UI === 'true';
+  const isAuthenticated = useSelector(authIsLogged);
+  const dispatchRedux = useDispatch();
+  const [isBackendDown, setIsBackendDown] = useState(false);
   // const recaptchaRef = useRef(null)
   const recaptchaSiteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY
-  const dispatchRedux = useDispatch()
+
+  const autoSignin = () => Auth.signIn({
+    username: 'anon',
+    // username: process.env.REACT_APP_ANON_USERNAME,
+    password: 'Passw0rd!',
+    // password: process.env.REACT_APP_ANON_PASSWORD,
+  });
+
+  const setAuth = useCallback(
+    (username) => {
+      if (username) {
+        dispatchRedux(logIn());
+        dispatchRedux(setAuthUsername(username));
+      } else {
+        dispatchRedux(logOut());
+        dispatchRedux(setAuthUsername(null));
+      }
+    }, [dispatchRedux],
+  );
 
   useEffect(() => {
-    // console.log('useEffect');
+    console.log('useEffect');
     if (!withCognitoHostedUI) {
-      Auth.currentUserInfo()
-      .then((user) => {
-        // console.log(user);
-        if (user) {
-          dispatchRedux(setAuthUsername(user.username));
+      let user = null;
+      const init = async () => {
+        try {
+          // if anon idToken exists and valid
+          user = await Auth.currentAuthenticatedUser();
+          // console.log(`try1: ${user}`);
+        } catch (err) {
+          // anon auto-signin - no Cognito idToken exists in Local Storage
+          // console.error(err); // not authenticated
+          try {
+            user = await autoSignin();
+            // console.log(`try2: ${user}`);
+          } catch (error) {
+            console.error(error); // "NotAuthorizedException" - Incorrect username or password.
+            /* this should not happen since the anon credentials are programmatically provided in code. Unless there's a problem with Cognito authentication, network problem,...
+            in this case, site showing an updating message - see isBackendDown 'errors.CognitoAuthFailed' node at the end of file */
+          }
+        } finally {
+          console.log(user);
+          if (user) {
+            setAuth(user.username);
+          } else {
+            setAuth();
+            setIsBackendDown(true);
+          }
         }
-      });
 
-      document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
-    };
-  }, [withCognitoHostedUI, dispatchRedux]);
+        document.querySelector('.Content').style.marginTop = `${document.querySelector('.Header').clientHeight}px`;
+      };
+
+      init();
+    }
+  }, [withCognitoHostedUI, setAuth]);
 
   return (
     <div className="App">
       {withCognitoHostedUI
         ? <AmplifyAuthenticator />
-        : (
+        : isAuthenticated && (
           <>
             <Header />
             <Container className="Content">
@@ -64,7 +112,7 @@ function App() {
                 </Col>
                 <Col lg="6" className="flex-column align-self-center">
                   <Suspense fallback={<CustomSpinner sz="lg" color="dark" />}>
-                    {/* <ProjectWork /> */}
+                    <ProjectWork />
                   </Suspense>
                 </Col>
                 <Col lg="12">
@@ -93,8 +141,19 @@ function App() {
             {/* <Recaptcha3 ref={recaptchaRef} /> */}
           </>
         )}
+      {isBackendDown && (
+        <>
+          <Header menuDisabled="true" />
+          <Container>
+            <Row className="Content">
+              <Col lg="6">{t('errors.CognitoAuthFailed')}.</Col>
+            </Row>
+          </Container>
+        </>
+      )}
     </div>
   );
 }
 
 export default App;
+// export default withAuthenticator(App);
