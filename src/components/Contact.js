@@ -51,9 +51,8 @@ const Contact = (props) => {
         setSendFailed(false);
         setIsLoading(false);
       })
-      // .catch(() => {
       .catch((err) => {
-        console.log('err: ', err);
+        console.error(err);
         setIsSent(false);
         setSendFailed(true);
         setIsLoading(false);

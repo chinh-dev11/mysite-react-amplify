@@ -109,7 +109,7 @@ const Resume = () => {
         setIsFetching(false);
         return true;
       } catch (e) {
-        // console.error(e);
+        console.error(e);
         setIsDownloadError(true);
         setIsFetching(false);
         return false;
