@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { API, graphqlOperation, Auth } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
@@ -42,19 +42,6 @@ const Contact = (props) => {
       token,
       reCaptchaSecretKey,
     };
-    console.log(payload);
-    const user1 = await Auth.currentAuthenticatedUser(); // error:  not authenticated
-    console.log(user1);
-    const user2 = await Auth.currentCredentials(); // error: no current user
-    console.log(user2);
-    const user3 = await Auth.currentSession(); // error: no current user
-    console.log(user3);
-    const user4 = await Auth.currentUserCredentials(); // authenticated: false
-    console.log(user4);
-    const user5 = await Auth.currentUserInfo(); // null
-    console.log(user5);
-    const user6 = await Auth.currentUserPoolUser(); // error: no current user
-    console.log(user6);
 
     setIsLoading(true);
 
@@ -81,7 +68,7 @@ const Contact = (props) => {
     if (form.checkValidity()) {
       executeRecaptcha('form/contact')
         .then((token) => {
-          console.log(token);
+          // console.log(token);
           sendingEmail(token);
         });
       /* inRecaptchaRef.current.execute({action: 'contact-form'})
