@@ -26,7 +26,8 @@ const MenuButton = (props) => {
   };
 
   useEffect(() => {
-    // console.log('useEffect');
+    console.log('MenuButton - useEffect');
+    console.log(`isOpen: ${isOpen}`);
     if (disabled === 'true') {
       setBtnDisabled(true);
     } else {

@@ -137,7 +137,10 @@ const Resume = () => {
             {isDownloadError
               ? (
                 <>
-                  <p className="text-danger my-4">{t('errors.somethingWrong')}</p>
+                  <p className="text-danger my-4">
+                    {t('errors.somethingWrong')}
+                    .
+                  </p>
                   <Button type="button" variant="outline-primary" size="md" className="w-50 rounded-pill" onClick={tryAgainHandler} aria-label={t('errors.tryAgain')}>{t('errors.tryAgain')}</Button>
                 </>
               )
