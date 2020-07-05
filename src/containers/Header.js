@@ -1,5 +1,4 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
 import Logo from '../components/Logo';
 import MenuButton from '../components/MenuButton';
 

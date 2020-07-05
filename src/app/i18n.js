@@ -23,13 +23,13 @@ i18n
   // learn more: https://github.com/i18next/i18next-xhr-backend
   // .use(Backend)
   .use(LanguageDetector) // passes i18n down to react-i18next
-  // connect with React
-  .use(initReactI18next)
+  .use(initReactI18next) // connect with React
+  // .use(reactI18nextModule) // passes i18n down to react-i18next - Error: Attempted import error: 'reactI18nextModule' is not exported from 'react-i18next'.
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     debug: false,
     resources,
-    lng: 'en',
+    // lng: 'en', // unset to get browser language (LanguageDetector)
     // keySeparator: true,
     fallbackLng: 'en',
     whitelist: ['en', 'fr', 'vn'],

@@ -1,7 +1,7 @@
 {
   "about": {
     "title": "About",
-    "txt": "<i>Skilled</i> web developer, with a keen eye for <i>detail</i>, and <i>driven</i> by working with <i>emerging technologies</i>."
+    "txt": "<i>Skilled</i> web developer, with a keen eye for <i>detail</i>, <i>driven</i> by learning and working with <i>emerging technologies</i>"
   },
   "authentication": {
     "title": "Authentication",
@@ -15,68 +15,33 @@
         "desc": "Enter provided password"
       },
       "btn": {
-        "signIn": "Sign In",
-        "download": "Download resume"
-      },
-      "t1": "Forget your password?",
-      "t2": "Reset password",
-      "t3": "No account?",
-      "t4": "Create account",
-      "t5": "Sign In"
-    },
-    "reset": {
-      "heading1": "Reset your password",
-      "field1": {
-        "label": "Username",
-        "desc": "Enter your username"
-      },
-      "t1": "Back to Sign In",
-      "t2": "Send Code"
-    },
-    "create": {
-      "heading1": "Create a new account resume",
-      "field1": {
-        "label": "Username",
-        "desc": "Username"
-      },
-      "field2": {
-        "label": "Password",
-        "desc": "Password"
-      },
-      "field3": {
-        "label": "Email",
-        "desc": "Email"
-      },
-      "field4": {
-        "label": "Phone Number",
-        "desc": "Phone Number"
-      },
-      "t1": "Have an account?",
-      "t2": "Sign in",
-      "t3": "Create account"
+        "signIn": "Sign In"
+      }
     }
+  },
+  "resume": {
+    "title": "Download resume",
+    "formatPdf": "Resume pdf format",
+    "formatDoc": "Resume doc format",
+    "cloudDownload": "Cloud download"
   },
   "contact": {
     "title": "Contact",
     "heading1": "Get in touch",
     "field1": {
-      "label": "Name",
-      "placeholder": "Your name"
+      "label": "Name"
     },
     "field2": {
-      "label": "Email",
-      "placeholder": "name@example.com"
+      "label": "Email"
     },
     "field3": {
-      "label": "Subject",
-      "placeholder": "About..."
+      "label": "Subject"
     },
     "field4": {
-      "label": "Message",
-      "placeholder": "Your message..."
+      "label": "Message"
     },
-    "btnSubmit": "Send message",
-    "t1": "Your message has been sent",
+    "btnSubmit": "Send Message",
+    "t1": "Your message has been sent!",
     "t2": "I will get back to you as soon as possible",
     "t3": "Thank you",
     "email": {
@@ -88,17 +53,9 @@
         "message": "<h3>Please DO NOT REPLY to this message!</h3><p>This email is only to confirm that I've received your inquiry, hence ensuring that the email address provided is valid.</p><p>I'll get back to you asap.</p><p>Thank you.</p>"
       }
     },
-    "errors": {
-      "emailSending": "There's been server/network technical problems. Please try again later."
-    },
     "feedback": {
-      "required": "Field required!"
+      "required": "field required!"
     }
-  },
-  "copyright": {
-    "title": "Copyright",
-    "t1": "chinhle.ca, 2020",
-    "t2": "All rights reserved"
   },
   "lang": {
     "title": "Languages",
@@ -138,36 +95,25 @@
       "instagram": "Instagram account"
     }
   },
-  "recaptcha": {
-    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
-    "url1": "https://policies.google.com/privacy",
-    "url2": "https://policies.google.com/terms"
-  },
-  "server": {
-    "error": {
-      "request": {
-        "t1": "There's something wrong with our server",
-        "t2": "Please try again later"
-      }
-    }
+  "copyright": {
+    "title": "Copyright",
+    "t1": "chinh.ca, 2020",
+    "t2": "All rights reserved"
   },
   "menu": {
-    "backdropLabel": "Close the navigation"
-  },
-  "resume": {
-    "title": "Download my resume",
-    "formatPdf": "Resume pdf format",
-    "formatDoc": "Resume doc format",
-    "cloudDownload": "Cloud download",
-    "error": "Something when wrong! Please try again later.",
-    "tryAgain": "Try again"
-  },
-  "errors": {
-    "NotAuthorizedException": "Incorrect username or password.",
-    "UserNotFoundException": "User does not exist.",
-    "CognitoAuthFailed": "I am updating the site... Please revisit me at a later time."
+    "backdropLabel": "Close the menu",
+    "hamburger": "Open / Close menu"
   },
   "general": {
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "next": "next",
+    "previous": "previous"
+  },
+  "errors": {
+    "somethingWrong": "Looks like something went wrong! Please try again later",
+    "tryAgain": "Try Again",
+    "NotAuthorizedException": "Incorrect username or password",
+    "UserNotFoundException": "User does not exist",
+    "CognitoAuthFailed": "I am updating the site... Please revisit me at a later time"
   }
 }

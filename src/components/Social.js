@@ -26,22 +26,22 @@ const Social = () => {
   return (
     <ListGroup as="ul" horizontal className="Social justify-content-center">
       <ListGroup.Item as="li" className="border-0">
-        <a href={linkLinkedin} target="_blank" rel="noreferrer noopener" title={t('social.alt.linkedin')}>
+        <a href={linkLinkedin} target="_blank" rel="noreferrer noopener" title={t('social.alt.linkedin')} aria-label={t('social.alt.linkedin')}>
           <img src={iconLinkedin} alt={t('social.alt.linkedin')} style={stylesInline} key={t('social.alt.linkedin')} />
         </a>
       </ListGroup.Item>
       <ListGroup.Item as="li" className="border-0">
-        <a href={linkGithub} target="_blank" rel="noreferrer noopener" title={t('social.alt.github')}>
+        <a href={linkGithub} target="_blank" rel="noreferrer noopener" title={t('social.alt.github')} aria-label={t('social.alt.github')}>
           <img src={iconGithub} alt={t('social.alt.github')} style={stylesInline} key={t('social.alt.github')} />
         </a>
       </ListGroup.Item>
       <ListGroup.Item as="li" className="border-0">
-        <a href={linkGitlab} target="_blank" rel="noreferrer noopener" title={t('social.alt.gitlab')}>
+        <a href={linkGitlab} target="_blank" rel="noreferrer noopener" title={t('social.alt.gitlab')} aria-label={t('social.alt.gitlab')}>
           <img src={iconGitlab} alt={t('social.alt.gitlab')} style={stylesInline} key={t('social.alt.gitlab')} />
         </a>
       </ListGroup.Item>
       <ListGroup.Item as="li" className="border-0">
-        <a href={linkInstagram} target="_blank" rel="noreferrer noopener" title={t('social.alt.instagram')}>
+        <a href={linkInstagram} target="_blank" rel="noreferrer noopener" title={t('social.alt.instagram')} aria-label={t('social.alt.instagram')}>
           <img src={iconInstagram} alt={t('social.alt.instagram')} style={stylesInline} key={t('social.alt.instagram')} />
         </a>
       </ListGroup.Item>

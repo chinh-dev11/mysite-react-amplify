@@ -51,9 +51,8 @@ const Contact = (props) => {
         setSendFailed(false);
         setIsLoading(false);
       })
-      // .catch(() => {
       .catch((err) => {
-        console.log('err: ', err);
+        console.error(err);
         setIsSent(false);
         setSendFailed(true);
         setIsLoading(false);
@@ -67,7 +66,7 @@ const Contact = (props) => {
     evt.stopPropagation();
 
     if (form.checkValidity()) {
-      executeRecaptcha('contact_form')
+      executeRecaptcha('form/contact')
         .then((token) => {
           // console.log(token);
           sendingEmail(token);
@@ -91,22 +90,31 @@ const Contact = (props) => {
       {isSent
         ? (
           <div className="border rounded p-4">
-            <p>{`${t('contact.t1')}.`}</p>
-            <p>{`${t('contact.t2')}.`}</p>
-            <p>{`${t('contact.t3')}.`}</p>
+            <p>
+              {`${t('contact.t1')}`}
+              !
+            </p>
+            <p>
+              {`${t('contact.t2')}`}
+              .
+            </p>
+            <p>
+              {`${t('contact.t3')}`}
+              .
+            </p>
           </div>
         )
         : (
           <Form onSubmit={submitHandler} noValidate validated={validated} className="border rounded p-4">
             <Form.Group controlId="contactName">
               {/* <Form.Label>{t('contact.field1.label')}</Form.Label> */}
-              <Form.Control type="text" placeholder={t('contact.field1.label')} onChange={(evt) => setName(evt.target.value)} required aria-describedby="contactUsernameHelpBlock" className="border-0" style={stylesInline} />
-              <Form.Control.Feedback type="invalid" id="contactUsernameHelpBlock" style={{ paddingLeft: '0.75rem' }}>{t('contact.feedback.required')}</Form.Control.Feedback>
+              <Form.Control type="text" placeholder={t('contact.field1.label')} onChange={(evt) => setName(evt.target.value)} required className="border-0" style={stylesInline} aria-describedby="contactNameHelpBlock" aria-required />
+              <Form.Control.Feedback type="invalid" id="contactNameHelpBlock" style={{ paddingLeft: '0.75rem' }}>{`${t('contact.field1.label')} ${t('contact.feedback.required')}`}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="contactEmail">
               {/* <Form.Label>{t('contact.field2.label')}</Form.Label> */}
-              <Form.Control type="email" placeholder={t('contact.field2.label')} onChange={(evt) => setEmail(evt.target.value)} required aria-describedby="contactEmailHelpBlock" className="border-0" style={stylesInline} />
-              <Form.Control.Feedback type="invalid" id="contactEmailHelpBlock" style={{ paddingLeft: '0.75rem' }}>{t('contact.feedback.required')}</Form.Control.Feedback>
+              <Form.Control type="email" placeholder={t('contact.field2.label')} onChange={(evt) => setEmail(evt.target.value)} required className="border-0" style={stylesInline} aria-describedby="contactEmailHelpBlock" aria-required />
+              <Form.Control.Feedback type="invalid" id="contactEmailHelpBlock" style={{ paddingLeft: '0.75rem' }}>{`${t('contact.field2.label')} ${t('contact.feedback.required')}`}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="contactSubject">
               {/* <Form.Label>{t('contact.field3.label')}</Form.Label> */}
@@ -114,15 +122,18 @@ const Contact = (props) => {
             </Form.Group>
             <Form.Group controlId="contactMessage">
               {/* <Form.Label>{t('contact.field4.label')}</Form.Label> */}
-              <Form.Control as="textarea" row="3" placeholder={t('contact.field4.label')} onChange={(evt) => setMessage(evt.target.value)} required aria-describedby="contactMessageHelpBlock" className="border-0" style={stylesInline} />
-              <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock" style={{ paddingLeft: '0.75rem' }}>{t('contact.feedback.required')}</Form.Control.Feedback>
+              <Form.Control as="textarea" row="3" placeholder={t('contact.field4.label')} onChange={(evt) => setMessage(evt.target.value)} required className="border-0" style={stylesInline} aria-describedby="contactMessageHelpBlock" aria-required />
+              <Form.Control.Feedback type="invalid" id="contactMessageHelpBlock" style={{ paddingLeft: '0.75rem' }}>{`${t('contact.field3.label')} ${t('contact.feedback.required')}`}</Form.Control.Feedback>
             </Form.Group>
-            <Button variant="outline-primary" size="md" block className="w-50 text-center rounded-pill mx-auto" type="submit">
+            <Button variant="outline-primary" size="md" block className="w-50 text-center rounded-pill mx-auto" type="submit" aria-label={t('contact.btnSubmit')}>
               {isLoading
                 ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
                 : t('contact.btnSubmit')}
             </Button>
-            {sendFailed && <Form.Control.Feedback className="invalid-feedback text-center mt-3">{t('contact.errors.emailSending')}</Form.Control.Feedback>}
+            <Form.Control.Feedback type="invalid" className={`${sendFailed ? 'd-block' : ''} text-center mt-3`} aria-hidden={!sendFailed}>
+              {t('errors.somethingWrong')}
+              .
+            </Form.Control.Feedback>
           </Form>
         )}
     </div>
