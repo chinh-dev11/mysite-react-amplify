@@ -46,7 +46,7 @@ const Authentication = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        // console.error(err);
+        console.error(err);
         if (lang === 'en') {
           setAuthError(err.message);
         } else {

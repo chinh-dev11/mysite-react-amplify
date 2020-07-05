@@ -18,7 +18,7 @@ import Footer from './Footer';
 import CustomSpinner from '../components/CustomSpinner'
 // import Recaptcha3 from '../components/ReCaptcha3'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
-import Admin from '../components/Admin'
+// import Admin from '../components/Admin'
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.scss';
