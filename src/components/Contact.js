@@ -91,9 +91,18 @@ const Contact = (props) => {
       {isSent
         ? (
           <div className="border rounded p-4">
-            <p>{`${t('contact.t1')}.`}</p>
-            <p>{`${t('contact.t2')}.`}</p>
-            <p>{`${t('contact.t3')}.`}</p>
+            <p>
+              {`${t('contact.t1')}`}
+              !
+            </p>
+            <p>
+              {`${t('contact.t2')}`}
+              .
+            </p>
+            <p>
+              {`${t('contact.t3')}`}
+              .
+            </p>
           </div>
         )
         : (
@@ -122,7 +131,10 @@ const Contact = (props) => {
                 ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
                 : t('contact.btnSubmit')}
             </Button>
-            <Form.Control.Feedback type="invalid" className={`${sendFailed ? 'd-block' : ''} text-center mt-3`} aria-hidden={!sendFailed}>{t('errors.somethingWrong')}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid" className={`${sendFailed ? 'd-block' : ''} text-center mt-3`} aria-hidden={!sendFailed}>
+              {t('errors.somethingWrong')}
+              .
+            </Form.Control.Feedback>
           </Form>
         )}
     </div>

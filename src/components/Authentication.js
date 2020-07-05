@@ -46,8 +46,7 @@ const Authentication = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-      // console.error(err);
-      // todo: handle error msg
+        // console.error(err);
         if (lang === 'en') {
           setAuthError(err.message);
         } else {
@@ -99,7 +98,10 @@ const Authentication = () => {
                 ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"><span className="sr-only">{t('general.loading')}</span></Spinner>
                 : t('authentication.signIn.btn.signIn')}
             </Button>
-            <Form.Control.Feedback type="invalid" className={`${authError ? 'd-block' : ''} text-center mt-3`} aria-hidden={!authError}>{authError}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid" className={`${authError ? 'd-block' : ''} text-center mt-3`} aria-hidden={!authError}>
+              {authError}
+              .
+            </Form.Control.Feedback>
           </Form>
         )
         : <Resume className="border-0" />}

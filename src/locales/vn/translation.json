@@ -1,127 +1,119 @@
 {
   "about": {
-    "title": "About",
-    "content": {
-      "heading1": "<i>Skilled</i> web developer",
-      "t1": "with a keen eye for <i>detail</i>",
-      "t2": "and <i>driven</i> by learning+working with <i>emerging technologies</i>"
-    }
+    "title": "Về tôi",
+    "txt": "Nhà phát triển web có <i>tay nghề cao</i>, với một con mắt sắc sảo về <i>chi tiết</i>, <i>thúc đẩy</i> bằng cách học hỏi và làm việc với các <i>công nghệ mới nổi</i>"
   },
   "authentication": {
-    "title": "Authentication",
+    "title": "Xác thực",
     "signIn": {
-      "heading1": "Sign in to download my resume",
       "field1": {
-        "label": "Username",
-        "desc": "Enter your username"
+        "label": "Tên tài khoản",
+        "desc": "Nhập tên người dùng được cung cấp"
       },
       "field2": {
-        "label": "Password",
-        "desc": "Enter your password"
+        "label": "Mật khẩu",
+        "desc": "Nhập mật khẩu được cung cấp"
       },
-      "t1": "Forget your password?",
-      "t2": "Reset password",
-      "t3": "No account?",
-      "t4": "Create account",
-      "t5": "Sign In"
-    },
-    "reset": {
-      "heading1": "Reset your password",
-      "field1": {
-        "label": "Username",
-        "desc": "Enter your username"
-      },
-      "t1": "Back to Sign In",
-      "t2": "Send Code"
-    },
-    "create": {
-      "heading1": "Create a new account resume",
-      "field1": {
-        "label": "Username",
-        "desc": "Username"
-      },
-      "field2": {
-        "label": "Password",
-        "desc": "Password"
-      },
-      "field3": {
-        "label": "Email",
-        "desc": "Email"
-      },
-      "field4": {
-        "label": "Phone Number",
-        "desc": "Phone Number"
-      },
-      "t1": "Have an account?",
-      "t2": "Sign in",
-      "t3": "Create account"
+      "btn": {
+        "signIn": "Đăng Nhập"
+      }
     }
   },
+  "resume": {
+    "title": "Tải về sơ yếu lý lịch",
+    "formatPdf": "Lý lịch định dạng pdf",
+    "formatDoc": "Lý lịch định dạng doc",
+    "cloudDownload": "Tải xuống từ Cloud"
+  },
   "contact": {
-    "title": "Contact",
-    "heading1": "Get in touch",
+    "title": "Tiếp xúc",
+    "heading1": "Liên lạc",
     "field1": {
-      "desc": "Name"
+      "label": "Tên"
     },
     "field2": {
-      "desc": "Email"
+      "label": "Email"
     },
     "field3": {
-      "desc": "Subject"
+      "label": "Chủ từ"
     },
     "field4": {
-      "desc": "Message"
+      "label": "Tin nhắn"
     },
-    "t1": "Send message",
-    "t2": "Your message has been sent",
-    "t3": "I will get back to you as soon as possible",
-    "t4": "Thank you"
-  },
-  "copyright": {
-    "title": "Bản quyền",
-    "t1": "chinhle.ca 2020",
-    "t2": "Đã đăng ký Bản quyền"
+    "btnSubmit": "Gửi Tin Nhắn",
+    "t1": "Tin nhắn của bạn đã được gửi!",
+    "t2": "Tôi sẽ trả lời bạn sớm càng tốt",
+    "t3": "Cảm ơn bạn",
+    "email": {
+      "title": "Thẫm vấn",
+      "headingLabel": "Tên",
+      "textLabel": "Tin nhắn",
+      "confirmation": {
+        "heading": "Xin chào",
+        "message": "<h3>Xin vui lòng đừng trả lời tin nhắn này!</h3><p>Email này chỉ để xác nhận rằng tôi đã nhận được yêu cầu của bạn, do đó đảm bảo rằng địa chỉ email được cung cấp là hợp lệ.</p><p>Tôi sẽ trả lời cho bạn càng sớm càng tốt.</p><p>Cảm ơn bạn.</p>"
+      }
+    },
+    "feedback": {
+      "required": "Đầu vào bắt buộc!"
+    }
   },
   "lang": {
-    "title": "Languages",
+    "title": "Ngôn ngữ",
     "en": {
       "label": "en",
-      "alt": "English"
+      "alt": "Tiếng Anh"
     },
     "fr": {
       "label": "fr",
-      "alt": "French"
+      "alt": "Tiếng Pháp"
     },
     "vn": {
       "label": "vn",
-      "alt": "Vietnamese"
+      "alt": "Tiếng Việt"
     }
   },
   "project": {
-    "title": "Project"
+    "title": "Dự án",
+    "work": "Tác phẩm",
+    "lab": "Thí nghiệm",
+    "demo": "Bản giới thiệu"
   },
   "education": {
-    "title": "Education"
+    "title": "Học vấn",
+    "certificate": "Bằng cấp",
+    "completed": "Hoàn thành",
+    "languages": "Ngôn ngữ lập trình",
+    "link": "Bằng cấp",
+    "linkDetail": "Chi tiết"
   },
   "social": {
-    "title": "Social Media",
+    "title": "Truyền thông xã hội",
     "alt": {
-      "linkedin": "Linkedin account",
-      "github": "Github account",
-      "instagram": "Instagram account"
+      "linkedin": "Trương mục Linkedin",
+      "github": "Trương mục Github",
+      "gitlab": "Trương mục Gitlab",
+      "instagram": "Trương mục Instagram"
     }
   },
-  "recaptcha": {
-    "t1": "This site is protected by reCAPTCHA and the Google privacy policy and terms of services apply.",
-    "url1": "https://policies.google.com/privacy",
-    "url2": "https://policies.google.com/terms"
+  "copyright": {
+    "title": "Bản quyền",
+    "t1": "chinh.ca, 2020",
+    "t2": "Đã đăng ký Bản quyền"
   },
-  "server": {
-    "error": {
-      "request": {
-        "t1": "There's something wrong with our server",
-        "t2": "Please try again later"
-      }
-    }
+  "menu": {
+    "backdropLabel": "Đóng menu",
+    "hamburger": "Mở / Đóng menu"
+  },
+  "general": {
+    "loading": "Đang tải...",
+    "next": "kế tiếp",
+    "previous": "trước"
+  },
+  "errors": {
+    "somethingWrong": "Hình như có gì đó không ổn! Vui lòng thử lại sau",
+    "tryAgain": "Thử Lại",
+    "NotAuthorizedException": "Tên đăng nhập hoặc mật khẩu không chính xác",
+    "UserNotFoundException": "Người dùng không tồn tại",
+    "CognitoAuthFailed": "Tôi đang cập nhật trang web... Vui lòng ghé thăm lại sau"
   }
 }
