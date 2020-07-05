@@ -59,7 +59,14 @@ input MsgLang {
   textLabel: String
 }
 
-type Query {
+type Query
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read], provider: iam }
+    ]
+  ) {
   sendEmail(
     name: String!
     email: String!

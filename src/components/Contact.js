@@ -31,7 +31,7 @@ const Contact = (props) => {
     // confMessage: t('contact.email.confirmation.message'),
   };
 
-  const sendingEmail = (token) => {
+  const sendingEmail = async (token) => {
     const reCaptchaSecretKey = process.env.REACT_APP_RECAPTCHA_SECRET_KEY; // localhost
     const payload = {
       email,

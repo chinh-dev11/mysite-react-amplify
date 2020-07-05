@@ -110,7 +110,7 @@
     "previous": "précédent"
   },
   "errors": {
-    "somethingWrong": "Quelque chose s'est mal passé! Veuillex réessayer plus tard",
+    "somethingWrong": "Quelque chose s'est mal passé! Veuillez réessayer plus tard",
     "tryAgain": "Réessayer",
     "NotAuthorizedException": "Mauvais nom d'utilisateur ou mot de passe",
     "UserNotFoundException": "L'utilisateur n'existe pas",
