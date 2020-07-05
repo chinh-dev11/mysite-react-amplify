@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect,
+  useState, useEffect, useCallback,
 } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useTranslation } from 'react-i18next';
@@ -22,22 +22,25 @@ const ProjectWork = () => {
 
   const getList = async () => {
     const getProjectList = (type, sortDirection) => API.graphql(graphqlOperation(getProjectByOrder, { type, sortDirection }));
-    const result = await getProjectList('work', 'DESC');
-    // console.log(result);
-    if (result.data) {
-      return result.data.getProjectByOrder.items;
-    }
 
-    // console.error(result);
-    return null;
+    try {
+      const result = await getProjectList('work', 'DESC');
+      // console.log(result);
+      if (result.data) {
+        return result.data.getProjectByOrder.items;
+      }
+
+      return null;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
   };
 
-  useEffect(() => {
-    // console.log('useEffect');
-    const init = async () => {
+  const getWorks = useCallback(
+    async () => {
       const items = await getList();
       // console.log('items: ', items);
-
       if (items) {
         setWorks(items);
         setIsLoading(false);
@@ -48,26 +51,38 @@ const ProjectWork = () => {
           });
         }
       }
-    };
+    }, [],
+  );
 
-    if ($('.carousel').length > 0) {
+  const toggleCarousel = useCallback(
+    () => {
       if (isMenuOpen) {
         $('.carousel').carousel('pause');
       } else {
         $('.carousel').carousel();
       }
+    },
+    [isMenuOpen],
+  );
+
+  useEffect(() => {
+    // console.log('useEffect');
+    if (works.length === 0) {
+      getWorks();
     }
 
-    if (isLoading) init();
-  }, [isLoading, isMenuOpen]);
+    if ($('.carousel').length > 0) {
+      toggleCarousel();
+    }
+  }, [works.length, getWorks, toggleCarousel]);
 
   return (
     <div className="ProjectWork p-4 my-4 bg-dark rounded">
       <h2 className="text-center text-light">
-        {t('project.work')}
-        {isLoading && (<CustomSpinner sz="sm" color="dark" />)}
+        <span className="mr-2">{t('project.work')}</span>
+        {isLoading && (<CustomSpinner sz="sm" color="light" />)}
       </h2>
-      {!isLoading && (
+      {!isLoading && works.length > 0 && (
       <Transition
         in
         timeout={transitionHelper.defaultTimeout}
@@ -85,28 +100,26 @@ const ProjectWork = () => {
             }}
           >
             <ol className="carousel-indicators">
-              <li data-target="#carouselProjectWork" data-slide-to="0" className="active" />
-              <li data-target="#carouselProjectWork" data-slide-to="1" />
-              <li data-target="#carouselProjectWork" data-slide-to="2" />
+              {works.map((elem, i) => <li key={elem.id} data-target="#carouselProjectWork" data-slide-to={i} className={`${i === 0 ? 'active' : ''}`} role="tab" aria-labelledby={`workLabel${i}`} />)}
             </ol>
             <div className="carousel-inner">
-              {works.map((elem, index) => (
-                <a href={elem.appName ? `https://${elem.appName}.${siteDomain}` : elem.url} target="_blank" key={elem.id} className={`carousel-item bg-dark ${index === 0 && 'active'}`} rel="noreferrer noopener">
+              {works.map((elem, i) => (
+                <a href={elem.appName ? `https://${elem.appName}.${siteDomain}` : elem.url} target="_blank" key={elem.id} className={`carousel-item bg-dark ${i === 0 && 'active'}`} rel="noreferrer noopener">
                   <img className="d-block w-100" src={`${staticUrl}${elem.image}`} alt={elem.name} style={{ opacity: '0.3' }} />
-                  <div className="carousel-caption d-md-block">
+                  <div className="carousel-caption d-md-block" id={`workLabel${i}`}>
                     <h5>{elem.name}</h5>
                     <p><small>{elem.languages}</small></p>
                   </div>
                 </a>
               ))}
             </div>
-            <a className="carousel-control-prev" href="#carouselProjectWork" role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="sr-only">Previous</span>
+            <a className="carousel-control-prev" href="#carouselProjectWork" role="button" data-slide="prev" aria-label={t('general.previous')}>
+              <span className="carousel-control-prev-icon" />
+              <span className="sr-only">{t('general.previous')}</span>
             </a>
-            <a className="carousel-control-next" href="#carouselProjectWork" role="button" data-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="sr-only">Next</span>
+            <a className="carousel-control-next" href="#carouselProjectWork" role="button" data-slide="next" aria-label={t('general.next')}>
+              <span className="carousel-control-next-icon" />
+              <span className="sr-only">{t('general.next')}</span>
             </a>
           </div>
         )}

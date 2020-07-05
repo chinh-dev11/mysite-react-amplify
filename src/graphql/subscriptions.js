@@ -100,3 +100,435 @@ export const onDeleteEducation = /* GraphQL */ `
     }
   }
 `;
+export const onCreateQuery = /* GraphQL */ `
+  subscription OnCreateQuery {
+    onCreateQuery {
+      sendEmail {
+        message
+      }
+      getProject {
+        id
+        order
+        name
+        type
+        languages
+        image
+        alt
+        url
+        appName
+        enabled
+      }
+      listProjects {
+        items {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        nextToken
+      }
+      getProjectByOrder {
+        items {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        nextToken
+      }
+      getEducation {
+        id
+        name
+        type
+        completedDate
+        languages
+        image
+        alt
+        url
+        urlFrom
+        enabled
+        institution
+      }
+      listEducations {
+        items {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        nextToken
+      }
+      getEducByCompletedDate {
+        items {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        nextToken
+      }
+      getQuery {
+        sendEmail {
+          message
+        }
+        getProject {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        listProjects {
+          nextToken
+        }
+        getProjectByOrder {
+          nextToken
+        }
+        getEducation {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        listEducations {
+          nextToken
+        }
+        getEducByCompletedDate {
+          nextToken
+        }
+        listQuerys {
+          nextToken
+        }
+      }
+      listQuerys {
+        nextToken
+      }
+    }
+  }
+`;
+export const onUpdateQuery = /* GraphQL */ `
+  subscription OnUpdateQuery {
+    onUpdateQuery {
+      sendEmail {
+        message
+      }
+      getProject {
+        id
+        order
+        name
+        type
+        languages
+        image
+        alt
+        url
+        appName
+        enabled
+      }
+      listProjects {
+        items {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        nextToken
+      }
+      getProjectByOrder {
+        items {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        nextToken
+      }
+      getEducation {
+        id
+        name
+        type
+        completedDate
+        languages
+        image
+        alt
+        url
+        urlFrom
+        enabled
+        institution
+      }
+      listEducations {
+        items {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        nextToken
+      }
+      getEducByCompletedDate {
+        items {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        nextToken
+      }
+      getQuery {
+        sendEmail {
+          message
+        }
+        getProject {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        listProjects {
+          nextToken
+        }
+        getProjectByOrder {
+          nextToken
+        }
+        getEducation {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        listEducations {
+          nextToken
+        }
+        getEducByCompletedDate {
+          nextToken
+        }
+        listQuerys {
+          nextToken
+        }
+      }
+      listQuerys {
+        nextToken
+      }
+    }
+  }
+`;
+export const onDeleteQuery = /* GraphQL */ `
+  subscription OnDeleteQuery {
+    onDeleteQuery {
+      sendEmail {
+        message
+      }
+      getProject {
+        id
+        order
+        name
+        type
+        languages
+        image
+        alt
+        url
+        appName
+        enabled
+      }
+      listProjects {
+        items {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        nextToken
+      }
+      getProjectByOrder {
+        items {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        nextToken
+      }
+      getEducation {
+        id
+        name
+        type
+        completedDate
+        languages
+        image
+        alt
+        url
+        urlFrom
+        enabled
+        institution
+      }
+      listEducations {
+        items {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        nextToken
+      }
+      getEducByCompletedDate {
+        items {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        nextToken
+      }
+      getQuery {
+        sendEmail {
+          message
+        }
+        getProject {
+          id
+          order
+          name
+          type
+          languages
+          image
+          alt
+          url
+          appName
+          enabled
+        }
+        listProjects {
+          nextToken
+        }
+        getProjectByOrder {
+          nextToken
+        }
+        getEducation {
+          id
+          name
+          type
+          completedDate
+          languages
+          image
+          alt
+          url
+          urlFrom
+          enabled
+          institution
+        }
+        listEducations {
+          nextToken
+        }
+        getEducByCompletedDate {
+          nextToken
+        }
+        listQuerys {
+          nextToken
+        }
+      }
+      listQuerys {
+        nextToken
+      }
+    }
+  }
+`;

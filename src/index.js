@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Amplify, { Storage } from 'aws-amplify';
+import Amplify from 'aws-amplify';
+// import Amplify, { Storage } from 'aws-amplify';
 import { Provider } from 'react-redux';
 import WebFont from 'webfontloader';
 import App from './containers/App';
