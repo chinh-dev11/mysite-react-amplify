@@ -25,7 +25,7 @@ const Lang = () => {
         <button type="button" onClick={() => changeLanguage(t('lang.en.label'))} className={[`${cssClasses} mr-3 ${lang === t('lang.en.label') && 'text-primary'}`]} style={stylesInline} key={t('lang.en.label')}>{t('lang.en.label')}</button>
       </ListGroup.Item>
       <ListGroup.Item as="li" className="border-0 p-0">
-        <button type="button" onClick={() => changeLanguage(t('lang.fr.label'))} className={[`${cssClasses} mr-3 ${lang === t('lang.fr.label') && 'text-primary'}`]} style={stylesInline} key={t('lang.fr.label')}>{t('lang.fr.label')}</button>
+        <button type="button" onClick={() => changeLanguage(t('lang.fr.label'))} className={[`${cssClasses} ${lang === t('lang.fr.label') && 'text-primary'}`]} style={stylesInline} key={t('lang.fr.label')}>{t('lang.fr.label')}</button>
       </ListGroup.Item>
       {/* <ListGroup.Item as="li" className="border-0 p-0">
         <button type="button" onClick={() => changeLanguage(t('lang.vn.label'))} className={[`${cssClasses} ${lang === t('lang.vn.label') && 'text-primary'}`]} style={stylesInline} key={t('lang.vn.label')}>{t('lang.vn.label')}</button>
