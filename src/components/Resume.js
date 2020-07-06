@@ -9,7 +9,7 @@ import Radium from 'radium';
 import { authUsername } from '../app/store/authSlice';
 import { menuOpen } from '../app/store/menuSlice';
 
-import iconDoc from '../assets/icons/iconfinder_Download_doc_5623450.svg';
+// import iconDoc from '../assets/icons/iconfinder_Download_doc_5623450.svg';
 import iconPdf from '../assets/icons/iconfinder_Download_pdf_5623460.svg';
 import iconDownload from '../assets/icons/iconfinder_download-cloud_2561262.svg';
 
@@ -20,7 +20,7 @@ const Resume = () => {
   // console.log('lang: ', lang);
   const [currLang, setCurrLang] = useState(lang);
   const [resumeUrlPdf, setResumeUrlPdf] = useState(null);
-  const [resumeUrlDoc, setResumeUrlDoc] = useState(null);
+  // const [resumeUrlDoc, setResumeUrlDoc] = useState(null);
   const isUserResume = useRef(useSelector(authUsername)).current === process.env.REACT_APP_RESUME_USERNAME;
   const dispatchRedux = useDispatch();
   const [isDownloadError, setIsDownloadError] = useState(false);
@@ -48,7 +48,7 @@ const Resume = () => {
 
   const tryAgainHandler = () => {
     setResumeUrlPdf(null);
-    setResumeUrlDoc(null);
+    // setResumeUrlDoc(null);
     setIsDownloadError(false);
     setIsFetching(false);
   };
@@ -77,7 +77,7 @@ const Resume = () => {
         if (currLang !== lang) {
           setCurrLang(lang);
           setResumeUrlPdf(null);
-          setResumeUrlDoc(null);
+          // setResumeUrlDoc(null);
         }
 
         let result;
@@ -95,7 +95,7 @@ const Resume = () => {
         }
 
         // doc
-        if (!resumeUrlDoc) {
+        /* if (!resumeUrlDoc) {
           result = await fetchUrl('docx');
           if (result) {
             setResumeUrlDoc(result);
@@ -104,7 +104,7 @@ const Resume = () => {
             setIsFetching(false);
             return false;
           }
-        }
+        } */
 
         setIsFetching(false);
         return true;
@@ -114,7 +114,8 @@ const Resume = () => {
         setIsFetching(false);
         return false;
       }
-    }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc, currLang],
+    }, [resumePath, lang, resumeUrlPdf, currLang],
+    // }, [resumePath, lang, resumeUrlPdf, resumeUrlDoc, currLang],
   );
 
   // todo: private and protected storage
@@ -149,9 +150,9 @@ const Resume = () => {
                   <a href={resumeUrlPdf} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2" aria-label={t('resume.formatPdf')}>
                     <img src={iconPdf} alt={t('resume.formatPdf')} style={[stylesInline.hrefImg, stylesInline.imgColor]} key="pdf" />
                   </a>
-                  <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2" aria-label={t('resume.formatDoc')}>
+                  {/* <a href={resumeUrlDoc} target="_blank" rel="noreferrer noopener" className="d-inline-block px-2" aria-label={t('resume.formatDoc')}>
                     <img src={iconDoc} alt={t('resume.formatDoc')} style={[stylesInline.hrefImg, stylesInline.imgColor]} key="doc" />
-                  </a>
+                  </a> */}
                 </>
               )}
           </>
