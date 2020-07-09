@@ -96,8 +96,8 @@ const slickHandler = () => {
         setSlick(windowBreakpoints.lg.slides);
       }
     } else if (!elemCarouselSlick.slick('getSlick').unslicked) unsetSlick();
-  } catch (err) { // in case when slick object has not been instantiated yet
-    console.error(err);
+  } catch (err) { // in case when slick object has not been instantiated yet, as with small mobile viewport
+    // console.error(err);
     if (window.innerWidth >= windowBreakpoints.xl.size) { // > 1200
       setSlick(windowBreakpoints.xl.slides);
     } else if (window.innerWidth >= windowBreakpoints.lg.size && window.innerWidth < windowBreakpoints.xl.size) { // 992 - 1200
