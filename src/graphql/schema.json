@@ -2,7 +2,7 @@
   "data" : {
     "__schema" : {
       "queryType" : {
-        "name" : "Query"
+        "name" : "Quuery"
       },
       "mutationType" : {
         "name" : "Mutation"
@@ -12,7 +12,7 @@
       },
       "types" : [ {
         "kind" : "OBJECT",
-        "name" : "Quuery",
+        "name" : "Query",
         "description" : null,
         "fields" : [ {
           "name" : "getProject",
