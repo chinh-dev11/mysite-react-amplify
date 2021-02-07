@@ -12,7 +12,7 @@
       },
       "types" : [ {
         "kind" : "OBJECT",
-        "name" : "Query",
+        "name" : "Quuery",
         "description" : null,
         "fields" : [ {
           "name" : "getProject",
